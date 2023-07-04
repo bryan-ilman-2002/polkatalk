@@ -67,7 +67,7 @@ class _SearchPageState extends State<SearchPage> {
                         color: Colors.grey.withOpacity(0.3),
                         blurRadius: 10,
                         spreadRadius: 2,
-                        offset: Offset(0, 4),
+                        offset: const Offset(0, 4),
                       ),
                     ],
                   ),
@@ -89,8 +89,8 @@ class _SearchPageState extends State<SearchPage> {
                           ),
                         ),
                       ),
-                      SizedBox(width: 15),
-                      Expanded(
+                      const SizedBox(width: 15),
+                      const Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -147,90 +147,57 @@ class _SearchPageState extends State<SearchPage> {
 
   Widget _buildNavItem(IconData icon, String label, int index) {
     return Expanded(
-      child: SizedBox(
-        height: 60,
-        child: Material(
-          color: Colors.transparent,
-          child: Ink(
-            decoration: ShapeDecoration(
-              color: _getBackgroundColor(index),
-              shape: _getBorderShape(index),
-            ),
-            child: InkWell(
-              onTap: () {
-                setState(() {
-                  _selectedIndex = index;
-                });
-              },
-              borderRadius: BorderRadius.circular(32),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    icon,
-                    color: _getIconColor(index),
-                    size: 24,
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    label,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: _getIconColor(index),
-                    ),
-                  ),
-                ],
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 320),
+          height: 60,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(32),
+            border: _getNavBarItemBorder(index),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 24,
+                color: _getNavBarItemColor(index),
               ),
-            ),
+              const SizedBox(height: 4),
+              AnimatedDefaultTextStyle(
+                duration: const Duration(milliseconds: 320),
+                style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: _getNavBarTextWeight(index),
+                  color: _getNavBarItemColor(index),
+                ),
+                child: Text(
+                  label,
+                ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 
-  Color _getIconColor(int index) {
+  FontWeight _getNavBarTextWeight(int index) {
+    return _selectedIndex == index ? FontWeight.bold : FontWeight.normal;
+  }
+
+  Color _getNavBarItemColor(int index) {
     return _selectedIndex == index ? Colors.black : Colors.grey;
   }
 
-  Color _getBackgroundColor(int index) {
-    return _selectedIndex == index ? Colors.white : Colors.transparent;
-  }
-
-  ShapeBorder _getBorderShape(int index) {
+  Border _getNavBarItemBorder(int index) {
     return _selectedIndex == index
-        ? const RollingWheelBorderShape()
-        : const Border();
+        ? Border.all(color: Colors.black, width: 2.0)
+        : Border.all(color: Colors.transparent, width: 0.0);
   }
-}
-
-class RollingWheelBorderShape extends ShapeBorder {
-  const RollingWheelBorderShape();
-
-  @override
-  EdgeInsetsGeometry get dimensions => EdgeInsets.zero;
-
-  @override
-  Path getInnerPath(Rect rect, {TextDirection? textDirection}) => Path();
-
-  @override
-  Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
-    final path = Path();
-    final radius = rect.height / 2;
-    final controlPointDistance = radius * 0.12;
-
-    path.moveTo(rect.left, rect.top);
-    path.lineTo(rect.left, rect.bottom - radius + controlPointDistance);
-    path.quadraticBezierTo(rect.center.dx, rect.bottom - controlPointDistance,
-        rect.right, rect.bottom - radius + controlPointDistance);
-    path.lineTo(rect.right, rect.top);
-    path.close();
-
-    return path;
-  }
-
-  @override
-  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {}
-
-  @override
-  ShapeBorder scale(double t) => this;
 }

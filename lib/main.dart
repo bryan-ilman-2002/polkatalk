@@ -9,6 +9,15 @@ void main() {
 class PolkaTalk extends StatelessWidget {
   const PolkaTalk({super.key});
 
+  final TextTheme basicMukta = const TextTheme(
+    bodyMedium: TextStyle(
+      fontFamily: 'Mukta',
+      fontSize: 16,
+      fontWeight: FontWeight.normal,
+      fontStyle: FontStyle.normal,
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,6 +25,7 @@ class PolkaTalk extends StatelessWidget {
       theme: ThemeData(
         splashFactory: InkRipple.splashFactory,
         primarySwatch: Colors.grey,
+        textTheme: basicMukta,
       ),
       home: const SearchPage(),
     );
