@@ -7,46 +7,56 @@ class SearchPage extends StatefulWidget {
   State<SearchPage> createState() => _SearchPageState();
 }
 
+const String rating = "3.2";
+
 class _SearchPageState extends State<SearchPage> {
   int _selectedIndex = 0;
+
+  Color _getRatingColor(double value) {
+    // Define the start and end colors for interpolation
+    Color startColor = Colors.red;
+    Color middleColor = Colors.yellow;
+    Color endColor = Colors.green;
+
+    // Normalize the value between 0.0 and 1.0
+    double normalizedValue = (value - 0.0) / (5.0 - 0.0);
+
+    // Calculate the stop points for color interpolation
+    double stop1 =
+        0.5; // Stop point for transitioning from startColor to middleColor
+    double stop2 =
+        1.0; // Stop point for transitioning from middleColor to endColor
+
+    final Color? ratingColor;
+    if (normalizedValue <= stop1) {
+      // Interpolate between startColor and middleColor
+      ratingColor =
+          Color.lerp(startColor, middleColor, normalizedValue / stop1);
+      return ratingColor ?? Colors.transparent;
+    } else {
+      // Interpolate between middleColor and endColor
+      ratingColor = Color.lerp(
+          middleColor, endColor, (normalizedValue - stop1) / (stop2 - stop1));
+      return ratingColor ?? Colors.transparent;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     int counter = 0;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('PolkaTalk'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications),
-            onPressed: () {
-              // Handle notification icon press
-            },
-          ),
-        ],
-      ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              blurRadius: 10,
-            ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            _buildNavItem(Icons.search, 'Search', counter++),
+            _buildNavItem(Icons.favorite, 'Favorites', counter++),
+            _buildNavItem(Icons.calendar_today, 'Sessions', counter++),
+            _buildNavItem(Icons.inbox, 'Inbox', counter++),
+            _buildNavItem(Icons.person, 'Profile', counter++),
           ],
-        ),
-        child: BottomAppBar(
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              _buildNavItem(Icons.search, 'Search', counter++),
-              _buildNavItem(Icons.favorite, 'Favorites', counter++),
-              _buildNavItem(Icons.calendar_today, 'Sessions', counter++),
-              _buildNavItem(Icons.inbox, 'Inbox', counter++),
-              _buildNavItem(Icons.person, 'Profile', counter++),
-            ],
-          ),
         ),
       ),
       body: Container(
@@ -61,10 +71,10 @@ class _SearchPageState extends State<SearchPage> {
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(16),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.3),
+                        color: Colors.grey.withOpacity(0.2),
                         blurRadius: 10,
                         spreadRadius: 2,
                         offset: const Offset(0, 4),
@@ -90,45 +100,42 @@ class _SearchPageState extends State<SearchPage> {
                         ),
                       ),
                       const SizedBox(width: 15),
-                      const Expanded(
+                      Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               'John Doe', // Replace with the name
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
                               ),
                             ),
-                            SizedBox(height: 5),
-                            Text(
+                            const SizedBox(height: 2),
+                            const Text(
                               'Software Engineer', // Replace with the profession
                               style: TextStyle(
                                 color: Colors.grey,
-                                fontSize: 14,
                               ),
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 8),
                             Row(
                               children: [
-                                Icon(Icons.star,
-                                    color: Colors.yellow, size: 18),
-                                Icon(Icons.star,
-                                    color: Colors.yellow, size: 18),
-                                Icon(Icons.star,
-                                    color: Colors.yellow, size: 18),
-                                Icon(Icons.star,
-                                    color: Colors.yellow, size: 18),
-                                Icon(Icons.star, color: Colors.grey, size: 18),
-                                SizedBox(width: 5),
-                                Text(
-                                  '4.0', // Replace with the rating
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                                Container(
+                                  padding: EdgeInsets.all(6),
+                                  decoration: BoxDecoration(
+                                    color:
+                                        _getRatingColor(double.parse(rating)),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                ),
+                                  child: Text(
+                                    rating,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                )
                               ],
                             ),
                           ],
@@ -157,7 +164,7 @@ class _SearchPageState extends State<SearchPage> {
           duration: const Duration(milliseconds: 320),
           height: 60,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(32),
+            borderRadius: BorderRadius.circular(24),
             border: _getNavBarItemBorder(index),
           ),
           child: Column(

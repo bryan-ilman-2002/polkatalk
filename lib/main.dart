@@ -12,7 +12,7 @@ class PolkaTalk extends StatelessWidget {
   final TextTheme basicMukta = const TextTheme(
     bodyMedium: TextStyle(
       fontFamily: 'Mukta',
-      fontSize: 16,
+      fontSize: 14,
       fontWeight: FontWeight.normal,
       fontStyle: FontStyle.normal,
     ),
