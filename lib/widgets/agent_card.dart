@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../attributes/light_shadow.dart';
+import 'package:polkatalk/getters/light_shadow.dart';
 
 class AgentCard extends StatefulWidget {
   final String name;
@@ -57,7 +56,7 @@ class _AgentCardState extends State<AgentCard> {
             color: Colors.white,
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
-              getLightShadow(),
+              lightShadow,
             ],
           ),
           child: Row(

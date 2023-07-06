@@ -2,16 +2,21 @@ import 'package:flutter/material.dart';
 
 class CustomBottomAppBar extends StatefulWidget {
   final List<List<dynamic>> navItems;
+  final int selectedIndex;
+  final Function(int) onTap;
 
-  const CustomBottomAppBar({super.key, required this.navItems});
+  const CustomBottomAppBar({
+    super.key,
+    required this.navItems,
+    required this.selectedIndex,
+    required this.onTap,
+  });
 
   @override
   State<CustomBottomAppBar> createState() => _CustomBottomAppBarState();
 }
 
 class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
-  int _selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -31,9 +36,7 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
     return Expanded(
       child: GestureDetector(
         onTap: () {
-          setState(() {
-            _selectedIndex = index;
-          });
+          widget.onTap(index);
         },
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 320),
@@ -70,15 +73,15 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
   }
 
   FontWeight _getNavBarTextWeight(int index) {
-    return _selectedIndex == index ? FontWeight.bold : FontWeight.normal;
+    return widget.selectedIndex == index ? FontWeight.bold : FontWeight.normal;
   }
 
   Color _getNavBarItemColor(int index) {
-    return _selectedIndex == index ? Colors.black : Colors.grey;
+    return widget.selectedIndex == index ? Colors.black : Colors.grey;
   }
 
   Border _getNavBarItemBorder(int index) {
-    return _selectedIndex == index
+    return widget.selectedIndex == index
         ? Border.all(color: Colors.black, width: 2.0)
         : Border.all(color: Colors.transparent, width: 0.0);
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../attributes/light_shadow.dart';
+import 'package:polkatalk/getters/light_shadow.dart';
 
 class BackgroundRevealButton extends StatefulWidget {
   const BackgroundRevealButton({super.key});
@@ -41,7 +40,7 @@ class _BackgroundRevealButtonState extends State<BackgroundRevealButton> {
               ? const Color.fromARGB(255, 230, 230, 230)
               : Colors.white,
           boxShadow: [
-            getLightShadow(),
+            lightShadow,
           ],
         ),
         child: const Icon(

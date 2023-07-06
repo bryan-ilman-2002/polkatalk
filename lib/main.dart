@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'pages/search_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:polkatalk/widgets/page_swapper.dart';
 
 void main() {
-  runApp(const PolkaTalk());
+  runApp(const ProviderScope(child: PolkaTalk()));
 }
 
 class PolkaTalk extends StatelessWidget {
@@ -32,7 +32,7 @@ class PolkaTalk extends StatelessWidget {
         splashFactory: InkRipple.splashFactory,
         textTheme: mukta,
       ),
-      home: const SearchPage(),
+      home: const PageSwapper(),
     );
   }
 }

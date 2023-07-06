@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-BoxShadow getLightShadow() {
+BoxShadow get lightShadow {
   return BoxShadow(
     color: Colors.grey.withOpacity(0.16),
     blurRadius: 10,

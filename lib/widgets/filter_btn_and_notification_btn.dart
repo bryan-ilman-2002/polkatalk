@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../attributes/light_shadow.dart';
+import 'package:polkatalk/getters/light_shadow.dart';
 
 class FilterButtonAndNotificationButton extends StatefulWidget {
   const FilterButtonAndNotificationButton({super.key});
@@ -24,7 +23,7 @@ class _FilterButtonAndNotificationButtonState
         color: Colors.white,
         borderRadius: BorderRadius.circular(32),
         boxShadow: [
-          getLightShadow(),
+          lightShadow,
         ],
       ),
       child: Row(
