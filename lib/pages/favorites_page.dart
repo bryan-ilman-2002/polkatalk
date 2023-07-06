@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:polkatalk/widgets/agent_card.dart';
+import 'package:polkatalk/widgets/swipe_to_remove_txt.dart';
 
 class FavoritesPage extends StatefulWidget {
   final ScrollController scrollController;
@@ -20,11 +21,16 @@ class _FavoritesPage extends State<FavoritesPage> {
           controller: widget.scrollController,
           itemCount: 15,
           itemBuilder: (BuildContext context, int index) {
-            return const AgentCard(
-              name: 'Larry Page',
-              profession: 'Economist',
-              rating: 4.8,
-            );
+            return index == 0
+                ? const SwipeToRemoveText()
+                : Dismissible(
+                    key: ValueKey(index),
+                    child: const AgentCard(
+                      name: 'Larry Page',
+                      profession: 'Economist',
+                      rating: 4.8,
+                    ),
+                  );
           },
         ),
       ),
