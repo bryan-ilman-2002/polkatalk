@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:polkatalk/pages/favorites_page.dart';
 import 'package:polkatalk/pages/search_page.dart';
+import 'package:polkatalk/pages/sessions_page.dart';
 
 List<Widget> initPages(Function(bool, ScrollController) scrollListener) {
   return <Widget>[
@@ -9,7 +10,10 @@ List<Widget> initPages(Function(bool, ScrollController) scrollListener) {
     ),
     FavoritesPage(
       scrollController: _createScrollController(scrollListener),
-    )
+    ),
+    SessionsPage(
+      scrollController: _createScrollController(scrollListener),
+    ),
   ];
 }
 

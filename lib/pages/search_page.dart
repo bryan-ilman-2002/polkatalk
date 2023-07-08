@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:polkatalk/widgets/agent_card.dart';
+import 'package:polkatalk/widgets/profile_card.dart';
 import 'package:polkatalk/widgets/background_reveal_btn.dart';
 import 'package:polkatalk/widgets/filter_btn_and_notification_btn.dart';
 
@@ -31,7 +31,7 @@ class _SearchPageState extends State<SearchPage> {
           itemBuilder: (BuildContext context, int index) {
             return index == 0
                 ? Row(children: pageButtons)
-                : const AgentCard(
+                : const ProfileCard(
                     name: 'Larry Page',
                     profession: 'Economist',
                     rating: 4.8,

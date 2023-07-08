@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:polkatalk/getters/light_shadow.dart';
+import 'package:polkatalk/functions/getters/light_shadow.dart';
 
 class FilterButtonAndNotificationButton extends StatefulWidget {
   const FilterButtonAndNotificationButton({super.key});

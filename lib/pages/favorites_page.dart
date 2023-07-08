@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:polkatalk/widgets/agent_card.dart';
+import 'package:polkatalk/widgets/profile_card.dart';
 import 'package:polkatalk/widgets/swipe_to_remove_txt.dart';
 
 class FavoritesPage extends StatefulWidget {
@@ -25,7 +25,7 @@ class _FavoritesPage extends State<FavoritesPage> {
                 ? const SwipeToRemoveText()
                 : Dismissible(
                     key: ValueKey(index),
-                    child: const AgentCard(
+                    child: const ProfileCard(
                       name: 'Larry Page',
                       profession: 'Economist',
                       rating: 4.8,

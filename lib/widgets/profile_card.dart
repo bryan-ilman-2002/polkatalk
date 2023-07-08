@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:polkatalk/getters/light_shadow.dart';
+import 'package:polkatalk/functions/getters/light_shadow.dart';
 
-class AgentCard extends StatefulWidget {
+class ProfileCard extends StatefulWidget {
   final String name;
   final String profession;
 
   final double rating;
 
-  const AgentCard(
+  const ProfileCard(
       {super.key,
       required this.name,
       required this.profession,
       required this.rating});
 
   @override
-  State<AgentCard> createState() => _AgentCardState();
+  State<ProfileCard> createState() => _ProfileCardState();
 }
 
-class _AgentCardState extends State<AgentCard> {
+class _ProfileCardState extends State<ProfileCard> {
   Color _getRatingColor(double value) {
     // Define the start and end colors for interpolation
     Color startColor = Colors.red;
-    Color middleColor = Colors.yellow;
+    Color middleColor = Colors.amber;
     Color endColor = Colors.green;
 
     // Normalize the value between 0.0 and 1.0
