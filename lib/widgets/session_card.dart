@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:polkatalk/enums/session_status.dart';
 import 'package:polkatalk/functions/getters/light_shadow.dart';
+import 'package:polkatalk/widgets/txt_with_bg.dart';
 
 class SessionCard extends StatefulWidget {
   final String name;
@@ -27,7 +28,7 @@ class SessionCard extends StatefulWidget {
 }
 
 class _SessionCardState extends State<SessionCard> {
-  String getCurrentDate() {
+  String get currentDate {
     DateTime now = DateTime.now();
     DateFormat formatter = DateFormat('dd/MM/yy HH:mm');
     return formatter.format(now);
@@ -93,23 +94,12 @@ class _SessionCardState extends State<SessionCard> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        padding: const EdgeInsets.all(6),
-                        decoration: BoxDecoration(
-                          color:
+                      TextWithBackground(
+                          text: widget.varSessionStatus.string,
+                          varColor:
                               widget.varSessionStatus == SessionStatus.scheduled
                                   ? Colors.amber
-                                  : Colors.green,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text(
-                          widget.varSessionStatus.string,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
+                                  : Colors.green),
                       const SizedBox(width: 8),
                       Icon(
                         Icons.fact_check_outlined,
@@ -137,7 +127,7 @@ class _SessionCardState extends State<SessionCard> {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        getCurrentDate(),
+                        currentDate,
                         style: const TextStyle(
                           color: Colors.grey,
                         ),
@@ -151,7 +141,7 @@ class _SessionCardState extends State<SessionCard> {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        getCurrentDate(),
+                        currentDate,
                         style: const TextStyle(
                           color: Colors.grey,
                         ),

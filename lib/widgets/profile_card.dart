@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:polkatalk/functions/getters/light_shadow.dart';
+import 'package:polkatalk/widgets/txt_with_bg.dart';
 
 class ProfileCard extends StatefulWidget {
   final String name;
@@ -60,7 +61,6 @@ class _ProfileCardState extends State<ProfileCard> {
             ],
           ),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -97,19 +97,9 @@ class _ProfileCardState extends State<ProfileCard> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    Container(
-                      padding: const EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        color: _getRatingColor(widget.rating),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        widget.rating.toString(),
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
+                    TextWithBackground(
+                      text: widget.rating.toString(),
+                      varColor: _getRatingColor(widget.rating),
                     ),
                   ],
                 ),

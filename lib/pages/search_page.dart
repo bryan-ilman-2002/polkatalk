@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:polkatalk/widgets/profile_card.dart';
-import 'package:polkatalk/widgets/background_reveal_btn.dart';
+import 'package:polkatalk/widgets/bg_reveal_btn.dart';
 import 'package:polkatalk/widgets/filter_btn_and_notification_btn.dart';
 
 class SearchPage extends StatefulWidget {

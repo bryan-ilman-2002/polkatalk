@@ -53,7 +53,7 @@ class _PageSwapper extends State<PageSwapper> {
           [Icons.search_outlined, 'Search'],
           [Icons.favorite_outline, 'Favorites'],
           [Icons.calendar_today_outlined, 'Sessions'],
-          [Icons.inbox_outlined, 'Inbox'],
+          [Icons.chat_outlined, 'Chats'],
           [Icons.person_outline, 'Profile'],
         ],
         selectedIndex: _selectedIndex,
