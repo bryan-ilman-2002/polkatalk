@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:polkatalk/widgets/log_out_btn.dart';
+import 'package:polkatalk/widgets/horizontal_thin_line.dart';
+import 'package:polkatalk/widgets/colored_btn.dart';
 import 'package:polkatalk/widgets/polkapay_btn_and_bank_card_btn.dart';
 import 'package:polkatalk/widgets/filter_btn_and_notification_btn.dart';
 import 'package:polkatalk/widgets/setting_btn.dart';
@@ -61,75 +62,52 @@ class _ProfilePageState extends State<ProfilePage> {
               const PolkaPayButtonAndBankCardButton(),
               const SizedBox(height: 8),
               const SettingButton(
-                  icon: Icons.person_outline_rounded,
-                  name: 'Personal Information'),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 8),
-                height: 0.2,
-                width: double.infinity,
-                color: Colors.black,
+                icon: Icons.person_outline_rounded,
+                name: 'Personal Information',
               ),
+              const HorizontalThinLine(),
               const SettingButton(
-                  icon: Icons.translate_rounded, name: 'Translation'),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 8),
-                height: 0.2,
-                width: double.infinity,
-                color: Colors.black,
+                icon: Icons.translate_rounded,
+                name: 'Translation',
               ),
+              const HorizontalThinLine(),
               const SettingButton(
-                  icon: Icons.notifications_none_rounded,
-                  name: 'Notifications'),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 8),
-                height: 0.2,
-                width: double.infinity,
-                color: Colors.black,
+                icon: Icons.notifications_none_rounded,
+                name: 'Notifications',
               ),
+              const HorizontalThinLine(),
               const SettingButton(
-                  icon: Icons.cloud_download_outlined,
-                  name: 'Request Personal Data'),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 8),
-                height: 0.2,
-                width: double.infinity,
-                color: Colors.black,
+                icon: Icons.cloud_download_outlined,
+                name: 'Request Personal Data',
               ),
+              const HorizontalThinLine(),
               const SettingButton(
-                  icon: Icons.delete_outline_rounded, name: 'Delete Account'),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 8),
-                height: 0.2,
-                width: double.infinity,
-                color: Colors.black,
+                icon: Icons.delete_outline_rounded,
+                name: 'Delete Account',
               ),
+              const HorizontalThinLine(),
               const SizedBox(height: 64),
               const SettingButton(
-                  icon: Icons.help_outline, name: 'Help Center'),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 8),
-                height: 0.2,
-                width: double.infinity,
-                color: Colors.black,
+                icon: Icons.help_outline,
+                name: 'Help Center',
               ),
+              const HorizontalThinLine(),
               const SettingButton(
-                  icon: Icons.menu_book_rounded, name: 'Terms of Service'),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 8),
-                height: 0.2,
-                width: double.infinity,
-                color: Colors.black,
+                icon: Icons.menu_book_rounded,
+                name: 'Terms of Service',
               ),
+              const HorizontalThinLine(),
               const SettingButton(
-                  icon: Icons.menu_book_rounded, name: 'Privacy Policy'),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 8),
-                height: 0.2,
-                width: double.infinity,
-                color: Colors.black,
+                icon: Icons.menu_book_rounded,
+                name: 'Privacy Policy',
               ),
+              const HorizontalThinLine(),
               const SizedBox(height: 16),
-              const LogOutButton(),
+              const ColoredButton(
+                normalButtonColor: Colors.white,
+                pressedButtonColor: Color.fromARGB(255, 255, 226, 224),
+                textColor: Colors.red,
+              ),
             ],
           ),
         ),

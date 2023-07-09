@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:polkatalk/functions/getters/light_shadow.dart';
+import 'package:polkatalk/widgets/filter_modal.dart';
 
 class FilterButtonAndNotificationButton extends StatefulWidget {
   const FilterButtonAndNotificationButton({super.key});
@@ -60,6 +61,15 @@ class _FilterButtonAndNotificationButtonState
           setState(() {
             setButtonState(false);
           });
+          showModalBottomSheet(
+            context: context,
+            useSafeArea: true,
+            isScrollControlled: true,
+            backgroundColor: Colors.transparent,
+            builder: (BuildContext context) {
+              return const FilterModal();
+            },
+          );
         },
         onPointerCancel: (PointerCancelEvent _) {
           setState(() {

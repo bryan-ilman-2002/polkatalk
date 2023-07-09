@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 
-class LogOutButton extends StatefulWidget {
-  const LogOutButton({super.key});
+class ColoredButton extends StatefulWidget {
+  final Color normalButtonColor;
+  final Color pressedButtonColor;
+  final Color textColor;
+
+  const ColoredButton(
+      {super.key,
+      this.normalButtonColor = Colors.white,
+      this.pressedButtonColor = const Color.fromARGB(255, 230, 230, 230),
+      this.textColor = Colors.black});
 
   @override
-  State<LogOutButton> createState() => _LogOutButtonState();
+  State<ColoredButton> createState() => _ColoredButtonState();
 }
 
-class _LogOutButtonState extends State<LogOutButton> {
+class _ColoredButtonState extends State<ColoredButton> {
   bool _buttonIsFocused = false;
 
   @override
@@ -35,8 +43,8 @@ class _LogOutButtonState extends State<LogOutButton> {
           padding: const EdgeInsets.symmetric(vertical: 16),
           decoration: BoxDecoration(
             color: _buttonIsFocused
-                ? const Color.fromARGB(255, 255, 226, 224)
-                : Colors.white,
+                ? widget.pressedButtonColor
+                : widget.normalButtonColor,
             borderRadius: BorderRadius.circular(32),
           ),
           child: const Center(
