@@ -99,77 +99,98 @@ class _FilterModalState extends State<FilterModal> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: Radio<int>(
-                                  value: 0,
-                                  groupValue: _sessionType,
-                                  activeColor: Colors.black,
-                                  onChanged: (int? value) {
-                                    setState(() {
-                                      _sessionType = value!;
-                                    });
-                                  },
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _sessionType = 0;
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: Radio<int>(
+                                    value: 0,
+                                    groupValue: _sessionType,
+                                    activeColor: Colors.black,
+                                    onChanged: (int? value) {
+                                      setState(() {
+                                        _sessionType = value!;
+                                      });
+                                    },
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                SessionType.standard.string,
-                              ),
-                            ],
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  SessionType.standard.string,
+                                ),
+                              ],
+                            ),
                           ),
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: Radio<int>(
-                                  value: 1,
-                                  groupValue: _sessionType,
-                                  activeColor: Colors.black,
-                                  onChanged: (int? value) {
-                                    setState(() {
-                                      _sessionType = value!;
-                                    });
-                                  },
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _sessionType = 1;
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: Radio<int>(
+                                    value: 1,
+                                    groupValue: _sessionType,
+                                    activeColor: Colors.black,
+                                    onChanged: (int? value) {
+                                      setState(() {
+                                        _sessionType = value!;
+                                      });
+                                    },
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                SessionType.charity.string,
-                              ),
-                            ],
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  SessionType.charity.string,
+                                ),
+                              ],
+                            ),
                           ),
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: Radio<int>(
-                                  value: 2,
-                                  groupValue: _sessionType,
-                                  activeColor: Colors.black,
-                                  onChanged: (int? value) {
-                                    setState(() {
-                                      _sessionType = value!;
-                                    });
-                                  },
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _sessionType = 2;
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: Radio<int>(
+                                    value: 2,
+                                    groupValue: _sessionType,
+                                    activeColor: Colors.black,
+                                    onChanged: (int? value) {
+                                      setState(() {
+                                        _sessionType = value!;
+                                      });
+                                    },
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                SessionType.acquaintanceship.string,
-                              ),
-                            ],
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  SessionType.acquaintanceship.string,
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
