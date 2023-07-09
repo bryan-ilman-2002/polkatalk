@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
 class ColoredButton extends StatefulWidget {
+  final String text;
+  final FontWeight textWeight;
   final Color normalButtonColor;
   final Color pressedButtonColor;
+  final Color borderColor;
   final Color textColor;
 
   const ColoredButton(
       {super.key,
+      this.text = 'Click',
+      this.textWeight = FontWeight.normal,
       this.normalButtonColor = Colors.white,
       this.pressedButtonColor = const Color.fromARGB(255, 230, 230, 230),
+      this.borderColor = Colors.transparent,
       this.textColor = Colors.black});
 
   @override
@@ -45,14 +51,16 @@ class _ColoredButtonState extends State<ColoredButton> {
             color: _buttonIsFocused
                 ? widget.pressedButtonColor
                 : widget.normalButtonColor,
-            borderRadius: BorderRadius.circular(32),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: widget.borderColor, width: 2.0),
           ),
-          child: const Center(
+          child: Center(
             child: Text(
-              'Log out',
+              widget.text,
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.red,
+                fontWeight: widget.textWeight,
+                color: widget.textColor,
               ),
             ),
           ),

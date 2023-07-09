@@ -56,20 +56,40 @@ class _FilterModalState extends State<FilterModal> {
           Expanded(
             child: ListView(
               children: const [
-                // Add your custom filter options here
+                Column(
+                  children: [
+                    Row(),
+                    Row(),
+                    Row(),
+                  ],
+                )
               ],
             ),
           ),
           const HorizontalThinLine(
             margin: EdgeInsets.all(0),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ColoredButton(),
-              ColoredButton(),
-            ],
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ColoredButton(
+                  text: 'Reset',
+                  textWeight: FontWeight.bold,
+                  borderColor: Colors.black,
+                ),
+                ColoredButton(
+                  text: 'Apply',
+                  textWeight: FontWeight.bold,
+                  normalButtonColor: Colors.black,
+                  pressedButtonColor: Color.fromARGB(255, 112, 112, 112),
+                  borderColor: Colors.black,
+                  textColor: Colors.white,
+                ),
+              ],
+            ),
           ),
         ],
       ),

@@ -104,6 +104,7 @@ class _ProfilePageState extends State<ProfilePage> {
               const HorizontalThinLine(),
               const SizedBox(height: 16),
               const ColoredButton(
+                text: 'Log out',
                 normalButtonColor: Colors.white,
                 pressedButtonColor: Color.fromARGB(255, 255, 226, 224),
                 textColor: Colors.red,
