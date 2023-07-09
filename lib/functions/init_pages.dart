@@ -19,7 +19,9 @@ List<Widget> initPages(Function(bool, ScrollController) scrollListener) {
     ChatsPage(
       scrollController: _createScrollController(scrollListener),
     ),
-    const ProfilePage(),
+    ProfilePage(
+      scrollController: _createScrollController(scrollListener),
+    ),
   ];
 }
 

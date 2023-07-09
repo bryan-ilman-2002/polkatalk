@@ -53,6 +53,7 @@ class _ProfileCardState extends State<ProfileCard> {
       child: Card(
         elevation: 0,
         child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 16),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(16),
