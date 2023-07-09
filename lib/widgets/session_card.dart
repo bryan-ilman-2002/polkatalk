@@ -28,6 +28,8 @@ class SessionCard extends StatefulWidget {
 }
 
 class _SessionCardState extends State<SessionCard> {
+  bool _cardIsFocused = false;
+
   String get currentDate {
     DateTime now = DateTime.now();
     DateFormat formatter = DateFormat('dd/MM/yy HH:mm');
@@ -41,124 +43,145 @@ class _SessionCardState extends State<SessionCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Card(
-        elevation: 0,
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              lightShadow,
-            ],
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.grey[200],
-                  ),
-                  // Replace with your photo widget
-                  child: const Center(
-                    child: Icon(Icons.photo, color: Colors.white),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 15),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.name,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
+    return Listener(
+      onPointerDown: (PointerDownEvent _) {
+        setState(() {
+          _cardIsFocused = true;
+        });
+      },
+      onPointerUp: (PointerUpEvent _) {
+        setState(() {
+          _cardIsFocused = false;
+        });
+        () {}; // callback function
+      },
+      onPointerCancel: (PointerCancelEvent _) {
+        setState(() {
+          _cardIsFocused = false;
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Card(
+          elevation: 0,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            decoration: BoxDecoration(
+              color: _cardIsFocused
+                  ? const Color.fromARGB(255, 230, 230, 230)
+                  : Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                lightShadow,
+              ],
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey[200],
+                    ),
+                    // Replace with your photo widget
+                    child: const Center(
+                      child: Icon(Icons.photo, color: Colors.white),
                     ),
                   ),
-                  const SizedBox(height: 2),
-                  Text(
-                    widget.profession,
-                    style: const TextStyle(
-                      color: Colors.grey,
+                ),
+                const SizedBox(width: 15),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.name,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      widget.profession,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        TextWithBackground(
+                            text: widget.varSessionStatus.string,
+                            varColor: widget.varSessionStatus ==
+                                    SessionStatus.scheduled
+                                ? Colors.amber
+                                : Colors.green),
+                        const SizedBox(width: 8),
+                        Icon(
+                          Icons.fact_check_outlined,
+                          color: widget.authenticated
+                              ? Colors.grey
+                              : Colors.transparent,
+                          size: 20,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 16, right: 12, top: 8, bottom: 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'start:',
+                          style: TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          currentDate,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        const Text(
+                          'end:',
+                          style: TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          currentDate,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          '${widget.currency} ${formatNumberWithLocalizedSeparators(widget.totalCost)}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      TextWithBackground(
-                          text: widget.varSessionStatus.string,
-                          varColor:
-                              widget.varSessionStatus == SessionStatus.scheduled
-                                  ? Colors.amber
-                                  : Colors.green),
-                      const SizedBox(width: 8),
-                      Icon(
-                        Icons.fact_check_outlined,
-                        color: widget.authenticated
-                            ? Colors.grey
-                            : Colors.transparent,
-                        size: 20,
-                      )
-                    ],
-                  ),
-                ],
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 16, right: 12, top: 8, bottom: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'start:',
-                        style: TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        currentDate,
-                        style: const TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        'end:',
-                        style: TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        currentDate,
-                        style: const TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        '${widget.currency} ${formatNumberWithLocalizedSeparators(widget.totalCost)}',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

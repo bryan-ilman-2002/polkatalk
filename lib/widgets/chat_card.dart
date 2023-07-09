@@ -31,6 +31,8 @@ class ChatCard extends StatefulWidget {
 }
 
 class _ChatCardState extends State<ChatCard> {
+  bool _cardIsFocused = false;
+
   String get currentDate {
     DateTime now = DateTime.now();
     String? locale = Intl.defaultLocale;
@@ -55,109 +57,130 @@ class _ChatCardState extends State<ChatCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Card(
-        elevation: 0,
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              lightShadow,
-            ],
-          ),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.grey[200],
-                  ),
-                  // Replace with your photo widget
-                  child: const Center(
-                    child: Icon(Icons.photo, color: Colors.white),
+    return Listener(
+      onPointerDown: (PointerDownEvent _) {
+        setState(() {
+          _cardIsFocused = true;
+        });
+      },
+      onPointerUp: (PointerUpEvent _) {
+        setState(() {
+          _cardIsFocused = false;
+        });
+        () {}; // callback function
+      },
+      onPointerCancel: (PointerCancelEvent _) {
+        setState(() {
+          _cardIsFocused = false;
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Card(
+          elevation: 0,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            decoration: BoxDecoration(
+              color: _cardIsFocused
+                  ? const Color.fromARGB(255, 230, 230, 230)
+                  : Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                lightShadow,
+              ],
+            ),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey[200],
+                    ),
+                    // Replace with your photo widget
+                    child: const Center(
+                      child: Icon(Icons.photo, color: Colors.white),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 15),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(right: 8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                const SizedBox(width: 15),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(right: 16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              widget.name,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            ),
+                            Text(
+                              currentDate,
+                              style: const TextStyle(
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        widget.profession,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
                         children: [
-                          Text(
-                            widget.name,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
+                          widget.lastMessageIsYours ? icon : const SizedBox(),
+                          widget.lastMessageIsYours
+                              ? const SizedBox(width: 4)
+                              : const SizedBox(),
+                          Expanded(
+                            child: Text(
+                              widget.lastMessage,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                color: Colors.grey,
+                              ),
                             ),
                           ),
-                          Text(
-                            currentDate,
-                            style: const TextStyle(
-                              color: Colors.grey,
+                          const SizedBox(width: 4),
+                          Container(
+                            width: 24,
+                            height: 24,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: widget.receivedUnreadMessagesCount != 0
+                                  ? Colors.green
+                                  : Colors.white,
+                            ),
+                            child: Center(
+                              child: Text(
+                                widget.receivedUnreadMessagesCount.toString(),
+                                style: const TextStyle(color: Colors.white),
+                              ),
                             ),
                           ),
+                          const SizedBox(width: 8),
                         ],
                       ),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      widget.profession,
-                      style: const TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      children: [
-                        widget.lastMessageIsYours ? icon : const SizedBox(),
-                        widget.lastMessageIsYours
-                            ? const SizedBox(width: 4)
-                            : const SizedBox(),
-                        Expanded(
-                          child: Text(
-                            widget.lastMessage,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 4),
-                        Container(
-                          width: 24,
-                          height: 24,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: widget.receivedUnreadMessagesCount != 0
-                                ? Colors.green
-                                : Colors.white,
-                          ),
-                          child: Center(
-                            child: Text(
-                              widget.receivedUnreadMessagesCount.toString(),
-                              style: const TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

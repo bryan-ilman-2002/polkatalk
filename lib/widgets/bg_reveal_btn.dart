@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:polkatalk/functions/getters/light_shadow.dart';
 
 class BackgroundRevealButton extends StatefulWidget {
-  const BackgroundRevealButton({super.key});
+  final Function() toggleBackgroundCallback;
+
+  const BackgroundRevealButton(
+      {super.key, required this.toggleBackgroundCallback});
 
   @override
   State<BackgroundRevealButton> createState() => _BackgroundRevealButtonState();
@@ -23,6 +26,7 @@ class _BackgroundRevealButtonState extends State<BackgroundRevealButton> {
         setState(() {
           _bgButtonIsActive = false;
         });
+        widget.toggleBackgroundCallback();
       },
       onPointerCancel: (PointerCancelEvent _) {
         setState(() {

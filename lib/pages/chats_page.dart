@@ -23,11 +23,11 @@ class _ChatsPageState extends State<ChatsPage> {
             return const ChatCard(
               name: 'Larry Page',
               profession: 'Economist',
-              // lastMessage: 'hellohellohellohellohellohellohellohello',
-              // lastMessageIsYours: false,
-              // failedToSendLastMessage: false,
-              // theySawLastMessage: false,
-              // receivedUnreadMessagesCount: 0,
+              lastMessage: 'hellohellohellohellohellohellohellohello',
+              lastMessageIsYours: false,
+              failedToSendLastMessage: false,
+              theySawLastMessage: false,
+              receivedUnreadMessagesCount: 0,
             );
           },
         ),

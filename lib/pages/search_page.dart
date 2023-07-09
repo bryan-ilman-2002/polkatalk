@@ -13,15 +13,28 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  List<Widget> pageButtons = [
-    const Expanded(
-      child: FilterButtonAndNotificationButton(),
-    ),
-    const BackgroundRevealButton()
-  ];
+  bool _showBackground = false;
+
+  void toggleBackgroundVisibility() {
+    setState(() {
+      _showBackground = !_showBackground;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> pageButtons = [
+      Expanded(
+        child: _showBackground
+            ? const SizedBox(
+                height: 76,
+              )
+            : const FilterButtonAndNotificationButton(),
+      ),
+      BackgroundRevealButton(
+          toggleBackgroundCallback: toggleBackgroundVisibility),
+    ];
+
     return SafeArea(
       child: Container(
         color: Colors.white,
@@ -31,10 +44,13 @@ class _SearchPageState extends State<SearchPage> {
           itemBuilder: (BuildContext context, int index) {
             return index == 0
                 ? Row(children: pageButtons)
-                : const ProfileCard(
-                    name: 'Larry Page',
-                    profession: 'Economist',
-                    rating: 4.8,
+                : Visibility(
+                    visible: !_showBackground,
+                    child: const ProfileCard(
+                      name: 'Larry Page',
+                      profession: 'Economist',
+                      rating: 4.8,
+                    ),
                   );
           },
         ),
