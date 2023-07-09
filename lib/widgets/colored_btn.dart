@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 
 class ColoredButton extends StatefulWidget {
+  final double width;
+  final double height;
   final String text;
-  final FontWeight textWeight;
+  final FontWeight fontWeight;
   final Color normalButtonColor;
   final Color pressedButtonColor;
+  final double borderRadius;
   final Color borderColor;
   final Color textColor;
 
   const ColoredButton(
       {super.key,
+      this.width = 160,
+      this.height = 16,
       this.text = 'Click',
-      this.textWeight = FontWeight.normal,
+      this.fontWeight = FontWeight.normal,
       this.normalButtonColor = Colors.white,
       this.pressedButtonColor = const Color.fromARGB(255, 230, 230, 230),
+      this.borderRadius = 16,
       this.borderColor = Colors.transparent,
       this.textColor = Colors.black});
 
@@ -27,7 +33,7 @@ class _ColoredButtonState extends State<ColoredButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 160,
+      width: widget.width,
       child: Listener(
         onPointerDown: (PointerDownEvent _) {
           setState(() {
@@ -46,20 +52,20 @@ class _ColoredButtonState extends State<ColoredButton> {
         },
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding: EdgeInsets.symmetric(vertical: widget.height),
           decoration: BoxDecoration(
             color: _buttonIsFocused
                 ? widget.pressedButtonColor
                 : widget.normalButtonColor,
-            borderRadius: BorderRadius.circular(16),
             border: Border.all(color: widget.borderColor, width: 2.0),
+            borderRadius: BorderRadius.circular(widget.borderRadius),
           ),
           child: Center(
             child: Text(
               widget.text,
               style: TextStyle(
                 fontSize: 16,
-                fontWeight: widget.textWeight,
+                fontWeight: widget.fontWeight,
                 color: widget.textColor,
               ),
             ),

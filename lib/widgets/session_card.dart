@@ -119,7 +119,7 @@ class _SessionCardState extends State<SessionCard> {
                       children: [
                         TextWithBackground(
                             text: widget.varSessionStatus.string,
-                            varColor: widget.varSessionStatus ==
+                            backgroundColor: widget.varSessionStatus ==
                                     SessionStatus.scheduled
                                 ? Colors.amber
                                 : Colors.green),

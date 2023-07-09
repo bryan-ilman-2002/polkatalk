@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 
 class TextWithBackground extends StatelessWidget {
   final String text;
-  final Color varColor;
+  final Color backgroundColor;
 
-  const TextWithBackground(
-      {super.key, required this.text, required this.varColor});
+  const TextWithBackground({
+    super.key,
+    required this.text,
+    required this.backgroundColor,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(6),
       decoration: BoxDecoration(
-        color: varColor,
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Text(

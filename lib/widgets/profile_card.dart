@@ -123,7 +123,7 @@ class _ProfileCardState extends State<ProfileCard> {
                       const SizedBox(height: 8),
                       TextWithBackground(
                         text: widget.rating.toString(),
-                        varColor: _getRatingColor(widget.rating),
+                        backgroundColor: _getRatingColor(widget.rating),
                       ),
                     ],
                   ),
