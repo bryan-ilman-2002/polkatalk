@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:polkatalk/enums/communication_method.dart';
 import 'package:polkatalk/enums/rating.dart';
 import 'package:polkatalk/enums/session_type.dart';
+import 'package:polkatalk/enums/sorting_aspects.dart';
 import 'package:polkatalk/functions/getters/rating_color.dart';
 import 'package:polkatalk/widgets/colored_btn.dart';
 import 'package:polkatalk/widgets/horizontal_thin_line.dart';
@@ -119,9 +120,46 @@ class _FilterModalState extends State<FilterModal> {
     });
   }
 
+  int? _sortingAspect;
+
+  void _resetSortingAspect() {
+    setState(() {
+      _sortingAspect = null;
+    });
+  }
+
+  TextEditingController _minController = TextEditingController();
+  TextEditingController _maxController = TextEditingController();
+  double? minPrice;
+  double? maxPrice;
+
+  @override
+  void dispose() {
+    _minController.dispose();
+    _maxController.dispose();
+    super.dispose();
+  }
+
+  void _updateMinPrice(String value) {
+    setState(() {
+      minPrice = double.tryParse(value);
+    });
+  }
+
+  void _updateMaxPrice(String value) {
+    setState(() {
+      maxPrice = double.tryParse(value);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final dateFormat = DateFormat.yMd().add_Hm();
+
+    final currencyFormatter = NumberFormat.currency(
+      symbol: 'USD',
+      decimalDigits: 2,
+    );
 
     return Container(
       decoration: const BoxDecoration(
@@ -180,7 +218,6 @@ class _FilterModalState extends State<FilterModal> {
                             'Session Type',
                             style: TextStyle(
                               fontSize: 22,
-                              // fontWeight: FontWeight.bold,
                             ),
                           ),
                           ColoredButton(
@@ -399,7 +436,6 @@ class _FilterModalState extends State<FilterModal> {
                             'Date Range',
                             style: TextStyle(
                               fontSize: 22,
-                              // fontWeight: FontWeight.bold,
                             ),
                           ),
                           ColoredButton(
@@ -421,11 +457,11 @@ class _FilterModalState extends State<FilterModal> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         ColoredButton(
-                          width: 240,
+                          width: 260,
                           onPressed: () => _selectStartDate(context),
                           text: startDate == null
                               ? 'Select Start Date'
-                              : 'Start Date : ${dateFormat.format(startDate!)}',
+                              : 'Start Date: ${dateFormat.format(startDate!)}',
                           textColor: Colors.white,
                           normalButtonColor: Colors.black,
                           pressedButtonColor:
@@ -436,11 +472,11 @@ class _FilterModalState extends State<FilterModal> {
                           height: 12,
                         ),
                         ColoredButton(
-                          width: 240,
+                          width: 260,
                           onPressed: () => _selectEndDate(context),
                           text: endDate == null
                               ? 'Select End Date'
-                              : 'End Date : ${dateFormat.format(endDate!)}',
+                              : 'End Date: ${dateFormat.format(endDate!)}',
                           textColor: Colors.white,
                           normalButtonColor: Colors.black,
                           pressedButtonColor:
@@ -470,7 +506,7 @@ class _FilterModalState extends State<FilterModal> {
                   margin: EdgeInsets.symmetric(horizontal: 20),
                 ),
                 Column(
-                  // communication medium
+                  // communication method
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(20),
@@ -482,7 +518,6 @@ class _FilterModalState extends State<FilterModal> {
                             'Communication Method',
                             style: TextStyle(
                               fontSize: 22,
-                              // fontWeight: FontWeight.bold,
                             ),
                           ),
                           ColoredButton(
@@ -605,7 +640,6 @@ class _FilterModalState extends State<FilterModal> {
                             'Rating',
                             style: TextStyle(
                               fontSize: 22,
-                              // fontWeight: FontWeight.bold,
                             ),
                           ),
                           ColoredButton(
@@ -801,12 +835,250 @@ class _FilterModalState extends State<FilterModal> {
                 const HorizontalThinLine(
                   margin: EdgeInsets.symmetric(horizontal: 20),
                 ),
-                const Column(
+                Column(
                   // sorting aspect
                   children: [
-                    Row(),
-                    Row(),
-                    Row(),
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Sorting Aspect',
+                            style: TextStyle(
+                              fontSize: 22,
+                            ),
+                          ),
+                          ColoredButton(
+                            width: 72,
+                            height: 8,
+                            onPressed: _resetSortingAspect,
+                            text: 'Reset',
+                            fontWeight: FontWeight.bold,
+                            borderRadius: 8,
+                            borderColor: Colors.black,
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _sortingAspect = 0;
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: Radio<int>(
+                                    value: 0,
+                                    groupValue: _sortingAspect,
+                                    activeColor: Colors.black,
+                                    onChanged: (int? value) {
+                                      setState(() {
+                                        _sortingAspect = value!;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  SortingAspects.dateASC.string,
+                                ),
+                              ],
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _sortingAspect = 1;
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: Radio<int>(
+                                    value: 1,
+                                    groupValue: _sortingAspect,
+                                    activeColor: Colors.black,
+                                    onChanged: (int? value) {
+                                      setState(() {
+                                        _sortingAspect = value!;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  SortingAspects.ratingASC.string,
+                                ),
+                              ],
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _sortingAspect = 2;
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: Radio<int>(
+                                    value: 2,
+                                    groupValue: _sortingAspect,
+                                    activeColor: Colors.black,
+                                    onChanged: (int? value) {
+                                      setState(() {
+                                        _sortingAspect = value!;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  SortingAspects.priceASC.string,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _sortingAspect = 3;
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: Radio<int>(
+                                    value: 3,
+                                    groupValue: _sortingAspect,
+                                    activeColor: Colors.black,
+                                    onChanged: (int? value) {
+                                      setState(() {
+                                        _sortingAspect = value!;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  SortingAspects.dateDES.string,
+                                ),
+                              ],
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _sortingAspect = 4;
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: Radio<int>(
+                                    value: 4,
+                                    groupValue: _sortingAspect,
+                                    activeColor: Colors.black,
+                                    onChanged: (int? value) {
+                                      setState(() {
+                                        _sortingAspect = value!;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  SortingAspects.ratingDES.string,
+                                ),
+                              ],
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _sortingAspect = 5;
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: Radio<int>(
+                                    value: 5,
+                                    groupValue: _sortingAspect,
+                                    activeColor: Colors.black,
+                                    onChanged: (int? value) {
+                                      setState(() {
+                                        _sortingAspect = value!;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  SortingAspects.priceDES.string,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 32,
+                    ),
                   ],
                 ),
               ],
