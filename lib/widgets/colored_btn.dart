@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ColoredButton extends StatefulWidget {
   final double width;
   final double height;
+  final Function onPressed;
   final String text;
   final FontWeight fontWeight;
   final Color normalButtonColor;
@@ -11,17 +12,19 @@ class ColoredButton extends StatefulWidget {
   final Color borderColor;
   final Color textColor;
 
-  const ColoredButton(
-      {super.key,
-      this.width = 160,
-      this.height = 16,
-      this.text = 'Click',
-      this.fontWeight = FontWeight.normal,
-      this.normalButtonColor = Colors.white,
-      this.pressedButtonColor = const Color.fromARGB(255, 230, 230, 230),
-      this.borderRadius = 16,
-      this.borderColor = Colors.transparent,
-      this.textColor = Colors.black});
+  const ColoredButton({
+    super.key,
+    this.width = 160,
+    this.height = 16,
+    this.onPressed = print,
+    this.text = 'Click',
+    this.fontWeight = FontWeight.normal,
+    this.normalButtonColor = Colors.white,
+    this.pressedButtonColor = const Color.fromARGB(255, 230, 230, 230),
+    this.borderRadius = 8,
+    this.borderColor = Colors.transparent,
+    this.textColor = Colors.black,
+  });
 
   @override
   State<ColoredButton> createState() => _ColoredButtonState();
@@ -44,6 +47,9 @@ class _ColoredButtonState extends State<ColoredButton> {
           setState(() {
             _buttonIsFocused = false;
           });
+          widget.onPressed == print
+              ? widget.onPressed(const Text('clicked'))
+              : widget.onPressed();
         },
         onPointerCancel: (PointerCancelEvent _) {
           setState(() {
