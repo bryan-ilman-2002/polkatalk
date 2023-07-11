@@ -1,4 +1,4 @@
-enum SortingAspects {
+enum SortingAspect {
   dateASC,
   ratingASC,
   priceASC,
@@ -7,20 +7,20 @@ enum SortingAspects {
   priceDES,
 }
 
-extension SortingAspectsExtension on SortingAspects {
+extension SortingAspectExtension on SortingAspect {
   String get string {
     switch (this) {
-      case SortingAspects.dateASC:
+      case SortingAspect.dateASC:
         return 'date ▲';
-      case SortingAspects.ratingASC:
+      case SortingAspect.ratingASC:
         return 'rating ▲';
-      case SortingAspects.priceASC:
+      case SortingAspect.priceASC:
         return 'price ▲';
-      case SortingAspects.dateDES:
+      case SortingAspect.dateDES:
         return 'date ▼';
-      case SortingAspects.ratingDES:
+      case SortingAspect.ratingDES:
         return 'rating ▼';
-      case SortingAspects.priceDES:
+      case SortingAspect.priceDES:
         return 'price ▼';
       default:
         return '';

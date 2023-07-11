@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:polkatalk/widgets/chat_card.dart';
+import 'package:polkatalk/functions/getters/current_date.dart';
+import 'package:polkatalk/widgets/cards/chat_card.dart';
 
 class ChatsPage extends StatefulWidget {
   final ScrollController scrollController;
@@ -20,14 +21,18 @@ class _ChatsPageState extends State<ChatsPage> {
           controller: widget.scrollController,
           itemCount: 15,
           itemBuilder: (BuildContext context, int index) {
-            return const ChatCard(
-              name: 'Larry Page',
-              profession: 'Economist',
-              lastMessage: 'hellohellohellohellohellohellohellohello',
-              lastMessageIsYours: false,
-              failedToSendLastMessage: false,
-              theySawLastMessage: false,
-              receivedUnreadMessagesCount: 0,
+            return Padding(
+              padding: const EdgeInsets.all(8),
+              child: ChatCard(
+                name: 'Larry Page',
+                profession: 'Economist',
+                lastMessage: 'hellohellohellohellohellohellohellohello',
+                lastMessageDate: currentDateShrunk,
+                lastMessageIsYours: false,
+                failedToSendLastMessage: false,
+                theySawLastMessage: false,
+                receivedUnreadMessagesCount: 0,
+              ),
             );
           },
         ),

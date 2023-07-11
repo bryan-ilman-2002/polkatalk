@@ -15,7 +15,6 @@ class PolkaTalk extends StatelessWidget {
       fontFamily: 'Mukta',
       fontSize: 14,
       fontWeight: FontWeight.normal,
-      fontStyle: FontStyle.normal,
     ),
   );
 

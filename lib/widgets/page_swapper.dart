@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:polkatalk/functions/init_pages.dart';
-import 'package:polkatalk/widgets/bottom_navbar.dart';
+import 'package:polkatalk/widgets/navbars/bottom_navbar.dart';
 
 class PageSwapper extends StatefulWidget {
   const PageSwapper({super.key});
@@ -50,7 +50,7 @@ class _PageSwapper extends State<PageSwapper> {
     return Scaffold(
       bottomNavigationBar: CustomBottomAppBar(
         navItems: const [
-          [Icons.search_outlined, 'Search'],
+          [Icons.search_rounded, 'Search'],
           [Icons.favorite_outline, 'Favorites'],
           [Icons.calendar_today_outlined, 'Sessions'],
           [Icons.chat_outlined, 'Chats'],

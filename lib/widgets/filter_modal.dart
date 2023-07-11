@@ -3,17 +3,18 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:polkatalk/enums/communication_method.dart';
-import 'package:polkatalk/enums/language_names.dart';
+import 'package:polkatalk/enums/language_name.dart';
 import 'package:polkatalk/enums/rating.dart';
 import 'package:polkatalk/enums/session_type.dart';
-import 'package:polkatalk/enums/sorting_aspects.dart';
+import 'package:polkatalk/enums/sorting_aspect.dart';
+import 'package:polkatalk/functions/getters/lang_names_in_native_format.dart';
 import 'package:polkatalk/functions/getters/rating_color.dart';
-import 'package:polkatalk/widgets/colored_btn.dart';
-import 'package:polkatalk/widgets/horizontal_thin_line.dart';
+import 'package:polkatalk/widgets/buttons/colored_btn.dart';
+import 'package:polkatalk/widgets/lines/horizontal_thin_line.dart';
 import 'package:polkatalk/widgets/search_field.dart';
 import 'package:polkatalk/widgets/tag.dart';
 import 'package:polkatalk/widgets/tags_adder_dropdown.dart.dart';
-import 'package:polkatalk/widgets/txt_with_bg.dart';
+import 'package:polkatalk/widgets/text/txt_with_bg.dart';
 
 class FilterModal extends StatefulWidget {
   const FilterModal({super.key});
@@ -109,7 +110,7 @@ class _FilterModalState extends State<FilterModal> {
   }
 
   final TextEditingController langController = TextEditingController();
-  LanguageNames? selectedLang;
+  LanguageName? selectedLang;
 
   int? _communicationMethod;
 
@@ -243,7 +244,7 @@ class _FilterModalState extends State<FilterModal> {
             ],
           ),
           const HorizontalThinLine(
-            margin: EdgeInsets.all(0),
+            verticalMargin: EdgeInsets.all(0),
           ),
           Expanded(
             child: ListView(
@@ -387,7 +388,7 @@ class _FilterModalState extends State<FilterModal> {
                   ],
                 ),
                 const HorizontalThinLine(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  verticalMargin: EdgeInsets.symmetric(horizontal: 20),
                 ),
                 Column(
                   // professions or skills, interests
@@ -469,7 +470,7 @@ class _FilterModalState extends State<FilterModal> {
                   ],
                 ),
                 const HorizontalThinLine(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  verticalMargin: EdgeInsets.symmetric(horizontal: 20),
                 ),
                 Column(
                   // date
@@ -489,7 +490,7 @@ class _FilterModalState extends State<FilterModal> {
                           ColoredButton(
                             width: 72,
                             height: 8,
-                            onPressed: _resetDate,
+                            callbackFunction: _resetDate,
                             text: 'Reset',
                             fontWeight: FontWeight.bold,
                             borderRadius: 8,
@@ -506,7 +507,7 @@ class _FilterModalState extends State<FilterModal> {
                       children: [
                         ColoredButton(
                           width: 260,
-                          onPressed: () => _selectStartDate(context),
+                          callbackFunction: () => _selectStartDate(context),
                           text: startDate == null
                               ? 'Select Start Date'
                               : 'Start Date: ${dateFormat.format(startDate!)}',
@@ -521,7 +522,7 @@ class _FilterModalState extends State<FilterModal> {
                         ),
                         ColoredButton(
                           width: 260,
-                          onPressed: () => _selectEndDate(context),
+                          callbackFunction: () => _selectEndDate(context),
                           text: endDate == null
                               ? 'Select End Date'
                               : 'End Date: ${dateFormat.format(endDate!)}',
@@ -540,7 +541,7 @@ class _FilterModalState extends State<FilterModal> {
                   ],
                 ),
                 const HorizontalThinLine(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  verticalMargin: EdgeInsets.symmetric(horizontal: 20),
                 ),
                 Column(
                   // language
@@ -581,6 +582,7 @@ class _FilterModalState extends State<FilterModal> {
                         ColoredButton(
                           text: '+',
                           width: 55,
+                          fontSize: 24,
                           fontWeight: FontWeight.bold,
                           textColor: Colors.white,
                           normalButtonColor: Colors.black,
@@ -594,7 +596,7 @@ class _FilterModalState extends State<FilterModal> {
                   ],
                 ),
                 const HorizontalThinLine(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  verticalMargin: EdgeInsets.symmetric(horizontal: 20),
                 ),
                 Column(
                   // communication method
@@ -614,7 +616,7 @@ class _FilterModalState extends State<FilterModal> {
                           ColoredButton(
                             width: 72,
                             height: 8,
-                            onPressed: _resetCommunicationMethod,
+                            callbackFunction: _resetCommunicationMethod,
                             text: 'Reset',
                             fontWeight: FontWeight.bold,
                             borderRadius: 8,
@@ -660,7 +662,7 @@ class _FilterModalState extends State<FilterModal> {
                                   width: 8,
                                 ),
                                 Text(
-                                  CommunicationMethod.chat.string,
+                                  CommunicationMethod.chatOnly.string,
                                 ),
                               ],
                             ),
@@ -705,7 +707,7 @@ class _FilterModalState extends State<FilterModal> {
                   ],
                 ),
                 const HorizontalThinLine(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  verticalMargin: EdgeInsets.symmetric(horizontal: 20),
                 ),
                 const Column(
                   // city, country
@@ -716,7 +718,7 @@ class _FilterModalState extends State<FilterModal> {
                   ],
                 ),
                 const HorizontalThinLine(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  verticalMargin: EdgeInsets.symmetric(horizontal: 20),
                 ),
                 Column(
                   // rating
@@ -736,7 +738,7 @@ class _FilterModalState extends State<FilterModal> {
                           ColoredButton(
                             width: 72,
                             height: 8,
-                            onPressed: _resetRating,
+                            callbackFunction: _resetRating,
                             text: 'Reset',
                             fontWeight: FontWeight.bold,
                             borderRadius: 8,
@@ -913,7 +915,7 @@ class _FilterModalState extends State<FilterModal> {
                   ],
                 ),
                 const HorizontalThinLine(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  verticalMargin: EdgeInsets.symmetric(horizontal: 20),
                 ),
                 Column(
                   // price range
@@ -933,7 +935,7 @@ class _FilterModalState extends State<FilterModal> {
                           ColoredButton(
                             width: 72,
                             height: 8,
-                            onPressed: _resetPriceRange,
+                            callbackFunction: _resetPriceRange,
                             text: 'Reset',
                             fontWeight: FontWeight.bold,
                             borderRadius: 8,
@@ -975,7 +977,7 @@ class _FilterModalState extends State<FilterModal> {
                   ],
                 ),
                 const HorizontalThinLine(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  verticalMargin: EdgeInsets.symmetric(horizontal: 20),
                 ),
                 Column(
                   // sorting aspect
@@ -995,7 +997,7 @@ class _FilterModalState extends State<FilterModal> {
                           ColoredButton(
                             width: 72,
                             height: 8,
-                            onPressed: _resetSortingAspect,
+                            callbackFunction: _resetSortingAspect,
                             text: 'Reset',
                             fontWeight: FontWeight.bold,
                             borderRadius: 8,
@@ -1041,7 +1043,7 @@ class _FilterModalState extends State<FilterModal> {
                                   width: 8,
                                 ),
                                 Text(
-                                  SortingAspects.dateASC.string,
+                                  SortingAspect.dateASC.string,
                                 ),
                               ],
                             ),
@@ -1072,7 +1074,7 @@ class _FilterModalState extends State<FilterModal> {
                                   width: 8,
                                 ),
                                 Text(
-                                  SortingAspects.ratingASC.string,
+                                  SortingAspect.ratingASC.string,
                                 ),
                               ],
                             ),
@@ -1103,7 +1105,7 @@ class _FilterModalState extends State<FilterModal> {
                                   width: 8,
                                 ),
                                 Text(
-                                  SortingAspects.priceASC.string,
+                                  SortingAspect.priceASC.string,
                                 ),
                               ],
                             ),
@@ -1148,7 +1150,7 @@ class _FilterModalState extends State<FilterModal> {
                                   width: 8,
                                 ),
                                 Text(
-                                  SortingAspects.dateDES.string,
+                                  SortingAspect.dateDES.string,
                                 ),
                               ],
                             ),
@@ -1179,7 +1181,7 @@ class _FilterModalState extends State<FilterModal> {
                                   width: 8,
                                 ),
                                 Text(
-                                  SortingAspects.ratingDES.string,
+                                  SortingAspect.ratingDES.string,
                                 ),
                               ],
                             ),
@@ -1210,7 +1212,7 @@ class _FilterModalState extends State<FilterModal> {
                                   width: 8,
                                 ),
                                 Text(
-                                  SortingAspects.priceDES.string,
+                                  SortingAspect.priceDES.string,
                                 ),
                               ],
                             ),
@@ -1227,7 +1229,7 @@ class _FilterModalState extends State<FilterModal> {
             ),
           ),
           const HorizontalThinLine(
-            margin: EdgeInsets.all(0),
+            verticalMargin: EdgeInsets.all(0),
           ),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 20),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:polkatalk/widgets/profile_card.dart';
-import 'package:polkatalk/widgets/bg_reveal_btn.dart';
-import 'package:polkatalk/widgets/filter_btn_and_notification_btn.dart';
+import 'package:polkatalk/widgets/buttons/bg_reveal_btn.dart';
+import 'package:polkatalk/widgets/buttons/twin_btns.dart';
+import 'package:polkatalk/widgets/cards/profile_card.dart';
 
 class SearchPage extends StatefulWidget {
   final ScrollController scrollController;
@@ -13,28 +13,16 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  bool _showBackground = false;
+  bool _backgroundIsShown = false;
 
   void toggleBackgroundVisibility() {
     setState(() {
-      _showBackground = !_showBackground;
+      _backgroundIsShown = !_backgroundIsShown;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> pageButtons = [
-      Expanded(
-        child: _showBackground
-            ? const SizedBox(
-                height: 76,
-              )
-            : const FilterButtonAndNotificationButton(),
-      ),
-      BackgroundRevealButton(
-          toggleBackgroundCallback: toggleBackgroundVisibility),
-    ];
-
     return SafeArea(
       child: Container(
         color: Colors.white,
@@ -43,13 +31,34 @@ class _SearchPageState extends State<SearchPage> {
           itemCount: 15,
           itemBuilder: (BuildContext context, int index) {
             return index == 0
-                ? Row(children: pageButtons)
+                ? Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Row(children: [
+                      const Expanded(
+                        child: TwinButtons(
+                          leftIcon: Icons.filter_alt_outlined,
+                          rightIcon: Icons.notifications_none_rounded,
+                          leftText: 'Fiter',
+                          rightText: 'Notifications',
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      BackgroundRevealButton(
+                        callbackFunction: toggleBackgroundVisibility,
+                      ),
+                    ]),
+                  )
                 : Visibility(
-                    visible: !_showBackground,
-                    child: const ProfileCard(
-                      name: 'Larry Page',
-                      profession: 'Economist',
-                      rating: 4.8,
+                    visible: !_backgroundIsShown,
+                    child: const Padding(
+                      padding: EdgeInsets.all(8),
+                      child: ProfileCard(
+                        name: 'Larry Page',
+                        profession: 'Economist',
+                        rating: 4.8,
+                        currency: 'USD',
+                        price: 4200,
+                      ),
                     ),
                   );
           },

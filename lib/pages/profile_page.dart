@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:polkatalk/widgets/horizontal_thin_line.dart';
-import 'package:polkatalk/widgets/colored_btn.dart';
-import 'package:polkatalk/widgets/polkapay_btn_and_bank_card_btn.dart';
-import 'package:polkatalk/widgets/filter_btn_and_notification_btn.dart';
-import 'package:polkatalk/widgets/setting_btn.dart';
+import 'package:polkatalk/widgets/buttons/colored_btn.dart';
+import 'package:polkatalk/widgets/buttons/twin_btns.dart';
+import 'package:polkatalk/widgets/buttons/polkapay_btn_and_bank_card_btn.dart';
+import 'package:polkatalk/widgets/buttons/setting_btn.dart';
+import 'package:polkatalk/widgets/lines/horizontal_thin_line.dart';
 
 class ProfilePage extends StatefulWidget {
   final ScrollController scrollController;
@@ -15,12 +15,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  List<Widget> pageButtons = [
-    const Expanded(
-      child: FilterButtonAndNotificationButton(),
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
