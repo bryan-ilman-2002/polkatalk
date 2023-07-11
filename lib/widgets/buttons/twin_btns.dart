@@ -7,6 +7,8 @@ class TwinButtons extends StatefulWidget {
   final double height;
   final Color buttonColor;
   final double borderRadius;
+  final Function leftButtonCallbackFunction;
+  final Function rightButtonCallbackFunction;
   final IconData leftIcon;
   final IconData rightIcon;
   final double iconSize;
@@ -21,6 +23,8 @@ class TwinButtons extends StatefulWidget {
     this.height = 60,
     this.buttonColor = Colors.white,
     this.borderRadius = 128,
+    required this.leftButtonCallbackFunction,
+    required this.rightButtonCallbackFunction,
     required this.leftIcon,
     required this.rightIcon,
     this.iconSize = 30,
@@ -38,12 +42,29 @@ class TwinButtons extends StatefulWidget {
 class _TwinButtonsState extends State<TwinButtons> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        _buttonBuilder(Direction.left),
-        const VerticalThinLine(),
-        _buttonBuilder(Direction.right),
-      ],
+    return Container(
+      height: widget.height,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(
+          Radius.circular(widget.borderRadius),
+        ),
+        boxShadow: [
+          lightShadow,
+        ],
+      ),
+      child: Row(
+        children: [
+          _buttonBuilder(Direction.left),
+          const Stack(
+            alignment: Alignment.center,
+            children: [
+              VerticalThinLine(lineColor: Colors.white, height: 60),
+              VerticalThinLine(),
+            ],
+          ),
+          _buttonBuilder(Direction.right),
+        ],
+      ),
     );
   }
 
@@ -67,27 +88,16 @@ class _TwinButtonsState extends State<TwinButtons> {
     }
 
     return Expanded(
-      child: Container(
+      child: SizedBox(
         height: widget.height,
-        decoration: BoxDecoration(
-          borderRadius: eitherLeftOrRight()
-              ? BorderRadius.only(
-                  topLeft: Radius.circular(widget.borderRadius),
-                  bottomLeft: Radius.circular(widget.borderRadius),
-                )
-              : BorderRadius.only(
-                  topRight: Radius.circular(widget.borderRadius),
-                  bottomRight: Radius.circular(widget.borderRadius),
-                ),
-          boxShadow: [
-            lightShadow,
-          ],
-        ),
         child: Material(
           color: widget.buttonColor,
           shape: getBorderRadius(),
           child: InkWell(
             onTap: () {
+              eitherLeftOrRight()
+                  ? widget.leftButtonCallbackFunction()
+                  : widget.rightButtonCallbackFunction();
               setState(() {});
             },
             customBorder: getBorderRadius(),

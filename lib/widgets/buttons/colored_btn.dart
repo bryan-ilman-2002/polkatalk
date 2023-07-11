@@ -1,31 +1,35 @@
 import 'package:flutter/material.dart';
 
 class ColoredButton extends StatefulWidget {
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
+  final double? horizontalPadding;
+  final double? verticalPadding;
   final Function callbackFunction;
   final String text;
-  final double fontSize;
-  final FontWeight fontWeight;
-  final Color normalButtonColor;
-  final Color pressedButtonColor;
+  final double textSize;
+  final FontWeight textWeight;
+  final Color textColor;
+  final Color buttonColor;
+  final Color? splashColor;
   final double borderRadius;
   final Color borderColor;
-  final Color textColor;
 
   const ColoredButton({
     super.key,
-    this.width = 160,
-    this.height = 16,
-    this.callbackFunction = print,
+    this.width,
+    this.height,
+    this.horizontalPadding,
+    this.verticalPadding,
+    required this.callbackFunction,
     required this.text,
-    this.fontSize = 16,
-    this.fontWeight = FontWeight.normal,
-    this.normalButtonColor = Colors.white,
-    this.pressedButtonColor = const Color.fromARGB(255, 230, 230, 230),
-    this.borderRadius = 8,
-    this.borderColor = Colors.transparent,
+    this.textSize = 16,
+    this.textWeight = FontWeight.normal,
     this.textColor = Colors.black,
+    this.buttonColor = Colors.white,
+    this.splashColor,
+    this.borderRadius = 8,
+    this.borderColor = Colors.black,
   });
 
   @override
@@ -33,48 +37,42 @@ class ColoredButton extends StatefulWidget {
 }
 
 class _ColoredButtonState extends State<ColoredButton> {
-  bool _buttonIsFocused = false;
-
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: widget.width,
-      child: Listener(
-        onPointerDown: (PointerDownEvent _) {
-          setState(() {
-            _buttonIsFocused = true;
-          });
-        },
-        onPointerUp: (PointerUpEvent _) {
-          setState(() {
-            _buttonIsFocused = false;
-          });
-          widget.callbackFunction == print
-              ? widget.callbackFunction(const Text('clicked'))
-              : widget.callbackFunction();
-        },
-        onPointerCancel: (PointerCancelEvent _) {
-          setState(() {
-            _buttonIsFocused = false;
-          });
-        },
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          padding: EdgeInsets.symmetric(vertical: widget.height),
-          decoration: BoxDecoration(
-            color: _buttonIsFocused
-                ? widget.pressedButtonColor
-                : widget.normalButtonColor,
-            border: Border.all(color: widget.borderColor, width: 2.0),
-            borderRadius: BorderRadius.circular(widget.borderRadius),
+      height: widget.height,
+      decoration: BoxDecoration(
+        border: Border.all(color: widget.borderColor, width: 2.0),
+        borderRadius: BorderRadius.circular(widget.borderRadius),
+      ),
+      child: Material(
+        color: widget.buttonColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(widget.borderRadius),
           ),
-          child: Center(
-            child: Text(
-              widget.text,
-              style: TextStyle(
-                fontSize: widget.fontSize,
-                fontWeight: widget.fontWeight,
-                color: widget.textColor,
+        ),
+        child: InkWell(
+          onTap: () {
+            setState(() {});
+          },
+          splashColor: widget.splashColor,
+          borderRadius: BorderRadius.all(
+            Radius.circular(widget.borderRadius),
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: widget.horizontalPadding ?? 0,
+                vertical: widget.verticalPadding ?? 0),
+            child: Center(
+              child: Text(
+                widget.text,
+                style: TextStyle(
+                  fontSize: widget.textSize,
+                  fontWeight: widget.textWeight,
+                  color: widget.textColor,
+                ),
               ),
             ),
           ),

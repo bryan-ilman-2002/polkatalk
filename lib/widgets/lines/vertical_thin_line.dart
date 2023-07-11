@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class VerticalThinLine extends StatelessWidget {
+  final Color lineColor;
   final double height;
 
   const VerticalThinLine({
     super.key,
+    this.lineColor = Colors.grey,
     this.height = 40,
   });
 
@@ -13,7 +15,7 @@ class VerticalThinLine extends StatelessWidget {
     return Container(
       height: height,
       width: 1.2,
-      color: Colors.grey,
+      color: lineColor,
     );
   }
 }

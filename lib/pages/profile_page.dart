@@ -15,6 +15,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  void logOut() => print(const Text('clicked'));
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -57,51 +59,55 @@ class _ProfilePageState extends State<ProfilePage> {
               const SizedBox(height: 8),
               const SettingButton(
                 icon: Icons.person_outline_rounded,
-                name: 'Personal Information',
+                label: 'Personal Information',
               ),
               const HorizontalThinLine(),
               const SettingButton(
                 icon: Icons.translate_rounded,
-                name: 'Translation',
+                label: 'Translation',
               ),
               const HorizontalThinLine(),
               const SettingButton(
                 icon: Icons.notifications_none_rounded,
-                name: 'Notifications',
+                label: 'Notifications',
               ),
               const HorizontalThinLine(),
               const SettingButton(
                 icon: Icons.cloud_download_outlined,
-                name: 'Request Personal Data',
+                label: 'Request Personal Data',
               ),
               const HorizontalThinLine(),
               const SettingButton(
                 icon: Icons.delete_outline_rounded,
-                name: 'Delete Account',
+                label: 'Delete Account',
               ),
               const HorizontalThinLine(),
               const SizedBox(height: 64),
               const SettingButton(
                 icon: Icons.help_outline,
-                name: 'Help Center',
+                label: 'Help Center',
               ),
               const HorizontalThinLine(),
               const SettingButton(
                 icon: Icons.menu_book_rounded,
-                name: 'Terms of Service',
+                label: 'Terms of Service',
               ),
               const HorizontalThinLine(),
               const SettingButton(
                 icon: Icons.menu_book_rounded,
-                name: 'Privacy Policy',
+                label: 'Privacy Policy',
               ),
               const HorizontalThinLine(),
               const SizedBox(height: 16),
-              const ColoredButton(
+              ColoredButton(
+                width: 180,
+                verticalPadding: 16,
+                callbackFunction: logOut,
                 text: 'Log out',
-                normalButtonColor: Colors.white,
-                pressedButtonColor: Color.fromARGB(255, 255, 226, 224),
                 textColor: Colors.red,
+                buttonColor: Colors.white,
+                splashColor: const Color.fromARGB(255, 255, 226, 224),
+                borderColor: Colors.white,
               ),
             ],
           ),

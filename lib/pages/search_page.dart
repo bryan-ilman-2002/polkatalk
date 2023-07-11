@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:polkatalk/widgets/buttons/bg_reveal_btn.dart';
 import 'package:polkatalk/widgets/buttons/twin_btns.dart';
 import 'package:polkatalk/widgets/cards/profile_card.dart';
+import 'package:polkatalk/widgets/filter_modal.dart';
 
 class SearchPage extends StatefulWidget {
   final ScrollController scrollController;
@@ -21,6 +22,16 @@ class _SearchPageState extends State<SearchPage> {
     });
   }
 
+  void openFilterModal() => showModalBottomSheet(
+        context: context,
+        useSafeArea: true,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (BuildContext context) {
+          return const FilterModal();
+        },
+      );
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -34,13 +45,17 @@ class _SearchPageState extends State<SearchPage> {
                 ? Padding(
                     padding: const EdgeInsets.all(8),
                     child: Row(children: [
-                      const Expanded(
-                        child: TwinButtons(
-                          leftIcon: Icons.filter_alt_outlined,
-                          rightIcon: Icons.notifications_none_rounded,
-                          leftText: 'Fiter',
-                          rightText: 'Notifications',
-                        ),
+                      Expanded(
+                        child: _backgroundIsShown
+                            ? const SizedBox()
+                            : TwinButtons(
+                                leftButtonCallbackFunction: openFilterModal,
+                                rightButtonCallbackFunction: openFilterModal,
+                                leftIcon: Icons.filter_alt_outlined,
+                                rightIcon: Icons.notifications_none_rounded,
+                                leftText: 'Fiter',
+                                rightText: 'Notifications',
+                              ),
                       ),
                       const SizedBox(width: 8),
                       BackgroundRevealButton(
