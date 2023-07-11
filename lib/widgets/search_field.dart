@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class SearchField extends StatefulWidget {
-  const SearchField({super.key});
+  final TextEditingController clerk;
+  final String label;
+  final TextInputType variety;
+
+  const SearchField({
+    super.key,
+    required this.clerk,
+    this.label = '',
+    this.variety = TextInputType.text,
+  });
 
   @override
   State<SearchField> createState() => _SearchFieldState();
@@ -10,51 +19,90 @@ class SearchField extends StatefulWidget {
 class _SearchFieldState extends State<SearchField> {
   bool isFocused = false;
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Theme(
-        data: Theme.of(context).copyWith(
-          textSelectionTheme: TextSelectionThemeData(
-            cursorColor: Colors.black,
-          ),
-          inputDecorationTheme: InputDecorationTheme(
-            border: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: isFocused ? Colors.black : Colors.grey,
-                width: 2,
-              ),
+  Color get color {
+    return isFocused ? Colors.black : Colors.grey;
+  }
+
+  InputDecoration get style {
+    return widget.variety == TextInputType.text
+        ? InputDecoration(
+            labelText: widget.label,
+            labelStyle: TextStyle(
+              color: color,
+              fontSize: 18,
+              fontWeight: FontWeight.normal,
             ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Colors.black,
-                width: 2,
-              ),
-            ),
-          ),
-        ),
-        child: TextField(
-          onTap: () {
-            setState(() {
-              isFocused = true;
-            });
-          },
-          onSubmitted: (_) {
-            setState(() {
-              isFocused = false;
-            });
-          },
-          style: const TextStyle(color: Colors.black),
-          cursorColor: Colors.black,
-          decoration: InputDecoration(
             prefixIcon: Icon(
               Icons.search,
-              color: isFocused ? Colors.black : Colors.grey,
+              color: color,
               size: 30,
+            ),
+          )
+        : InputDecoration(
+            labelText: widget.label,
+            labelStyle: TextStyle(
+              color: color,
+              fontSize: 18,
+              fontWeight: FontWeight.normal,
+            ),
+            prefix: Padding(
+              padding: const EdgeInsets.only(
+                right: 4,
+              ),
+              child: Text(
+                'USD',
+                style: TextStyle(
+                  color: color,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: Theme.of(context).copyWith(
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: isFocused ? Colors.transparent : Colors.grey,
+              width: 2,
+            ),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.black,
+              width: 2,
+            ),
+            borderRadius: BorderRadius.all(
+              Radius.circular(8),
             ),
           ),
         ),
+      ),
+      child: TextField(
+        controller: widget.clerk,
+        onTap: () {
+          setState(() {
+            isFocused = true;
+          });
+        },
+        onSubmitted: (_) {
+          setState(() {
+            isFocused = false;
+          });
+        },
+        style: TextStyle(
+          color: color,
+          fontSize: 18,
+        ),
+        cursorColor: Colors.black,
+        keyboardType: widget.variety,
+        decoration: style,
       ),
     );
   }

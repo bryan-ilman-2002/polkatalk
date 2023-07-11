@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:polkatalk/enums/communication_method.dart';
+import 'package:polkatalk/enums/language_names.dart';
 import 'package:polkatalk/enums/rating.dart';
 import 'package:polkatalk/enums/session_type.dart';
 import 'package:polkatalk/enums/sorting_aspects.dart';
@@ -11,6 +12,7 @@ import 'package:polkatalk/widgets/colored_btn.dart';
 import 'package:polkatalk/widgets/horizontal_thin_line.dart';
 import 'package:polkatalk/widgets/search_field.dart';
 import 'package:polkatalk/widgets/tag.dart';
+import 'package:polkatalk/widgets/tags_adder_dropdown.dart.dart';
 import 'package:polkatalk/widgets/txt_with_bg.dart';
 
 class FilterModal extends StatefulWidget {
@@ -22,6 +24,8 @@ class FilterModal extends StatefulWidget {
 
 class _FilterModalState extends State<FilterModal> {
   int? _sessionType;
+
+  final TextEditingController _topic = TextEditingController();
 
   DateTime? startDate;
   DateTime? endDate;
@@ -104,6 +108,9 @@ class _FilterModalState extends State<FilterModal> {
     });
   }
 
+  final TextEditingController langController = TextEditingController();
+  LanguageNames? selectedLang;
+
   int? _communicationMethod;
 
   void _resetCommunicationMethod() {
@@ -128,10 +135,17 @@ class _FilterModalState extends State<FilterModal> {
     });
   }
 
-  TextEditingController _minController = TextEditingController();
-  TextEditingController _maxController = TextEditingController();
+  final TextEditingController _minController = TextEditingController();
+  final TextEditingController _maxController = TextEditingController();
   double? minPrice;
   double? maxPrice;
+
+  @override
+  void initState() {
+    super.initState();
+    _minController.addListener(_updateMinPrice);
+    _maxController.addListener(_updateMaxPrice);
+  }
 
   @override
   void dispose() {
@@ -140,26 +154,55 @@ class _FilterModalState extends State<FilterModal> {
     super.dispose();
   }
 
-  void _updateMinPrice(String value) {
+  void _updateMinPrice() {
+    final text = _minController.text.replaceAll(RegExp(r'[^0-9.]'), '');
+    final double parsedValue = double.tryParse(text) ?? 0;
+
+    final formattedValue = parsedValue == 0
+        ? ''
+        : NumberFormat.decimalPattern().format(parsedValue);
+
+    _minController.value = _minController.value.copyWith(
+      text: formattedValue,
+      selection: TextSelection.collapsed(offset: formattedValue.length),
+    );
+
     setState(() {
-      minPrice = double.tryParse(value);
+      minPrice = parsedValue;
     });
   }
 
-  void _updateMaxPrice(String value) {
+  void _updateMaxPrice() {
+    final text = _maxController.text.replaceAll(RegExp(r'[^0-9.]'), '');
+    final double parsedValue = double.tryParse(text) ?? 0;
+
+    final formattedValue = parsedValue == 0
+        ? ''
+        : NumberFormat.decimalPattern().format(parsedValue);
+
+    _maxController.value = _maxController.value.copyWith(
+      text: formattedValue,
+      selection: TextSelection.collapsed(offset: formattedValue.length),
+    );
+
     setState(() {
-      maxPrice = double.tryParse(value);
+      maxPrice = parsedValue;
+    });
+  }
+
+  void _resetPriceRange() {
+    _minController.clear();
+    _maxController.clear();
+
+    setState(() {
+      maxPrice = null;
+      maxPrice = null;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final dateFormat = DateFormat.yMd().add_Hm();
-
-    final currencyFormatter = NumberFormat.currency(
-      symbol: 'USD',
-      decimalDigits: 2,
-    );
 
     return Container(
       decoration: const BoxDecoration(
@@ -377,7 +420,12 @@ class _FilterModalState extends State<FilterModal> {
                     const SizedBox(
                       height: 12,
                     ),
-                    const SearchField(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: SearchField(
+                        clerk: _topic,
+                      ),
+                    ),
                     const SizedBox(
                       height: 24,
                     ),
@@ -494,12 +542,55 @@ class _FilterModalState extends State<FilterModal> {
                 const HorizontalThinLine(
                   margin: EdgeInsets.symmetric(horizontal: 20),
                 ),
-                const Column(
+                Column(
                   // language
                   children: [
-                    Row(),
-                    Row(),
-                    Row(),
+                    const Padding(
+                      padding: EdgeInsets.all(20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Languages',
+                            style: TextStyle(
+                              fontSize: 22,
+                            ),
+                          ),
+                          ColoredButton(
+                            width: 72,
+                            height: 8,
+                            text: 'Reset',
+                            fontWeight: FontWeight.bold,
+                            borderRadius: 8,
+                            borderColor: Colors.black,
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      children: [
+                        TagsAdderDropdown(
+                          clerk: langController,
+                          entries: languageNamesInNativeFormat,
+                          hint: 'Add a language.',
+                        ),
+                        ColoredButton(
+                          text: '+',
+                          width: 55,
+                          fontWeight: FontWeight.bold,
+                          textColor: Colors.white,
+                          normalButtonColor: Colors.black,
+                          pressedButtonColor:
+                              const Color.fromARGB(255, 112, 112, 112),
+                          borderColor: Colors.black,
+                        ),
+                      ],
+                    ),
+                    const Row(),
                   ],
                 ),
                 const HorizontalThinLine(
@@ -824,12 +915,63 @@ class _FilterModalState extends State<FilterModal> {
                 const HorizontalThinLine(
                   margin: EdgeInsets.symmetric(horizontal: 20),
                 ),
-                const Column(
+                Column(
                   // price range
                   children: [
-                    Row(),
-                    Row(),
-                    Row(),
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Price Range',
+                            style: TextStyle(
+                              fontSize: 22,
+                            ),
+                          ),
+                          ColoredButton(
+                            width: 72,
+                            height: 8,
+                            onPressed: _resetPriceRange,
+                            text: 'Reset',
+                            fontWeight: FontWeight.bold,
+                            borderRadius: 8,
+                            borderColor: Colors.black,
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: SearchField(
+                              clerk: _minController,
+                              label: 'minimum',
+                              variety: TextInputType.number,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 12,
+                          ),
+                          Expanded(
+                            child: SearchField(
+                              clerk: _maxController,
+                              label: 'maximum',
+                              variety: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 32,
+                    ),
                   ],
                 ),
                 const HorizontalThinLine(
