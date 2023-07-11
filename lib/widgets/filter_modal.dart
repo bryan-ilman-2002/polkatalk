@@ -13,7 +13,7 @@ import 'package:polkatalk/widgets/buttons/colored_btn.dart';
 import 'package:polkatalk/widgets/lines/horizontal_thin_line.dart';
 import 'package:polkatalk/widgets/search_field.dart';
 import 'package:polkatalk/widgets/tag.dart';
-import 'package:polkatalk/widgets/tags_adder_dropdown.dart.dart';
+import 'package:polkatalk/widgets/tags_adder_dropdown.dart';
 import 'package:polkatalk/widgets/text/txt_with_bg.dart';
 
 class FilterModal extends StatefulWidget {

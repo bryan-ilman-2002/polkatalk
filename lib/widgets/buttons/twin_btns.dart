@@ -6,7 +6,9 @@ import 'package:polkatalk/widgets/lines/vertical_thin_line.dart';
 class TwinButtons extends StatefulWidget {
   final double height;
   final Color buttonColor;
+  final Color? splashColor;
   final double borderRadius;
+  final double? dividerHeight;
   final Function leftButtonCallbackFunction;
   final Function rightButtonCallbackFunction;
   final IconData leftIcon;
@@ -22,7 +24,9 @@ class TwinButtons extends StatefulWidget {
     super.key,
     this.height = 60,
     this.buttonColor = Colors.white,
+    this.splashColor,
     this.borderRadius = 128,
+    this.dividerHeight,
     required this.leftButtonCallbackFunction,
     required this.rightButtonCallbackFunction,
     required this.leftIcon,
@@ -55,11 +59,17 @@ class _TwinButtonsState extends State<TwinButtons> {
       child: Row(
         children: [
           _buttonBuilder(Direction.left),
-          const Stack(
+          Stack(
             alignment: Alignment.center,
             children: [
-              VerticalThinLine(lineColor: Colors.white, height: 60),
-              VerticalThinLine(),
+              VerticalThinLine(
+                lineColor: widget.buttonColor,
+                height: widget.height,
+              ),
+              VerticalThinLine(
+                lineColor: widget.iconColor,
+                height: widget.dividerHeight ?? widget.height,
+              ),
             ],
           ),
           _buttonBuilder(Direction.right),
@@ -100,6 +110,7 @@ class _TwinButtonsState extends State<TwinButtons> {
                   : widget.rightButtonCallbackFunction();
               setState(() {});
             },
+            splashColor: widget.splashColor,
             customBorder: getBorderRadius(),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

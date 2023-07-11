@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:polkatalk/widgets/buttons/colored_btn.dart';
-import 'package:polkatalk/widgets/buttons/twin_btns.dart';
-import 'package:polkatalk/widgets/buttons/polkapay_btn_and_bank_card_btn.dart';
 import 'package:polkatalk/widgets/buttons/setting_btn.dart';
+import 'package:polkatalk/widgets/buttons/twin_btns.dart';
 import 'package:polkatalk/widgets/lines/horizontal_thin_line.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -55,7 +54,21 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
               const SizedBox(height: 32),
-              const PolkaPayButtonAndBankCardButton(),
+              TwinButtons(
+                height: 120,
+                leftButtonCallbackFunction: logOut,
+                rightButtonCallbackFunction: logOut,
+                dividerHeight: 100,
+                leftIcon: Icons.wallet_rounded,
+                rightIcon: Icons.credit_card_rounded,
+                leftText: 'PolkaPay',
+                rightText: 'Bank Card',
+                iconColor: Colors.white,
+                textColor: Colors.white,
+                buttonColor: Colors.black,
+                splashColor: const Color.fromARGB(255, 112, 112, 112),
+                borderRadius: 8,
+              ),
               const SizedBox(height: 8),
               const SettingButton(
                 icon: Icons.person_outline_rounded,
