@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:polkatalk/widgets/buttons/bg_reveal_btn.dart';
 import 'package:polkatalk/widgets/buttons/twin_btns.dart';
 import 'package:polkatalk/widgets/cards/profile_card.dart';
-import 'package:polkatalk/widgets/filter_modal.dart';
+import 'package:polkatalk/widgets/modals/filter_modal.dart';
 
 class SearchPage extends StatefulWidget {
   final ScrollController scrollController;
@@ -32,6 +32,16 @@ class _SearchPageState extends State<SearchPage> {
         },
       );
 
+  void openNotificationsModal() => showModalBottomSheet(
+        context: context,
+        useSafeArea: true,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (BuildContext context) {
+          return const FilterModal();
+        },
+      );
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -49,8 +59,10 @@ class _SearchPageState extends State<SearchPage> {
                         child: _backgroundIsShown
                             ? const SizedBox()
                             : TwinButtons(
+                                dividerHeight: 40,
                                 leftButtonCallbackFunction: openFilterModal,
-                                rightButtonCallbackFunction: openFilterModal,
+                                rightButtonCallbackFunction:
+                                    openNotificationsModal,
                                 leftIcon: Icons.filter_alt_outlined,
                                 rightIcon: Icons.notifications_none_rounded,
                                 leftText: 'Fiter',
