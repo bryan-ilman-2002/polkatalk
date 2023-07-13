@@ -116,7 +116,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 width: 180,
                 verticalPadding: 16,
                 callbackFunction: logOut,
-                text: 'Log out',
+                text: 'Logout',
                 textColor: Colors.red,
                 buttonColor: Colors.white,
                 splashColor: const Color.fromARGB(255, 255, 226, 224),

@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
 
-class TagsAdderDropdown extends StatefulWidget {
+class TagAdderDropdown extends StatefulWidget {
   final TextEditingController clerk;
   final List<Map<String, dynamic>> entries;
-  final double width;
-  final double height;
   final String hint;
+  final IconData? trailingIcon;
 
-  const TagsAdderDropdown({
+  const TagAdderDropdown({
     super.key,
     required this.clerk,
     required this.entries,
-    this.width = 205,
-    this.height = 55,
     this.hint = '',
+    this.trailingIcon,
   });
 
   @override
-  State<TagsAdderDropdown> createState() => _TagsAdderDropdownState();
+  State<TagAdderDropdown> createState() => _TagAdderDropdownState();
 }
 
-class _TagsAdderDropdownState extends State<TagsAdderDropdown> {
+class _TagAdderDropdownState extends State<TagAdderDropdown> {
   @override
   Widget build(BuildContext context) {
     final List<DropdownMenuEntry> dropdownEntries = <DropdownMenuEntry>[];
@@ -30,7 +28,6 @@ class _TagsAdderDropdownState extends State<TagsAdderDropdown> {
         dropdownEntries.add(
           DropdownMenuEntry(
             style: const ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll(Colors.white),
               textStyle: MaterialStatePropertyAll(
                 TextStyle(
                   fontWeight: FontWeight.normal,
@@ -48,16 +45,20 @@ class _TagsAdderDropdownState extends State<TagsAdderDropdown> {
       controller: widget.clerk,
       hintText: widget.hint,
       textStyle: const TextStyle(),
-      dropdownMenuEntries: dropdownEntries,
-      initialSelection: dropdownEntries.elementAt(0),
+      enableFilter: true,
+      requestFocusOnTap: true,
       inputDecorationTheme: InputDecorationTheme(
-        constraints: BoxConstraints.tight(
-          const Size(
-            205,
-            55,
+        constraints: BoxConstraints(maxHeight: 53),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.black,
+          ),
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(8),
+            bottomLeft: Radius.circular(8),
           ),
         ),
-        enabledBorder: OutlineInputBorder(
+        border: OutlineInputBorder(
           borderSide: BorderSide(
             color: widget.clerk.text == '' ? Colors.grey : Colors.black,
           ),
@@ -67,7 +68,12 @@ class _TagsAdderDropdownState extends State<TagsAdderDropdown> {
           ),
         ),
       ),
-      menuHeight: 200,
+      dropdownMenuEntries: dropdownEntries,
+      menuHeight: 300,
+      trailingIcon: Icon(
+        Icons.search_rounded,
+        color: Colors.black,
+      ),
       onSelected: (value) {
         setState(() {});
       },

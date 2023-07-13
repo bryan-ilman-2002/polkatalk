@@ -13,9 +13,11 @@ import 'package:polkatalk/widgets/buttons/colored_btn.dart';
 import 'package:polkatalk/widgets/buttons/radio_btns.dart';
 import 'package:polkatalk/widgets/filter_heading.dart';
 import 'package:polkatalk/widgets/lines/horizontal_thin_line.dart';
+import 'package:polkatalk/widgets/price_input.dart';
 import 'package:polkatalk/widgets/search_field.dart';
 import 'package:polkatalk/widgets/tag.dart';
-import 'package:polkatalk/widgets/tags_adder_dropdown.dart';
+import 'package:polkatalk/widgets/tag_board.dart';
+import 'package:polkatalk/widgets/tag_adder_dropdown.dart';
 import 'package:polkatalk/widgets/text/txt_with_bg.dart';
 
 class FilterModal extends StatefulWidget {
@@ -298,44 +300,49 @@ class _FilterModalState extends State<FilterModal> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: SearchField(
-                        clerk: _topic,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TagAdderDropdown(
+                            clerk: langController,
+                            entries: languageNamesInNativeFormat,
+                            hint: 'add a language',
+                          ),
+                          ColoredButton(
+                            width: 55,
+                            height: 55,
+                            callbackFunction: _resetDate,
+                            text: '+',
+                            textSize: 24,
+                            textWeight: FontWeight.bold,
+                            textColor: Colors.white,
+                            buttonColor: Colors.black,
+                            splashColor:
+                                const Color.fromARGB(255, 112, 112, 112),
+                            customBorderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(8),
+                              bottomRight: Radius.circular(8),
+                            ),
+                            borderColor: Colors.black,
+                          ),
+                        ],
                       ),
                     ),
                     const SizedBox(
-                      height: 24,
+                      height: 12,
                     ),
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Wrap(
-                        alignment: WrapAlignment.center,
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: [
-                          Tag(
-                            text: 'doctor',
-                          ),
-                          Tag(
-                            text: 'lawyer',
-                          ),
-                          Tag(
-                            text: 'teacher',
-                          ),
-                          Tag(
-                            text: 'software engineer',
-                          ),
-                          Tag(
-                            text: 'linguist',
-                          ),
-                          Tag(
-                            text: 'fire brigade',
-                          ),
-                          Tag(
-                            text: 'influencer',
-                          ),
-                          Tag(
-                            text: 'novelist',
-                          ),
+                      child: TagBoard(
+                        prints: [
+                          'doctor',
+                          'lawyer',
+                          'teacher',
+                          'engineer',
+                          'linguist',
+                          'fire brigade',
+                          'influencer',
+                          'novelist,'
                         ],
                       ),
                     ),
@@ -363,39 +370,38 @@ class _FilterModalState extends State<FilterModal> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        // ColoredButton(
-                        //   width: 260,
-                        //   callbackFunction: () => _selectStartDate(context),
-                        //   text: startDate == null
-                        //       ? 'Select Start Date'
-                        //       : 'Start Date: ${dateFormat.format(startDate!)}',
-                        //   textColor: Colors.white,
-                        //   normalButtonColor: Colors.black,
-                        //   pressedButtonColor:
-                        //       const Color.fromARGB(255, 112, 112, 112),
-                        //   borderColor: Colors.black,
-                        // ),
+                        ColoredButton(
+                          width: 260,
+                          verticalPadding: 16,
+                          callbackFunction: _selectStartDate,
+                          text: startDate == null
+                              ? 'Start Date'
+                              : 'Start Date: ${dateFormat.format(startDate!)}',
+                          textColor: Colors.white,
+                          buttonColor: Colors.black,
+                          splashColor: const Color.fromARGB(255, 112, 112, 112),
+                          borderColor: Colors.black,
+                        ),
                         const SizedBox(
                           height: 12,
                         ),
-                        // ColoredButton(
-                        //   width: 260,
-                        //   callbackFunction: () => _selectEndDate(context),
-                        //   text: endDate == null
-                        //       ? 'Select End Date'
-                        //       : 'End Date: ${dateFormat.format(endDate!)}',
-                        //   textColor: Colors.white,
-                        //   normalButtonColor: Colors.black,
-                        //   pressedButtonColor:
-                        //       const Color.fromARGB(255, 112, 112, 112),
-                        //   borderColor: Colors.black,
-                        // ),
+                        ColoredButton(
+                          width: 260,
+                          verticalPadding: 16,
+                          callbackFunction: _selectEndDate,
+                          text: endDate == null
+                              ? 'End Date'
+                              : 'End Date: ${dateFormat.format(endDate!)}',
+                          textColor: Colors.white,
+                          buttonColor: Colors.black,
+                          splashColor: const Color.fromARGB(255, 112, 112, 112),
+                          borderColor: Colors.black,
+                        ),
                       ],
                     ),
                     const SizedBox(
                       height: 32,
                     ),
-                    const Row(),
                   ],
                 ),
                 const HorizontalThinLine(
@@ -414,27 +420,54 @@ class _FilterModalState extends State<FilterModal> {
                     const SizedBox(
                       height: 12,
                     ),
-                    Row(
-                      children: [
-                        TagsAdderDropdown(
-                          clerk: langController,
-                          entries: languageNamesInNativeFormat,
-                          hint: 'Add a language.',
-                        ),
-                        // const ColoredButton(
-                        //   text: '+',
-                        //   width: 55,
-                        //   fontSize: 24,
-                        //   fontWeight: FontWeight.bold,
-                        //   textColor: Colors.white,
-                        //   normalButtonColor: Colors.black,
-                        //   pressedButtonColor:
-                        //       Color.fromARGB(255, 112, 112, 112),
-                        //   borderColor: Colors.black,
-                        // ),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              TagAdderDropdown(
+                                clerk: langController,
+                                entries: languageNamesInNativeFormat,
+                                hint: 'add a language',
+                              ),
+                              ColoredButton(
+                                width: 55,
+                                height: 56.8,
+                                callbackFunction: _resetDate,
+                                text: '+',
+                                textSize: 24,
+                                textWeight: FontWeight.bold,
+                                textColor: Colors.white,
+                                buttonColor: Colors.black,
+                                splashColor:
+                                    const Color.fromARGB(255, 112, 112, 112),
+                                customBorderRadius: const BorderRadius.only(
+                                  topRight: Radius.circular(8),
+                                  bottomRight: Radius.circular(8),
+                                ),
+                                borderColor: Colors.black,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                          const TagBoard(
+                            prints: [
+                              'English',
+                              'Frecnch',
+                              'German',
+                              'Portuguese',
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                    const Row(),
+                    const SizedBox(
+                      height: 32,
+                    ),
                   ],
                 ),
                 const HorizontalThinLine(
@@ -546,20 +579,18 @@ class _FilterModalState extends State<FilterModal> {
                       child: Row(
                         children: [
                           Expanded(
-                            child: SearchField(
+                            child: PriceInput(
                               clerk: _minController,
                               label: 'minimum',
-                              variety: TextInputType.number,
                             ),
                           ),
                           const SizedBox(
                             width: 12,
                           ),
                           Expanded(
-                            child: SearchField(
+                            child: PriceInput(
                               clerk: _maxController,
                               label: 'maximum',
-                              variety: TextInputType.number,
                             ),
                           ),
                         ],

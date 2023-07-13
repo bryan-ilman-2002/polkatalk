@@ -25,11 +25,11 @@ class FilterHeading extends StatelessWidget {
         ),
         ColoredButton(
           width: 72,
-          verticalPadding: 8,
+          verticalPadding: 10,
           callbackFunction: resetMechanism,
-          text: 'reset',
-          textWeight: FontWeight.bold,
-          borderRadius: 128,
+          text: 'Reset',
+          borderRadius: 8,
+          borderWidth: 0.8,
           borderColor: Colors.black,
         )
       ],

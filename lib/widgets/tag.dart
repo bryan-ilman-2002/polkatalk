@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Tag extends StatefulWidget {
-  final String text;
+  final String print;
   final Color normalTextColor;
   final Color normalBackgroundColor;
   final Color normalBorderColor;
@@ -11,7 +11,7 @@ class Tag extends StatefulWidget {
 
   const Tag({
     super.key,
-    this.text = 'tag',
+    this.print = 'tag',
     this.normalTextColor = Colors.grey,
     this.normalBackgroundColor = Colors.white,
     this.normalBorderColor = Colors.grey,
@@ -64,7 +64,7 @@ class _TagState extends State<Tag> {
               width: 4,
             ),
             Text(
-              widget.text,
+              widget.print,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: _buttonIsFocused

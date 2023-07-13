@@ -13,6 +13,8 @@ class ColoredButton extends StatefulWidget {
   final Color buttonColor;
   final Color? splashColor;
   final double borderRadius;
+  final BorderRadius? customBorderRadius;
+  final double borderWidth;
   final Color borderColor;
 
   const ColoredButton({
@@ -29,6 +31,8 @@ class ColoredButton extends StatefulWidget {
     this.buttonColor = Colors.white,
     this.splashColor,
     this.borderRadius = 8,
+    this.customBorderRadius,
+    this.borderWidth = 0.8,
     this.borderColor = Colors.black,
   });
 
@@ -43,24 +47,33 @@ class _ColoredButtonState extends State<ColoredButton> {
       width: widget.width,
       height: widget.height,
       decoration: BoxDecoration(
-        border: Border.all(color: widget.borderColor, width: 2.0),
-        borderRadius: BorderRadius.circular(widget.borderRadius),
+        border: Border.all(color: Colors.transparent),
+        borderRadius: widget.customBorderRadius ??
+            BorderRadius.all(
+              Radius.circular(widget.borderRadius),
+            ),
       ),
       child: Material(
         color: widget.buttonColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(widget.borderRadius),
+          side: BorderSide(
+            color: widget.borderColor,
+            width: widget.borderWidth,
           ),
+          borderRadius: widget.customBorderRadius ??
+              BorderRadius.all(
+                Radius.circular(widget.borderRadius),
+              ),
         ),
         child: InkWell(
           onTap: () {
             setState(() {});
           },
           splashColor: widget.splashColor,
-          borderRadius: BorderRadius.all(
-            Radius.circular(widget.borderRadius),
-          ),
+          borderRadius: widget.customBorderRadius ??
+              BorderRadius.all(
+                Radius.circular(widget.borderRadius),
+              ),
           child: Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: widget.horizontalPadding ?? 0,
