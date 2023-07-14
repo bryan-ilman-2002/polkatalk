@@ -19,6 +19,18 @@ class TagAdderDropdown extends StatefulWidget {
 }
 
 class _TagAdderDropdownState extends State<TagAdderDropdown> {
+  OutlineInputBorder get customBorder {
+    return OutlineInputBorder(
+      borderSide: BorderSide(
+        color: widget.clerk.text == '' ? Colors.grey : Colors.black,
+      ),
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(8),
+        bottomLeft: Radius.circular(8),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<DropdownMenuEntry> dropdownEntries = <DropdownMenuEntry>[];
@@ -48,31 +60,17 @@ class _TagAdderDropdownState extends State<TagAdderDropdown> {
       enableFilter: true,
       requestFocusOnTap: true,
       inputDecorationTheme: InputDecorationTheme(
-        constraints: BoxConstraints(maxHeight: 53),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.black,
-          ),
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(8),
-            bottomLeft: Radius.circular(8),
-          ),
-        ),
-        border: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: widget.clerk.text == '' ? Colors.grey : Colors.black,
-          ),
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(8),
-            bottomLeft: Radius.circular(8),
-          ),
-        ),
+        constraints: const BoxConstraints(
+            maxHeight: 55 -
+                2 /* 2 is the total width thickness from top border and bottom border */),
+        focusedBorder: customBorder,
+        border: customBorder,
       ),
       dropdownMenuEntries: dropdownEntries,
       menuHeight: 300,
       trailingIcon: Icon(
-        Icons.search_rounded,
-        color: Colors.black,
+        widget.trailingIcon,
+        color: widget.clerk.text == '' ? Colors.grey : Colors.black,
       ),
       onSelected: (value) {
         setState(() {});

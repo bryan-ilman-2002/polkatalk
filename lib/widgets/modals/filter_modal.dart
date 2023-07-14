@@ -11,6 +11,7 @@ import 'package:polkatalk/functions/getters/lang_names_in_native_format.dart';
 import 'package:polkatalk/functions/getters/rating_color.dart';
 import 'package:polkatalk/widgets/buttons/colored_btn.dart';
 import 'package:polkatalk/widgets/buttons/radio_btns.dart';
+import 'package:polkatalk/widgets/filter_box.dart';
 import 'package:polkatalk/widgets/filter_heading.dart';
 import 'package:polkatalk/widgets/lines/horizontal_thin_line.dart';
 import 'package:polkatalk/widgets/price_input.dart';
@@ -213,13 +214,11 @@ class _FilterModalState extends State<FilterModal> {
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16.0),
-          topRight: Radius.circular(16.0),
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
         ),
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -229,7 +228,7 @@ class _FilterModalState extends State<FilterModal> {
                 padding: const EdgeInsets.all(20),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pop(context); // Close the bottom sheet
+                    Navigator.pop(context);
                   },
                   child: const Icon(
                     Icons.close_rounded,
@@ -239,7 +238,7 @@ class _FilterModalState extends State<FilterModal> {
                 ),
               ),
               const Text(
-                'Filter',
+                'Filters',
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -253,104 +252,26 @@ class _FilterModalState extends State<FilterModal> {
           Expanded(
             child: ListView(
               children: [
-                Column(
-                  // session type
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: FilterHeading(
-                        title: 'Session Type',
-                        resetMechanism: _resetDate,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                      ),
-                      child: RadioButtons(
-                        labels: SessionType.values
-                            .map((type) => type.string)
-                            .toList(),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                  ],
+                // session type
+                FilterBox(
+                  title: 'Session Type',
+                  resetMechanism: _resetDate,
+                  child: RadioButtons(
+                    labels:
+                        SessionType.values.map((type) => type.string).toList(),
+                  ),
                 ),
                 const HorizontalThinLine(
                   verticalMargin: EdgeInsets.symmetric(horizontal: 20),
                 ),
-                Column(
-                  // professions or skills, interests
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: FilterHeading(
-                          title: _sessionType == 2
-                              ? 'Interests'
-                              : 'Professions or Skills',
-                          resetMechanism: _resetDate),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          TagAdderDropdown(
-                            clerk: langController,
-                            entries: languageNamesInNativeFormat,
-                            hint: 'add a language',
-                          ),
-                          ColoredButton(
-                            width: 55,
-                            height: 55,
-                            callbackFunction: _resetDate,
-                            text: '+',
-                            textSize: 24,
-                            textWeight: FontWeight.bold,
-                            textColor: Colors.white,
-                            buttonColor: Colors.black,
-                            splashColor:
-                                const Color.fromARGB(255, 112, 112, 112),
-                            customBorderRadius: const BorderRadius.only(
-                              topRight: Radius.circular(8),
-                              bottomRight: Radius.circular(8),
-                            ),
-                            borderColor: Colors.black,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: TagBoard(
-                        prints: [
-                          'doctor',
-                          'lawyer',
-                          'teacher',
-                          'engineer',
-                          'linguist',
-                          'fire brigade',
-                          'influencer',
-                          'novelist,'
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    )
-                  ],
+                // professions or skills, interests
+                FilterBox(
+                  title:
+                      _sessionType == 2 ? 'Interests' : 'Professions or Skills',
+                  resetMechanism: _resetDate,
+                  child: child,
                 ),
+
                 const HorizontalThinLine(
                   verticalMargin: EdgeInsets.symmetric(horizontal: 20),
                 ),
