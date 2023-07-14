@@ -31,8 +31,11 @@ class PolkaTalk extends StatelessWidget {
     return MaterialApp(
       title: 'PolkaTalk',
       theme: ThemeData(
-        splashFactory: InkRipple.splashFactory,
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: Colors.black,
+        ),
         textTheme: mukta,
+        splashFactory: InkRipple.splashFactory,
       ),
       home: const PageSwapper(),
     );

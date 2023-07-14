@@ -17,6 +17,7 @@ import 'package:polkatalk/widgets/lines/horizontal_thin_line.dart';
 import 'package:polkatalk/widgets/price_input.dart';
 import 'package:polkatalk/widgets/search_field.dart';
 import 'package:polkatalk/widgets/tag.dart';
+import 'package:polkatalk/widgets/tag_adder.dart';
 import 'package:polkatalk/widgets/tag_board.dart';
 import 'package:polkatalk/widgets/tag_adder_dropdown.dart';
 import 'package:polkatalk/widgets/text/txt_with_bg.dart';
@@ -269,158 +270,81 @@ class _FilterModalState extends State<FilterModal> {
                   title:
                       _sessionType == 2 ? 'Interests' : 'Professions or Skills',
                   resetMechanism: _resetDate,
-                  child: child,
-                ),
-
-                const HorizontalThinLine(
-                  verticalMargin: EdgeInsets.symmetric(horizontal: 20),
-                ),
-                Column(
-                  // date
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: FilterHeading(
-                        title: 'Date Range',
-                        resetMechanism: _resetDate,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        ColoredButton(
-                          width: 260,
-                          verticalPadding: 16,
-                          callbackFunction: _selectStartDate,
-                          text: startDate == null
-                              ? 'Start Date'
-                              : 'Start Date: ${dateFormat.format(startDate!)}',
-                          textColor: Colors.white,
-                          buttonColor: Colors.black,
-                          splashColor: const Color.fromARGB(255, 112, 112, 112),
-                          borderColor: Colors.black,
-                        ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        ColoredButton(
-                          width: 260,
-                          verticalPadding: 16,
-                          callbackFunction: _selectEndDate,
-                          text: endDate == null
-                              ? 'End Date'
-                              : 'End Date: ${dateFormat.format(endDate!)}',
-                          textColor: Colors.white,
-                          buttonColor: Colors.black,
-                          splashColor: const Color.fromARGB(255, 112, 112, 112),
-                          borderColor: Colors.black,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                  ],
+                  child: TagAdder(
+                    callbackFunction: _resetDate,
+                    clerk: _topic,
+                    entries: languageNamesInNativeFormat,
+                    prints: const ['Doctor'],
+                    trailingIcon: Icons.search_rounded,
+                  ),
                 ),
                 const HorizontalThinLine(
                   verticalMargin: EdgeInsets.symmetric(horizontal: 20),
                 ),
-                Column(
-                  // language
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: FilterHeading(
-                        title: 'Languages',
-                        resetMechanism: _resetDate,
+                // date range
+                FilterBox(
+                  title: 'Date Range',
+                  resetMechanism: _resetDate,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ColoredButton(
+                        width: 260,
+                        verticalPadding: 16,
+                        callbackFunction: _selectStartDate,
+                        text: startDate == null
+                            ? 'Start Date'
+                            : 'Start Date: ${dateFormat.format(startDate!)}',
+                        textColor: Colors.white,
+                        buttonColor: Colors.black,
+                        splashColor: const Color.fromARGB(255, 112, 112, 112),
+                        borderColor: Colors.black,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              TagAdderDropdown(
-                                clerk: langController,
-                                entries: languageNamesInNativeFormat,
-                                hint: 'add a language',
-                              ),
-                              ColoredButton(
-                                width: 55,
-                                height: 56.8,
-                                callbackFunction: _resetDate,
-                                text: '+',
-                                textSize: 24,
-                                textWeight: FontWeight.bold,
-                                textColor: Colors.white,
-                                buttonColor: Colors.black,
-                                splashColor:
-                                    const Color.fromARGB(255, 112, 112, 112),
-                                customBorderRadius: const BorderRadius.only(
-                                  topRight: Radius.circular(8),
-                                  bottomRight: Radius.circular(8),
-                                ),
-                                borderColor: Colors.black,
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                          const TagBoard(
-                            prints: [
-                              'English',
-                              'Frecnch',
-                              'German',
-                              'Portuguese',
-                            ],
-                          ),
-                        ],
+                      const SizedBox(
+                        height: 12,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                  ],
+                      ColoredButton(
+                        width: 260,
+                        verticalPadding: 16,
+                        callbackFunction: _selectEndDate,
+                        text: endDate == null
+                            ? 'End Date'
+                            : 'End Date: ${dateFormat.format(endDate!)}',
+                        textColor: Colors.white,
+                        buttonColor: Colors.black,
+                        splashColor: const Color.fromARGB(255, 112, 112, 112),
+                        borderColor: Colors.black,
+                      ),
+                    ],
+                  ),
                 ),
                 const HorizontalThinLine(
                   verticalMargin: EdgeInsets.symmetric(horizontal: 20),
                 ),
-                Column(
-                  // communication method
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: FilterHeading(
-                        title: 'Communication Method',
-                        resetMechanism: _resetDate,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                      ),
-                      child: RadioButtons(
-                        labels: CommunicationMethod.values
-                            .map((type) => type.string)
-                            .toList(),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                  ],
+                // language
+                FilterBox(
+                  title: 'Languages',
+                  resetMechanism: _resetDate,
+                  child: TagAdder(
+                    callbackFunction: _resetDate,
+                    clerk: _topic,
+                    entries: languageNamesInNativeFormat,
+                    prints: const ['Doctor'],
+                    hint: 'add a language',
+                  ),
+                ),
+                const HorizontalThinLine(
+                  verticalMargin: EdgeInsets.symmetric(horizontal: 20),
+                ),
+                // communication method
+                FilterBox(
+                  title: 'Communication Method',
+                  resetMechanism: _resetDate,
+                  child: RadioButtons(
+                    labels: CommunicationMethod.values
+                        .map((type) => type.string)
+                        .toList(),
+                  ),
                 ),
                 const HorizontalThinLine(
                   verticalMargin: EdgeInsets.symmetric(horizontal: 20),
@@ -436,54 +360,37 @@ class _FilterModalState extends State<FilterModal> {
                 const HorizontalThinLine(
                   verticalMargin: EdgeInsets.symmetric(horizontal: 20),
                 ),
-                Column(
-                  // rating
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: FilterHeading(
-                        title: 'Rating',
-                        resetMechanism: _resetDate,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                      ),
-                      child: RadioButtons(
-                        labels: Rating.values
-                            .map(
-                              (type) => Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  const Text('≥'),
-                                  const SizedBox(
-                                    width: 4,
-                                  ),
-                                  TextWithBackground(
-                                    text: type.string,
-                                    backgroundColor:
-                                        getRatingColor(type.number),
-                                  ),
-                                ],
+                // rating
+                FilterBox(
+                  title: 'Rating',
+                  resetMechanism: _resetDate,
+                  child: RadioButtons(
+                    labels: Rating.values
+                        .map(
+                          (type) => Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Text('≥'),
+                              const SizedBox(
+                                width: 4,
                               ),
-                            )
-                            .toList(),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                  ],
+                              TextWithBackground(
+                                text: type.string,
+                                backgroundColor: getRatingColor(type.number),
+                              ),
+                            ],
+                          ),
+                        )
+                        .toList(),
+                    direction: Axis.horizontal,
+                    mainSpacing: 1.2,
+                  ),
                 ),
                 const HorizontalThinLine(
                   verticalMargin: EdgeInsets.symmetric(horizontal: 20),
                 ),
+                // price range
                 Column(
-                  // price range
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(20),
@@ -525,39 +432,21 @@ class _FilterModalState extends State<FilterModal> {
                 const HorizontalThinLine(
                   verticalMargin: EdgeInsets.symmetric(horizontal: 20),
                 ),
-                Column(
-                  // sorting aspect
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: FilterHeading(
-                        title: 'Sorting Aspect',
-                        resetMechanism: _resetDate,
+                // sorting aspect
+                FilterBox(
+                  title: 'Sorting Aspect',
+                  resetMechanism: _resetDate,
+                  child: Center(
+                    child: SizedBox(
+                      width: 320,
+                      child: RadioButtons(
+                        labels: SortingAspect.values
+                            .map((type) => type.string)
+                            .toList(),
+                        direction: Axis.horizontal,
                       ),
                     ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                      ),
-                      child: Center(
-                        child: SizedBox(
-                          width: 320,
-                          child: RadioButtons(
-                            labels: SortingAspect.values
-                                .map((type) => type.string)
-                                .toList(),
-                            direction: Axis.horizontal,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                  ],
+                  ),
                 ),
               ],
             ),
@@ -565,27 +454,26 @@ class _FilterModalState extends State<FilterModal> {
           const HorizontalThinLine(
             verticalMargin: EdgeInsets.all(0),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // ColoredButton(
-                //   text: 'Reset All',
-                //   textWeight: FontWeight.bold,
-                //   borderRadius: 8,
-                //   borderColor: Colors.black,
-                // ),
-                // ColoredButton(
-                //   text: 'Apply',
-                //   textWeight: FontWeight.bold,
-                //   normalButtonColor: Colors.black,
-                //   pressedButtonColor: Color.fromARGB(255, 112, 112, 112),
-                //   borderRadius: 8,
-                //   borderColor: Colors.black,
-                //   textColor: Colors.white,
-                // ),
+                ColoredButton(
+                  callbackFunction: _resetDate,
+                  text: 'Reset All',
+                ),
+                ColoredButton(
+                  callbackFunction: _resetDate,
+                  text: 'Apply',
+                  textWeight: FontWeight.bold,
+                  textColor: Colors.white,
+                  buttonColor: Colors.black,
+                  splashColor: const Color.fromARGB(255, 112, 112, 112),
+                  basicBorderRadius: 8,
+                  borderColor: Colors.black,
+                ),
               ],
             ),
           ),

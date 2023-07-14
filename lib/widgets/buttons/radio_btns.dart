@@ -4,10 +4,10 @@ class RadioButtons extends StatefulWidget {
   final List labels;
   final double textSize;
   final Axis direction;
-  final WrapAlignment horizontalAlignment;
-  final WrapAlignment verticalAlignment;
-  final double horizontalSpacing;
-  final double verticalSpacing;
+  final WrapAlignment mainAlignment;
+  final WrapAlignment crossAlignment;
+  final double mainSpacing;
+  final double crossSpacing;
   final Color activeColor;
 
   const RadioButtons({
@@ -15,10 +15,10 @@ class RadioButtons extends StatefulWidget {
     required this.labels,
     this.textSize = 16,
     this.direction = Axis.vertical,
-    this.horizontalAlignment = WrapAlignment.center,
-    this.verticalAlignment = WrapAlignment.center,
-    this.horizontalSpacing = 8,
-    this.verticalSpacing = 8,
+    this.mainAlignment = WrapAlignment.center,
+    this.crossAlignment = WrapAlignment.center,
+    this.mainSpacing = 8,
+    this.crossSpacing = 8,
     this.activeColor = Colors.black,
   });
 
@@ -71,10 +71,10 @@ class _RadioButtonsState extends State<RadioButtons> {
 
     return Wrap(
       direction: widget.direction,
-      alignment: widget.horizontalAlignment,
-      runAlignment: widget.verticalAlignment,
-      spacing: widget.horizontalSpacing,
-      runSpacing: widget.verticalSpacing,
+      alignment: widget.mainAlignment,
+      runAlignment: widget.crossAlignment,
+      spacing: widget.mainSpacing,
+      runSpacing: widget.crossSpacing,
       children: children,
     );
   }

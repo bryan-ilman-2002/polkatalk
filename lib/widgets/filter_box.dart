@@ -29,7 +29,7 @@ class FilterBox extends StatelessWidget {
             resetMechanism: resetMechanism,
           ),
           const SizedBox(
-            height: 12,
+            height: 32,
           ),
           child,
         ],

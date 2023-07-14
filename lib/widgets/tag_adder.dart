@@ -7,6 +7,7 @@ class TagAdder extends StatelessWidget {
   final Function callbackFunction;
   final TextEditingController clerk;
   final List<Map<String, dynamic>> entries;
+  final List<String> prints;
   final String hint;
   final IconData? trailingIcon;
 
@@ -15,6 +16,7 @@ class TagAdder extends StatelessWidget {
     required this.callbackFunction,
     required this.clerk,
     required this.entries,
+    required this.prints,
     this.hint = '',
     this.trailingIcon,
   });
@@ -51,13 +53,10 @@ class TagAdder extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: 12,
+          height: 32,
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: TagBoard(
-            prints: ,
-          ),
+        TagBoard(
+          prints: prints,
         ),
       ],
     );
