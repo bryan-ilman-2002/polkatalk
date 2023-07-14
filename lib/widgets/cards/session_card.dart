@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:polkatalk/enums/session_status.dart';
+import 'package:polkatalk/enums/session_type.dart';
 import 'package:polkatalk/functions/format_number.dart';
-import 'package:polkatalk/functions/getters/light_shadow.dart';
+import 'package:polkatalk/functions/extract_texts_from_strings.dart';
+import 'package:polkatalk/widgets/modern_card.dart';
 import 'package:polkatalk/widgets/text/txt_with_bg.dart';
 
 class SessionCard extends StatefulWidget {
+  final SessionType sessionType;
   final String name;
-  final String profession;
-  final SessionStatus varSessionStatus;
+  final List<String> professions;
+  final SessionStatus currentSessionStatus;
   final bool authenticated;
   final String startDate;
   final String? endDate;
@@ -16,9 +19,10 @@ class SessionCard extends StatefulWidget {
 
   const SessionCard(
       {super.key,
+      required this.sessionType,
       required this.name,
-      required this.profession,
-      required this.varSessionStatus,
+      required this.professions,
+      required this.currentSessionStatus,
       required this.authenticated,
       required this.startDate,
       this.endDate,
@@ -32,143 +36,119 @@ class SessionCard extends StatefulWidget {
 class _SessionCardState extends State<SessionCard> {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            lightShadow,
-          ],
-        ),
-        child: Material(
-          color: Colors.white,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(16),
+    return ModernCard(
+      child: Row(
+        children: [
+          Container(
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.grey[200],
+            ),
+            // Replace with your photo widget
+            child: const Center(
+              child: Icon(Icons.photo, color: Colors.white),
             ),
           ),
-          child: InkWell(
-            onTap: () {
-              setState(() {});
-            },
-            borderRadius: const BorderRadius.all(
-              Radius.circular(16),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.sessionType.string,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  widget.name,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children:
+                      extractTextsFromStrings(widget.professions, false, 2),
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    TextWithBackground(
+                        text: widget.currentSessionStatus.string,
+                        backgroundColor: widget.currentSessionStatus ==
+                                SessionStatus.scheduled
+                            ? Colors.amber
+                            : Colors.green),
+                    const SizedBox(width: 8),
+                    Icon(
+                      Icons.fact_check_outlined,
+                      color: widget.authenticated
+                          ? Colors.grey
+                          : Colors.transparent,
+                      size: 20,
+                    )
+                  ],
+                ),
+              ],
             ),
+          ),
+          Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: 80,
-                      height: 80,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.grey[200],
-                      ),
-                      // Replace with your photo widget
-                      child: const Center(
-                        child: Icon(Icons.photo, color: Colors.white),
-                      ),
+                  const Text(
+                    'start:',
+                    style: TextStyle(
+                      color: Colors.grey,
                     ),
                   ),
-                  const SizedBox(width: 15),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.name,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        widget.profession,
-                        style: const TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          TextWithBackground(
-                              text: widget.varSessionStatus.string,
-                              backgroundColor: widget.varSessionStatus ==
-                                      SessionStatus.scheduled
-                                  ? Colors.amber
-                                  : Colors.green),
-                          const SizedBox(width: 8),
-                          Icon(
-                            Icons.fact_check_outlined,
-                            color: widget.authenticated
-                                ? Colors.grey
-                                : Colors.transparent,
-                            size: 20,
-                          )
-                        ],
-                      ),
-                    ],
+                  const SizedBox(height: 2),
+                  Text(
+                    widget.startDate,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Colors.grey,
+                    ),
                   ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                        left: 16,
-                        right: 12,
-                        top: 8,
-                        bottom: 8,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'start:',
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                          const SizedBox(height: 2),
-                          Text(
-                            widget.startDate,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          const Text(
-                            'end:',
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                          const SizedBox(height: 2),
-                          Text(
-                            widget.endDate ?? '—',
-                            style: const TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          Text(
-                            '${widget.currency} ${formatNumberWithLocalizedSeparators(widget.totalCost)}',
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'end:',
+                    style: TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    widget.endDate ?? '—',
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    '${widget.currency} ${formatNumberWithLocalizedSeparators(widget.totalCost)}',
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

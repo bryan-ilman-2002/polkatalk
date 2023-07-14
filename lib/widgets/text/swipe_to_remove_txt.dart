@@ -8,9 +8,6 @@ class SwipeToRemoveText extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
       height: 60,
-      decoration: const BoxDecoration(
-        color: Colors.transparent,
-      ),
       child: const Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.end,

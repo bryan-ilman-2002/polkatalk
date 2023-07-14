@@ -14,7 +14,6 @@ class ColoredButton extends StatefulWidget {
   final Color? splashColor;
   final double basicBorderRadius;
   final BorderRadius? customBorderRadius;
-  final double borderWidth;
   final Color borderColor;
 
   const ColoredButton({
@@ -32,7 +31,6 @@ class ColoredButton extends StatefulWidget {
     this.splashColor,
     this.basicBorderRadius = 8,
     this.customBorderRadius,
-    this.borderWidth = 0.8,
     this.borderColor = Colors.black,
   });
 

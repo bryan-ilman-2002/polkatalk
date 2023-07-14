@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polkatalk/enums/session_type.dart';
 import 'package:polkatalk/functions/getters/current_date.dart';
 import 'package:polkatalk/widgets/cards/chat_card.dart';
 
@@ -24,8 +25,13 @@ class _ChatsPageState extends State<ChatsPage> {
             return Padding(
               padding: const EdgeInsets.all(8),
               child: ChatCard(
+                sessionType: SessionType.acquaintanceship,
                 name: 'Larry Page',
-                profession: 'Economist',
+                professions: [
+                  'Economist',
+                  'Lawyer',
+                  'Doctor',
+                ],
                 lastMessage: 'hellohellohellohellohellohellohellohello',
                 lastMessageDate: currentDateShrunk,
                 lastMessageIsYours: false,

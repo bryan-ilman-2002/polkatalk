@@ -8,11 +8,11 @@ extension SessionTypeExtension on SessionType {
   String get string {
     switch (this) {
       case SessionType.standard:
-        return 'standard';
+        return 'Standard';
       case SessionType.charity:
-        return 'charity';
+        return 'Charity';
       case SessionType.acquaintanceship:
-        return 'acquaintanceship';
+        return 'Acquaintanceship';
       default:
         return '';
     }

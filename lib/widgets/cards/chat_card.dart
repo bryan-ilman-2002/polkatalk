@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:polkatalk/functions/getters/light_shadow.dart';
+import 'package:polkatalk/enums/session_type.dart';
+import 'package:polkatalk/functions/extract_texts_from_strings.dart';
+import 'package:polkatalk/widgets/modern_card.dart';
 
 class ChatCard extends StatefulWidget {
+  final SessionType sessionType;
   final String name;
-  final String profession;
+  final List<String> professions;
   final String lastMessage;
   final String? lastMessageDate;
   final bool lastMessageIsYours;
@@ -13,8 +16,9 @@ class ChatCard extends StatefulWidget {
 
   const ChatCard({
     super.key,
+    required this.sessionType,
     required this.name,
-    required this.profession,
+    required this.professions,
     this.lastMessage = '',
     this.lastMessageDate,
     this.lastMessageIsYours = false,
@@ -44,130 +48,103 @@ class _ChatCardState extends State<ChatCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            lightShadow,
-          ],
-        ),
-        child: Material(
-          color: Colors.white,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(16),
+    return ModernCard(
+      child: Row(
+        children: [
+          Container(
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.grey[200],
+            ),
+            // Replace with your photo widget
+            child: const Center(
+              child: Icon(Icons.photo, color: Colors.white),
             ),
           ),
-          child: InkWell(
-            onTap: () {
-              setState(() {});
-            },
-            borderRadius: const BorderRadius.all(
-              Radius.circular(16),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: Row(
+          const SizedBox(width: 14),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.only(
+                right: 8,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: 80,
-                      height: 80,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.grey[200],
-                      ),
-                      // Replace with your photo widget
-                      child: const Center(
-                        child: Icon(Icons.photo, color: Colors.white),
-                      ),
+                  Text(
+                    widget.sessionType.string,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
                     ),
                   ),
-                  const SizedBox(width: 15),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(right: 16),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                widget.name,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              Text(
-                                widget.lastMessageDate ?? '',
-                                style: const TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        widget.name,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
-                        const SizedBox(height: 6),
-                        Text(
-                          widget.profession,
+                      ),
+                      Text(
+                        widget.lastMessageDate ?? '',
+                        style: const TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  extractTextsFromStrings(widget.professions, true, 2)[0],
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      widget.lastMessageIsYours ? icon : const SizedBox(),
+                      widget.lastMessageIsYours
+                          ? const SizedBox(width: 4)
+                          : const SizedBox(),
+                      Expanded(
+                        child: Text(
+                          widget.lastMessage,
+                          overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                             color: Colors.grey,
                           ),
                         ),
-                        const SizedBox(height: 8),
-                        Row(
-                          children: [
-                            widget.lastMessageIsYours ? icon : const SizedBox(),
-                            widget.lastMessageIsYours
-                                ? const SizedBox(width: 4)
-                                : const SizedBox(),
-                            Expanded(
-                              child: Text(
-                                widget.lastMessage,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 4),
-                            Container(
-                              width: 24,
-                              height: 24,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: widget.receivedUnreadMessagesCount != 0
-                                    ? Colors.green
-                                    : Colors.transparent,
-                              ),
-                              child: Center(
-                                child: Text(
-                                  widget.receivedUnreadMessagesCount.toString(),
-                                  style: TextStyle(
-                                      color:
-                                          widget.receivedUnreadMessagesCount !=
-                                                  0
-                                              ? Colors.white
-                                              : Colors.transparent),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                          ],
+                      ),
+                      const SizedBox(width: 4),
+                      Container(
+                        width: 24,
+                        height: 24,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: widget.receivedUnreadMessagesCount != 0
+                              ? Colors.green
+                              : Colors.transparent,
                         ),
-                      ],
-                    ),
+                        child: Center(
+                          child: Text(
+                            widget.receivedUnreadMessagesCount.toString(),
+                            style: TextStyle(
+                                color: widget.receivedUnreadMessagesCount != 0
+                                    ? Colors.white
+                                    : Colors.transparent),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                    ],
                   ),
                 ],
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

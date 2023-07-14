@@ -21,8 +21,6 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
   Widget build(BuildContext context) {
     return BottomAppBar(
       child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: widget.navItems.asMap().entries.map((entry) {
           final icon = entry.value[0] as IconData;
           final label = entry.value[1] as String;
@@ -42,7 +40,7 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
           duration: const Duration(milliseconds: 320),
           height: 60,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(24),
+            borderRadius: BorderRadius.circular(16),
             border: _getNavBarItemBorder(index),
           ),
           child: Column(

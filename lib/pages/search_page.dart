@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polkatalk/enums/session_type.dart';
 import 'package:polkatalk/widgets/buttons/bg_reveal_btn.dart';
 import 'package:polkatalk/widgets/buttons/twin_btns.dart';
 import 'package:polkatalk/widgets/cards/profile_card.dart';
@@ -65,7 +66,7 @@ class _SearchPageState extends State<SearchPage> {
                                     openNotificationsModal,
                                 leftIcon: Icons.filter_alt_outlined,
                                 rightIcon: Icons.notifications_none_rounded,
-                                leftText: 'Fiter',
+                                leftText: 'Fiters',
                                 rightText: 'Notifications',
                               ),
                       ),
@@ -80,8 +81,13 @@ class _SearchPageState extends State<SearchPage> {
                     child: const Padding(
                       padding: EdgeInsets.all(8),
                       child: ProfileCard(
+                        sessionType: SessionType.acquaintanceship,
                         name: 'Larry Page',
-                        profession: 'Economist',
+                        professions: [
+                          'Economist',
+                          'Lawyer',
+                          'Doctor',
+                        ],
                         rating: 4.8,
                         currency: 'USD',
                         price: 4200,

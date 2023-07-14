@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class TextWithBackground extends StatelessWidget {
   final String text;
-  final double textSize;
+  final double? textSize;
   final FontWeight textWeight;
   final Color textColor;
   final Color backgroundColor;
@@ -12,12 +12,12 @@ class TextWithBackground extends StatelessWidget {
   const TextWithBackground({
     super.key,
     required this.text,
-    this.textSize = 14,
+    this.textSize,
     this.textWeight = FontWeight.bold,
     this.textColor = Colors.white,
     this.backgroundColor = Colors.green,
     this.padding = const EdgeInsets.all(6),
-    this.borderRadius = 10,
+    this.borderRadius = 8,
   });
 
   @override

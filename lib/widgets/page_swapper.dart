@@ -70,7 +70,7 @@ class _PageSwapper extends State<PageSwapper> {
               backgroundColor: Colors.grey[50],
               mini: true,
               child: const Icon(
-                Icons.arrow_upward,
+                Icons.arrow_upward_rounded,
                 color: Colors.grey,
                 size: 24,
               ),

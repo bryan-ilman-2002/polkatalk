@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polkatalk/enums/session_type.dart';
 import 'package:polkatalk/widgets/cards/profile_card.dart';
 import 'package:polkatalk/widgets/text/swipe_to_remove_txt.dart';
 
@@ -28,8 +29,9 @@ class _FavoritesPage extends State<FavoritesPage> {
                     child: const Padding(
                       padding: EdgeInsets.all(8),
                       child: ProfileCard(
+                        sessionType: SessionType.acquaintanceship,
                         name: 'Larry Page',
-                        profession: 'Economist',
+                        professions: ['Economist', 'Doctors', 'Lawyers'],
                         rating: 4.8,
                         currency: 'USD',
                         price: 4200,

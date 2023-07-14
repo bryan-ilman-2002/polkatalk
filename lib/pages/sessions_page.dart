@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:polkatalk/enums/session_status.dart';
+import 'package:polkatalk/enums/session_type.dart';
 import 'package:polkatalk/functions/getters/current_date.dart';
 import 'package:polkatalk/widgets/cards/session_card.dart';
 
@@ -25,13 +26,18 @@ class _SessionsPage extends State<SessionsPage> {
             return Padding(
               padding: const EdgeInsets.all(8),
               child: SessionCard(
+                sessionType: SessionType.acquaintanceship,
                 name: 'Larry Page',
-                profession: 'Economist',
-                varSessionStatus: SessionStatus.completed,
+                professions: const [
+                  'Economist',
+                  'Lawyer',
+                  'Doctor',
+                ],
+                currentSessionStatus: SessionStatus.completed,
                 authenticated: true,
                 startDate: currentDateExtended,
                 currency: 'USD',
-                totalCost: 6400,
+                totalCost: 6400000,
               ),
             );
           },

@@ -12,8 +12,8 @@ class HorizontalThinLine extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: verticalMargin,
-      height: 0.2,
       width: double.infinity,
+      height: 0.2,
       color: Colors.black,
     );
   }
