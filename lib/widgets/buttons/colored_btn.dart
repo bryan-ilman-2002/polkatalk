@@ -8,11 +8,11 @@ class ColoredButton extends StatefulWidget {
   final Function callbackFunction;
   final String text;
   final double textSize;
-  final FontWeight textWeight;
-  final Color textColor;
+  final FontWeight? textWeight;
+  final Color? textColor;
   final Color buttonColor;
   final Color? splashColor;
-  final double borderRadius;
+  final double basicBorderRadius;
   final BorderRadius? customBorderRadius;
   final double borderWidth;
   final Color borderColor;
@@ -26,11 +26,11 @@ class ColoredButton extends StatefulWidget {
     required this.callbackFunction,
     required this.text,
     this.textSize = 16,
-    this.textWeight = FontWeight.normal,
-    this.textColor = Colors.black,
+    this.textWeight,
+    this.textColor,
     this.buttonColor = Colors.white,
     this.splashColor,
-    this.borderRadius = 8,
+    this.basicBorderRadius = 8,
     this.customBorderRadius,
     this.borderWidth = 0.8,
     this.borderColor = Colors.black,
@@ -50,7 +50,7 @@ class _ColoredButtonState extends State<ColoredButton> {
         border: Border.all(color: Colors.transparent),
         borderRadius: widget.customBorderRadius ??
             BorderRadius.all(
-              Radius.circular(widget.borderRadius),
+              Radius.circular(widget.basicBorderRadius),
             ),
       ),
       child: Material(
@@ -58,21 +58,21 @@ class _ColoredButtonState extends State<ColoredButton> {
         shape: RoundedRectangleBorder(
           side: BorderSide(
             color: widget.borderColor,
-            width: widget.borderWidth,
           ),
           borderRadius: widget.customBorderRadius ??
               BorderRadius.all(
-                Radius.circular(widget.borderRadius),
+                Radius.circular(widget.basicBorderRadius),
               ),
         ),
         child: InkWell(
           onTap: () {
             setState(() {});
+            widget.callbackFunction();
           },
           splashColor: widget.splashColor,
           borderRadius: widget.customBorderRadius ??
               BorderRadius.all(
-                Radius.circular(widget.borderRadius),
+                Radius.circular(widget.basicBorderRadius),
               ),
           child: Padding(
             padding: EdgeInsets.symmetric(

@@ -3,11 +3,19 @@ import 'package:flutter/material.dart';
 class SettingButton extends StatefulWidget {
   final IconData icon;
   final String label;
+  final Color buttonColor;
+  final Color contentColor;
+  final Color? splashColor;
+  final double borderRadius;
 
   const SettingButton({
     super.key,
     required this.icon,
     required this.label,
+    this.buttonColor = Colors.white,
+    this.contentColor = Colors.grey,
+    this.splashColor,
+    this.borderRadius = 8,
   });
 
   @override
@@ -15,12 +23,6 @@ class SettingButton extends StatefulWidget {
 }
 
 class _SettingButtonState extends State<SettingButton> {
-  MaterialColor get rowColor {
-    return widget.icon == Icons.delete_outline_rounded
-        ? Colors.red
-        : Colors.grey;
-  }
-
   @override
   Widget build(BuildContext context) {
     Widget content = Padding(
@@ -29,7 +31,7 @@ class _SettingButtonState extends State<SettingButton> {
         children: [
           Icon(
             widget.icon,
-            color: rowColor,
+            color: widget.contentColor,
             size: 30,
           ),
           const SizedBox(
@@ -39,14 +41,13 @@ class _SettingButtonState extends State<SettingButton> {
             child: Text(
               widget.label,
               style: TextStyle(
-                color: rowColor,
-                fontSize: 16,
+                color: widget.contentColor,
               ),
             ),
           ),
           Icon(
             Icons.keyboard_arrow_right_rounded,
-            color: rowColor,
+            color: widget.contentColor,
             size: 30,
           ),
         ],
@@ -54,32 +55,21 @@ class _SettingButtonState extends State<SettingButton> {
     );
 
     return Material(
-      color: Colors.white,
-      shape: const RoundedRectangleBorder(
+      color: widget.buttonColor,
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
-          Radius.circular(10),
+          Radius.circular(widget.borderRadius),
         ),
       ),
-      child: widget.icon == Icons.delete_outline_rounded
-          ? InkWell(
-              onTap: () {
-                setState(() {});
-              },
-              splashColor: const Color.fromARGB(255, 255, 226, 224),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(10),
-              ),
-              child: content,
-            )
-          : InkWell(
-              onTap: () {
-                setState(() {});
-              },
-              borderRadius: const BorderRadius.all(
-                Radius.circular(10),
-              ),
-              child: content,
-            ),
+      child: InkWell(
+        onTap: () {
+          setState(() {});
+        },
+        borderRadius: BorderRadius.all(
+          Radius.circular(widget.borderRadius),
+        ),
+        child: content,
+      ),
     );
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class RadioButtons extends StatefulWidget {
   final List labels;
+  final double textSize;
+  final Axis direction;
   final WrapAlignment horizontalAlignment;
   final WrapAlignment verticalAlignment;
   final double horizontalSpacing;
@@ -11,6 +13,8 @@ class RadioButtons extends StatefulWidget {
   const RadioButtons({
     super.key,
     required this.labels,
+    this.textSize = 16,
+    this.direction = Axis.vertical,
     this.horizontalAlignment = WrapAlignment.center,
     this.verticalAlignment = WrapAlignment.center,
     this.horizontalSpacing = 8,
@@ -44,7 +48,6 @@ class _RadioButtonsState extends State<RadioButtons> {
                 value: index,
                 groupValue: selectedValue,
                 activeColor: widget.activeColor,
-                visualDensity: VisualDensity.compact,
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 onChanged: (int? value) {
                   setState(() {
@@ -53,7 +56,12 @@ class _RadioButtonsState extends State<RadioButtons> {
                 },
               ),
               widget.labels[index] is String
-                  ? Text(widget.labels[index])
+                  ? Text(
+                      widget.labels[index],
+                      style: TextStyle(
+                        fontSize: widget.textSize,
+                      ),
+                    )
                   : widget.labels[index],
             ],
           ),
@@ -62,6 +70,7 @@ class _RadioButtonsState extends State<RadioButtons> {
     }
 
     return Wrap(
+      direction: widget.direction,
       alignment: widget.horizontalAlignment,
       runAlignment: widget.verticalAlignment,
       spacing: widget.horizontalSpacing,

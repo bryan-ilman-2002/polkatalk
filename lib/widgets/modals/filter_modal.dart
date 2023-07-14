@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:polkatalk/enums/communication_method.dart';
-import 'package:polkatalk/enums/language_name.dart';
+import 'package:polkatalk/enums/language.dart';
 import 'package:polkatalk/enums/rating.dart';
 import 'package:polkatalk/enums/session_type.dart';
 import 'package:polkatalk/enums/sorting_aspect.dart';
@@ -114,7 +114,7 @@ class _FilterModalState extends State<FilterModal> {
   }
 
   final TextEditingController langController = TextEditingController();
-  LanguageName? selectedLang;
+  Language? selectedLang;
 
   int? _communicationMethod;
 
@@ -628,6 +628,7 @@ class _FilterModalState extends State<FilterModal> {
                             labels: SortingAspect.values
                                 .map((type) => type.string)
                                 .toList(),
+                            direction: Axis.horizontal,
                           ),
                         ),
                       ),

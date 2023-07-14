@@ -28,7 +28,7 @@ class FilterHeading extends StatelessWidget {
           verticalPadding: 10,
           callbackFunction: resetMechanism,
           text: 'Reset',
-          borderRadius: 8,
+          basicBorderRadius: 8,
           borderWidth: 0.8,
           borderColor: Colors.black,
         )

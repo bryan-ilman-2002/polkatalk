@@ -93,6 +93,8 @@ class _ProfilePageState extends State<ProfilePage> {
               const SettingButton(
                 icon: Icons.delete_outline_rounded,
                 label: 'Delete Account',
+                contentColor: Colors.red,
+                splashColor: Color.fromARGB(255, 255, 226, 224),
               ),
               const HorizontalThinLine(),
               const SizedBox(height: 64),

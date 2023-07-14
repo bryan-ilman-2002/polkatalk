@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:polkatalk/widgets/page_swapper.dart';
 
 void main() {
-  runApp(const ProviderScope(child: PolkaTalk()));
+  runApp(
+    const PolkaTalk(),
+  );
 }
 
 class PolkaTalk extends StatelessWidget {
@@ -20,10 +21,12 @@ class PolkaTalk extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
-    ));
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+    );
 
     return MaterialApp(
       title: 'PolkaTalk',

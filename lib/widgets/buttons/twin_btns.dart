@@ -17,7 +17,7 @@ class TwinButtons extends StatefulWidget {
   final Color iconColor;
   final String leftText;
   final String rightText;
-  final double textSize;
+  final double? textSize;
   final Color textColor;
 
   const TwinButtons({
@@ -35,7 +35,7 @@ class TwinButtons extends StatefulWidget {
     this.iconColor = Colors.grey,
     required this.leftText,
     required this.rightText,
-    this.textSize = 14,
+    this.textSize,
     this.textColor = Colors.grey,
   });
 
@@ -67,7 +67,7 @@ class _TwinButtonsState extends State<TwinButtons> {
                 height: widget.height,
               ),
               VerticalThinLine(
-                lineColor: widget.iconColor,
+                lineColor: widget.textColor,
                 height: widget.dividerHeight ?? widget.height,
               ),
             ],
@@ -105,10 +105,10 @@ class _TwinButtonsState extends State<TwinButtons> {
           shape: getBorderRadius(),
           child: InkWell(
             onTap: () {
+              setState(() {});
               eitherLeftOrRight()
                   ? widget.leftButtonCallbackFunction()
                   : widget.rightButtonCallbackFunction();
-              setState(() {});
             },
             splashColor: widget.splashColor,
             customBorder: getBorderRadius(),

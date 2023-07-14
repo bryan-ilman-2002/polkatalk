@@ -29,6 +29,7 @@ ScrollController _createScrollController(
     Function(bool, ScrollController) scrollListener) {
   final scrollController = ScrollController();
   scrollController.addListener(
-      () => scrollListener(scrollController.offset > 0, scrollController));
+    () => scrollListener(scrollController.offset > 0, scrollController),
+  );
   return scrollController;
 }
