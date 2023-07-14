@@ -51,18 +51,18 @@ class _TagAdderDropdownState extends State<TagAdderDropdown> {
         constraints: BoxConstraints(
             maxHeight: 55 -
                 2 /* 2 is the total width thickness from top border and bottom border */),
-        focusedBorder: OutlineInputBorder(
+        border: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.black,
+            color: Colors.grey,
           ),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(8),
             bottomLeft: Radius.circular(8),
           ),
         ),
-        border: OutlineInputBorder(
+        focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.grey,
+            color: Colors.black,
           ),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(8),

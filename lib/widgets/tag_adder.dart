@@ -7,7 +7,7 @@ class TagAdder extends StatelessWidget {
   final Function callbackFunction;
   final TextEditingController clerk;
   final List<Map<String, dynamic>> entries;
-  final List<String> prints;
+  final List<String>? prints;
   final String hint;
   final IconData? trailingIcon;
 
@@ -16,7 +16,7 @@ class TagAdder extends StatelessWidget {
     required this.callbackFunction,
     required this.clerk,
     required this.entries,
-    required this.prints,
+    this.prints,
     this.hint = '',
     this.trailingIcon,
   });

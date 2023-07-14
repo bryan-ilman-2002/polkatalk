@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:polkatalk/widgets/page_swapper.dart';
 
 void main() {
   runApp(
-    const PolkaTalk(),
+    const ProviderScope(
+      child: PolkaTalk(),
+    ),
   );
 }
 
@@ -35,6 +38,7 @@ class PolkaTalk extends StatelessWidget {
           cursorColor: Colors.black,
         ),
         textTheme: mukta,
+        primarySwatch: Colors.grey,
         splashFactory: InkRipple.splashFactory,
       ),
       home: const PageSwapper(),

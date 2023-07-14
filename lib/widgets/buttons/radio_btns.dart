@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class RadioButtons extends StatefulWidget {
+class RadioButtons extends ConsumerStatefulWidget {
+  final int? groupValue;
+  final Function(int) callbackFunction;
   final List labels;
   final double textSize;
   final Axis direction;
@@ -12,6 +15,8 @@ class RadioButtons extends StatefulWidget {
 
   const RadioButtons({
     super.key,
+    required this.groupValue,
+    required this.callbackFunction,
     required this.labels,
     this.textSize = 16,
     this.direction = Axis.vertical,
@@ -23,12 +28,10 @@ class RadioButtons extends StatefulWidget {
   });
 
   @override
-  State<RadioButtons> createState() => _RadioButtonsState();
+  ConsumerState<RadioButtons> createState() => _RadioButtonsState();
 }
 
-class _RadioButtonsState extends State<RadioButtons> {
-  int? selectedValue;
-
+class _RadioButtonsState extends ConsumerState<RadioButtons> {
   @override
   Widget build(BuildContext context) {
     List<GestureDetector> children = [];
@@ -38,7 +41,7 @@ class _RadioButtonsState extends State<RadioButtons> {
         GestureDetector(
           onTap: () {
             setState(() {
-              selectedValue = index;
+              widget.callbackFunction(index);
             });
           },
           child: Row(
@@ -46,12 +49,12 @@ class _RadioButtonsState extends State<RadioButtons> {
             children: [
               Radio<int>(
                 value: index,
-                groupValue: selectedValue,
+                groupValue: widget.groupValue,
                 activeColor: widget.activeColor,
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 onChanged: (int? value) {
                   setState(() {
-                    selectedValue = value!;
+                    widget.callbackFunction(value!);
                   });
                 },
               ),

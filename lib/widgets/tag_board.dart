@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:polkatalk/widgets/tag.dart';
 
 class TagBoard extends StatefulWidget {
-  final List<String> prints;
+  final List<String>? prints;
   final WrapAlignment horizontalAlignment;
   final WrapAlignment verticalAlignment;
   final double horizontalSpacing;
@@ -10,7 +10,7 @@ class TagBoard extends StatefulWidget {
 
   const TagBoard({
     super.key,
-    required this.prints,
+    this.prints,
     this.horizontalAlignment = WrapAlignment.center,
     this.verticalAlignment = WrapAlignment.center,
     this.horizontalSpacing = 8,
@@ -26,12 +26,14 @@ class _TagBoardState extends State<TagBoard> {
   Widget build(BuildContext context) {
     List<Tag> children = [];
 
-    for (int index = 0; index < widget.prints.length; index++) {
-      children.add(
-        Tag(
-          print: widget.prints[index],
-        ),
-      );
+    if (widget.prints != null) {
+      for (int index = 0; index < widget.prints!.length; index++) {
+        children.add(
+          Tag(
+            print: widget.prints![index],
+          ),
+        );
+      }
     }
 
     return Wrap(

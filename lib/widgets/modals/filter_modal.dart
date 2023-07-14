@@ -1,145 +1,88 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:polkatalk/enums/communication_method.dart';
-import 'package:polkatalk/enums/language.dart';
 import 'package:polkatalk/enums/rating.dart';
 import 'package:polkatalk/enums/session_type.dart';
 import 'package:polkatalk/enums/sorting_aspect.dart';
 import 'package:polkatalk/functions/getters/lang_names_in_native_format.dart';
 import 'package:polkatalk/functions/getters/rating_color.dart';
+import 'package:polkatalk/functions/providers/session_type_filter_state.dart';
 import 'package:polkatalk/widgets/buttons/colored_btn.dart';
 import 'package:polkatalk/widgets/buttons/radio_btns.dart';
 import 'package:polkatalk/widgets/filter_box.dart';
-import 'package:polkatalk/widgets/filter_heading.dart';
 import 'package:polkatalk/widgets/lines/horizontal_thin_line.dart';
 import 'package:polkatalk/widgets/price_input.dart';
-import 'package:polkatalk/widgets/search_field.dart';
-import 'package:polkatalk/widgets/tag.dart';
+import 'package:polkatalk/widgets/date_range_selector.dart';
 import 'package:polkatalk/widgets/tag_adder.dart';
-import 'package:polkatalk/widgets/tag_board.dart';
-import 'package:polkatalk/widgets/tag_adder_dropdown.dart';
 import 'package:polkatalk/widgets/text/txt_with_bg.dart';
 
-class FilterModal extends StatefulWidget {
+class FilterModal extends ConsumerStatefulWidget {
   const FilterModal({super.key});
 
   @override
-  State<FilterModal> createState() => _FilterModalState();
+  ConsumerState<FilterModal> createState() => _FilterModalState();
 }
 
-class _FilterModalState extends State<FilterModal> {
-  int? _sessionType;
-
-  final TextEditingController _topic = TextEditingController();
-
-  DateTime? startDate;
-  DateTime? endDate;
-
-  Future<TimeOfDay?> _selectTime(BuildContext context) async {
-    return showTimePicker(
-      context: context,
-      initialTime: TimeOfDay.now(),
-    );
+class _FilterModalState extends ConsumerState<FilterModal> {
+  void _resetSessionType() {
+    setState(() {
+      ref.watch(resetSessionTypeFilterState)();
+    });
   }
 
-  Future<void> _selectStartDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(const Duration(days: 90)),
-      locale:
-          Locale.fromSubtags(languageCode: Platform.localeName.substring(0, 2)),
-    );
+  // date range
 
-    if (picked != null) {
-      final TimeOfDay? selectedTime = await _selectTime(context);
+  DateTime? _startDate;
+  DateTime? _endDate;
 
-      if (selectedTime != null) {
-        final DateTime selectedDateTime = DateTime(
-          picked.year,
-          picked.month,
-          picked.day,
-          selectedTime.hour,
-          selectedTime.minute,
-        );
-
-        setState(() {
-          if (endDate != null && selectedDateTime.isAfter(endDate!)) {
-            endDate = null;
-          }
-          startDate = selectedDateTime;
-        });
-      }
-    }
+  void _setStartDate(DateTime selectedDate) {
+    _startDate = selectedDate;
   }
 
-  Future<void> _selectEndDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: startDate ?? DateTime.now(),
-      firstDate: endDate ?? DateTime.now(),
-      lastDate: DateTime.now().add(const Duration(days: 90)),
-      locale:
-          Locale.fromSubtags(languageCode: Platform.localeName.substring(0, 2)),
-    );
-
-    if (picked != null) {
-      final TimeOfDay? selectedTime = await _selectTime(context);
-
-      if (selectedTime != null) {
-        final DateTime selectedDateTime = DateTime(
-          picked.year,
-          picked.month,
-          picked.day,
-          selectedTime.hour,
-          selectedTime.minute,
-        );
-
-        setState(() {
-          if (startDate != null && selectedDateTime.isBefore(startDate!)) {
-            startDate = null;
-          }
-          endDate = selectedDateTime;
-        });
-      }
-    }
+  void _setEndDate(DateTime selectedDate) {
+    _endDate = selectedDate;
   }
 
   void _resetDate() {
-    setState(() {
-      startDate = null;
-      endDate = null;
-    });
+    _startDate = null;
+    _endDate = null;
   }
 
-  final TextEditingController langController = TextEditingController();
-  Language? selectedLang;
+  // communication method
 
   int? _communicationMethod;
 
-  void _resetCommunicationMethod() {
-    setState(() {
-      _communicationMethod = null;
-    });
+  void _setCommunicationMethod(int index) {
+    _communicationMethod = index;
   }
+
+  void _resetCommunicationMethod() {
+    _communicationMethod = null;
+  }
+
+  // rating
 
   int? _rating;
 
-  void _resetRating() {
-    setState(() {
-      _rating = null;
-    });
+  void _setRating(int index) {
+    _rating = index;
   }
+
+  void _resetRating() {
+    _rating = null;
+  }
+
+  // sorting aspect
 
   int? _sortingAspect;
 
+  void _setSortingAspect(int index) {
+    _sortingAspect = index;
+  }
+
   void _resetSortingAspect() {
-    setState(() {
-      _sortingAspect = null;
-    });
+    _sortingAspect = null;
   }
 
   final TextEditingController _minController = TextEditingController();
@@ -209,8 +152,6 @@ class _FilterModalState extends State<FilterModal> {
 
   @override
   Widget build(BuildContext context) {
-    final dateFormat = DateFormat.yMd().add_Hm();
-
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -248,7 +189,7 @@ class _FilterModalState extends State<FilterModal> {
             ],
           ),
           const HorizontalThinLine(
-            verticalMargin: EdgeInsets.all(0),
+            horizontalMargin: 0,
           ),
           Expanded(
             child: ListView(
@@ -256,70 +197,43 @@ class _FilterModalState extends State<FilterModal> {
                 // session type
                 FilterBox(
                   title: 'Session Type',
-                  resetMechanism: _resetDate,
+                  resetMechanism: _resetSessionType,
                   child: RadioButtons(
+                    callbackFunction: ref.watch(setSessionTypeFilterState),
                     labels:
                         SessionType.values.map((type) => type.string).toList(),
+                    groupValue: ref.watch(sessionTypeFilterState),
                   ),
                 ),
                 const HorizontalThinLine(
-                  verticalMargin: EdgeInsets.symmetric(horizontal: 20),
+                  horizontalMargin: 20,
                 ),
                 // professions or skills, interests
                 FilterBox(
-                  title:
-                      _sessionType == 2 ? 'Interests' : 'Professions or Skills',
+                  title: _rating == 2 ? 'Interests' : 'Professions or Skills',
                   resetMechanism: _resetDate,
                   child: TagAdder(
                     callbackFunction: _resetDate,
-                    clerk: _topic,
+                    clerk: _minController,
                     entries: languageNamesInNativeFormat,
                     prints: const ['Doctor'],
                     trailingIcon: Icons.search_rounded,
                   ),
                 ),
                 const HorizontalThinLine(
-                  verticalMargin: EdgeInsets.symmetric(horizontal: 20),
+                  horizontalMargin: 20,
                 ),
                 // date range
                 FilterBox(
                   title: 'Date Range',
                   resetMechanism: _resetDate,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      ColoredButton(
-                        width: 260,
-                        verticalPadding: 16,
-                        callbackFunction: _selectStartDate,
-                        text: startDate == null
-                            ? 'Start Date'
-                            : 'Start Date: ${dateFormat.format(startDate!)}',
-                        textColor: Colors.white,
-                        buttonColor: Colors.black,
-                        splashColor: const Color.fromARGB(255, 112, 112, 112),
-                        borderColor: Colors.black,
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      ColoredButton(
-                        width: 260,
-                        verticalPadding: 16,
-                        callbackFunction: _selectEndDate,
-                        text: endDate == null
-                            ? 'End Date'
-                            : 'End Date: ${dateFormat.format(endDate!)}',
-                        textColor: Colors.white,
-                        buttonColor: Colors.black,
-                        splashColor: const Color.fromARGB(255, 112, 112, 112),
-                        borderColor: Colors.black,
-                      ),
-                    ],
+                  child: DateRangeSelector(
+                    startDateCallbackFunction: _setStartDate,
+                    endDateCallbackFunction: _setEndDate,
                   ),
                 ),
                 const HorizontalThinLine(
-                  verticalMargin: EdgeInsets.symmetric(horizontal: 20),
+                  horizontalMargin: 20,
                 ),
                 // language
                 FilterBox(
@@ -327,27 +241,27 @@ class _FilterModalState extends State<FilterModal> {
                   resetMechanism: _resetDate,
                   child: TagAdder(
                     callbackFunction: _resetDate,
-                    clerk: _topic,
+                    clerk: _minController,
                     entries: languageNamesInNativeFormat,
-                    prints: const ['Doctor'],
                     hint: 'add a language',
                   ),
                 ),
                 const HorizontalThinLine(
-                  verticalMargin: EdgeInsets.symmetric(horizontal: 20),
+                  horizontalMargin: 20,
                 ),
                 // communication method
                 FilterBox(
                   title: 'Communication Method',
-                  resetMechanism: _resetDate,
+                  resetMechanism: _resetCommunicationMethod,
                   child: RadioButtons(
+                    callbackFunction: _setCommunicationMethod,
                     labels: CommunicationMethod.values
                         .map((type) => type.string)
                         .toList(),
                   ),
                 ),
                 const HorizontalThinLine(
-                  verticalMargin: EdgeInsets.symmetric(horizontal: 20),
+                  horizontalMargin: 20,
                 ),
                 const Column(
                   // city, country
@@ -358,13 +272,14 @@ class _FilterModalState extends State<FilterModal> {
                   ],
                 ),
                 const HorizontalThinLine(
-                  verticalMargin: EdgeInsets.symmetric(horizontal: 20),
+                  horizontalMargin: 20,
                 ),
                 // rating
                 FilterBox(
                   title: 'Rating',
-                  resetMechanism: _resetDate,
+                  resetMechanism: _resetRating,
                   child: RadioButtons(
+                    callbackFunction: _setRating,
                     labels: Rating.values
                         .map(
                           (type) => Row(
@@ -387,59 +302,46 @@ class _FilterModalState extends State<FilterModal> {
                   ),
                 ),
                 const HorizontalThinLine(
-                  verticalMargin: EdgeInsets.symmetric(horizontal: 20),
+                  horizontalMargin: 20,
                 ),
                 // price range
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: FilterHeading(
-                        title: 'Price Range',
-                        resetMechanism: _resetDate,
+                FilterBox(
+                  title: 'Price Range',
+                  resetMechanism: _resetDate,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: PriceInput(
+                          clerk: _minController,
+                          currency: 'USD',
+                          label: 'minimum',
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: PriceInput(
-                              clerk: _minController,
-                              label: 'minimum',
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 12,
-                          ),
-                          Expanded(
-                            child: PriceInput(
-                              clerk: _maxController,
-                              label: 'maximum',
-                            ),
-                          ),
-                        ],
+                      const SizedBox(
+                        width: 12,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                  ],
+                      Expanded(
+                        child: PriceInput(
+                          clerk: _maxController,
+                          currency: 'USD',
+                          label: 'maximum',
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const HorizontalThinLine(
-                  verticalMargin: EdgeInsets.symmetric(horizontal: 20),
+                  horizontalMargin: 20,
                 ),
                 // sorting aspect
                 FilterBox(
                   title: 'Sorting Aspect',
-                  resetMechanism: _resetDate,
+                  resetMechanism: _resetSortingAspect,
                   child: Center(
                     child: SizedBox(
                       width: 320,
                       child: RadioButtons(
+                        callbackFunction: _setSortingAspect,
                         labels: SortingAspect.values
                             .map((type) => type.string)
                             .toList(),
@@ -452,7 +354,7 @@ class _FilterModalState extends State<FilterModal> {
             ),
           ),
           const HorizontalThinLine(
-            verticalMargin: EdgeInsets.all(0),
+            horizontalMargin: 0,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20),
@@ -461,13 +363,16 @@ class _FilterModalState extends State<FilterModal> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ColoredButton(
+                  width: 160,
+                  verticalPadding: 16,
                   callbackFunction: _resetDate,
                   text: 'Reset All',
                 ),
                 ColoredButton(
+                  width: 160,
+                  verticalPadding: 16,
                   callbackFunction: _resetDate,
                   text: 'Apply',
-                  textWeight: FontWeight.bold,
                   textColor: Colors.white,
                   buttonColor: Colors.black,
                   splashColor: const Color.fromARGB(255, 112, 112, 112),

@@ -3,12 +3,12 @@ import 'package:polkatalk/widgets/buttons/colored_btn.dart';
 
 class FilterHeading extends StatelessWidget {
   final String title;
-  final Function resetMechanism;
+  final Function? resetMechanism;
 
   const FilterHeading({
     super.key,
     required this.title,
-    required this.resetMechanism,
+    this.resetMechanism,
   });
 
   @override
@@ -30,7 +30,7 @@ class FilterHeading extends StatelessWidget {
           text: 'Reset',
           basicBorderRadius: 8,
           borderColor: Colors.black,
-        )
+        ),
       ],
     );
   }
