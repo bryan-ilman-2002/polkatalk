@@ -22,7 +22,7 @@ class ColoredButton extends StatefulWidget {
     this.height,
     this.horizontalPadding,
     this.verticalPadding,
-    required this.callbackFunction,
+    this.callbackFunction,
     required this.text,
     this.textSize = 16,
     this.textWeight,
@@ -64,8 +64,9 @@ class _ColoredButtonState extends State<ColoredButton> {
         ),
         child: InkWell(
           onTap: () {
-            setState(() {});
-            widget.callbackFunction!();
+            if (widget.callbackFunction != null) {
+              widget.callbackFunction!();
+            }
           },
           splashColor: widget.splashColor,
           borderRadius: widget.customBorderRadius ??

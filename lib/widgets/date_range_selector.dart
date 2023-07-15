@@ -1,88 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:polkatalk/functions/show_date_time_picker.dart';
+import 'package:polkatalk/enums/date_range.dart';
+import 'package:polkatalk/functions/providers/date_range_filter_state.dart';
 import 'package:polkatalk/widgets/buttons/colored_btn.dart';
 import 'package:polkatalk/widgets/lines/horizontal_thin_line.dart';
 
-class DateRangeSelector extends StatefulWidget {
-  final Function startDateCallbackFunction;
-  final Function endDateCallbackFunction;
-
-  const DateRangeSelector({
-    super.key,
-    required this.startDateCallbackFunction,
-    required this.endDateCallbackFunction,
-  });
+class DateRangeSelector extends ConsumerStatefulWidget {
+  const DateRangeSelector({super.key});
 
   @override
-  State<DateRangeSelector> createState() => _DateRangeSelectorState();
+  ConsumerState<DateRangeSelector> createState() => _DateRangeSelectorState();
 }
 
-class _DateRangeSelectorState extends State<DateRangeSelector> {
-  DateTime? startDateTime;
-  DateTime? endDateTime;
-
-  Future<void> _selectStartDateTime(BuildContext context) async {
-    final DateTime? selectedDateTime = await selectDateTime(context);
-
-    if (selectedDateTime != null) {
-      setState(() {
-        if (endDateTime != null && selectedDateTime.isAfter(endDateTime!)) {
-          endDateTime = null;
-        }
-
-        startDateTime = selectedDateTime;
-        widget.startDateCallbackFunction(selectedDateTime);
-      });
-    }
-  }
-
-  Future<void> _selectEndDateTime(BuildContext context) async {
-    final DateTime? selectedDateTime = await selectDateTime(context);
-
-    if (selectedDateTime != null) {
-      setState(() {
-        if (startDateTime != null &&
-            selectedDateTime.isBefore(startDateTime!)) {
-          startDateTime = null;
-        }
-
-        endDateTime = selectedDateTime;
-        widget.endDateCallbackFunction(selectedDateTime);
-      });
-    }
-  }
-
+class _DateRangeSelectorState extends ConsumerState<DateRangeSelector> {
   final dateFormat = DateFormat.yMMMMd().add_Hm();
-
-  ColoredButton buildDateTimeSelector(Function callbackFunction, String label) {
-    return ColoredButton(
-      width: 320,
-      verticalPadding: 24,
-      callbackFunction: () {
-        callbackFunction(context);
-      },
-      text: startDateTime == null
-          ? label
-          : '$label ~ ${dateFormat.format(startDateTime!)}',
-      textColor: Colors.white,
-      buttonColor: Colors.black,
-      splashColor: const Color.fromARGB(255, 112, 112, 112),
-      borderColor: Colors.black,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
+    Map<DateRange, DateTime?> selectedDateRange =
+        ref.watch(dateRangeFilterState);
+
+    ColoredButton buildDateTimeSelector(
+      Function callbackFunction,
+      DateRange label,
+    ) {
+      return ColoredButton(
+        width: 320,
+        verticalPadding: 24,
+        callbackFunction: () async {
+          await callbackFunction(context);
+          setState(() {});
+        },
+        text: label == DateRange.startDate
+            ? selectedDateRange[DateRange.startDate] == null
+                ? label.string
+                : '${label.string} ~ ${dateFormat.format(selectedDateRange[DateRange.startDate]!)}'
+            : selectedDateRange[DateRange.endDate] == null
+                ? label.string
+                : '${label.string} ~ ${dateFormat.format(selectedDateRange[DateRange.endDate]!)}',
+        textColor: Colors.white,
+        buttonColor: Colors.black,
+        splashColor: const Color.fromARGB(255, 112, 112, 112),
+        borderColor: Colors.black,
+      );
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        buildDateTimeSelector(_selectStartDateTime, 'Start'),
+        buildDateTimeSelector(
+          ref.watch(setStartDateFilterState),
+          DateRange.startDate,
+        ),
         const HorizontalThinLine(
           verticalMargin: 6,
           lineColor: Colors.white,
         ),
-        buildDateTimeSelector(_selectEndDateTime, 'End'),
+        buildDateTimeSelector(
+          ref.watch(setEndDateFilterState),
+          DateRange.endDate,
+        ),
       ],
     );
   }

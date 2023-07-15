@@ -7,7 +7,11 @@ import 'package:polkatalk/enums/session_type.dart';
 import 'package:polkatalk/enums/sorting_aspect.dart';
 import 'package:polkatalk/functions/getters/lang_names_in_native_format.dart';
 import 'package:polkatalk/functions/getters/rating_color.dart';
+import 'package:polkatalk/functions/providers/communication_method_filter_state.dart';
+import 'package:polkatalk/functions/providers/date_range_filter_state.dart';
+import 'package:polkatalk/functions/providers/rating_filter_state.dart';
 import 'package:polkatalk/functions/providers/session_type_filter_state.dart';
+import 'package:polkatalk/functions/providers/sorting_aspect_filter_state.dart';
 import 'package:polkatalk/widgets/buttons/colored_btn.dart';
 import 'package:polkatalk/widgets/buttons/radio_btns.dart';
 import 'package:polkatalk/widgets/filter_box.dart';
@@ -25,66 +29,6 @@ class FilterModal extends ConsumerStatefulWidget {
 }
 
 class _FilterModalState extends ConsumerState<FilterModal> {
-  void _resetSessionType() {
-    setState(() {
-      ref.watch(resetSessionTypeFilterState)();
-    });
-  }
-
-  // date range
-
-  DateTime? _startDate;
-  DateTime? _endDate;
-
-  void _setStartDate(DateTime selectedDate) {
-    _startDate = selectedDate;
-  }
-
-  void _setEndDate(DateTime selectedDate) {
-    _endDate = selectedDate;
-  }
-
-  void _resetDate() {
-    _startDate = null;
-    _endDate = null;
-  }
-
-  // communication method
-
-  int? _communicationMethod;
-
-  void _setCommunicationMethod(int index) {
-    _communicationMethod = index;
-  }
-
-  void _resetCommunicationMethod() {
-    _communicationMethod = null;
-  }
-
-  // rating
-
-  int? _rating;
-
-  void _setRating(int index) {
-    _rating = index;
-  }
-
-  void _resetRating() {
-    _rating = null;
-  }
-
-  // sorting aspect
-
-  int? _sortingAspect;
-
-  void _setSortingAspect(int index) {
-    _sortingAspect = index;
-  }
-
-  void _resetSortingAspect() {
-    _sortingAspect = null;
-  }
-
   final TextEditingController _minController = TextEditingController();
   final TextEditingController _maxController = TextEditingController();
   double? minPrice;
@@ -197,7 +141,7 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                 // session type
                 FilterBox(
                   title: 'Session Type',
-                  resetMechanism: _resetSessionType,
+                  resetMechanism: ref.watch(resetSessionTypeFilterState),
                   child: RadioButtons(
                     callbackFunction: ref.watch(setSessionTypeFilterState),
                     labels:
@@ -210,10 +154,12 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                 ),
                 // professions or skills, interests
                 FilterBox(
-                  title: _rating == 2 ? 'Interests' : 'Professions or Skills',
-                  resetMechanism: _resetDate,
+                  title: ref.watch(resetSessionTypeFilterState) == 2
+                      ? 'Interests'
+                      : 'Professions or Skills',
+                  resetMechanism: ref.watch(resetDateRangeFilterState),
                   child: TagAdder(
-                    callbackFunction: _resetDate,
+                    callbackFunction: ref.watch(resetDateRangeFilterState),
                     clerk: _minController,
                     entries: languageNamesInNativeFormat,
                     prints: const ['Doctor'],
@@ -226,11 +172,8 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                 // date range
                 FilterBox(
                   title: 'Date Range',
-                  resetMechanism: _resetDate,
-                  child: DateRangeSelector(
-                    startDateCallbackFunction: _setStartDate,
-                    endDateCallbackFunction: _setEndDate,
-                  ),
+                  resetMechanism: ref.watch(resetDateRangeFilterState),
+                  child: const DateRangeSelector(),
                 ),
                 const HorizontalThinLine(
                   horizontalMargin: 20,
@@ -238,9 +181,9 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                 // language
                 FilterBox(
                   title: 'Languages',
-                  resetMechanism: _resetDate,
+                  resetMechanism: ref.watch(resetDateRangeFilterState),
                   child: TagAdder(
-                    callbackFunction: _resetDate,
+                    callbackFunction: ref.watch(resetDateRangeFilterState),
                     clerk: _minController,
                     entries: languageNamesInNativeFormat,
                     hint: 'add a language',
@@ -252,12 +195,15 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                 // communication method
                 FilterBox(
                   title: 'Communication Method',
-                  resetMechanism: _resetCommunicationMethod,
+                  resetMechanism:
+                      ref.watch(resetCommunicationMethodFilterState),
                   child: RadioButtons(
-                    callbackFunction: _setCommunicationMethod,
+                    callbackFunction:
+                        ref.watch(setCommunicationMethodFilterState),
                     labels: CommunicationMethod.values
                         .map((type) => type.string)
                         .toList(),
+                    groupValue: ref.watch(communicationMethodFilterState),
                   ),
                 ),
                 const HorizontalThinLine(
@@ -277,9 +223,9 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                 // rating
                 FilterBox(
                   title: 'Rating',
-                  resetMechanism: _resetRating,
+                  resetMechanism: ref.watch(resetRatingFilterState),
                   child: RadioButtons(
-                    callbackFunction: _setRating,
+                    callbackFunction: ref.watch(setRatingFilterState),
                     labels: Rating.values
                         .map(
                           (type) => Row(
@@ -299,6 +245,7 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                         .toList(),
                     direction: Axis.horizontal,
                     mainSpacing: 1.2,
+                    groupValue: ref.watch(ratingFilterState),
                   ),
                 ),
                 const HorizontalThinLine(
@@ -307,7 +254,7 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                 // price range
                 FilterBox(
                   title: 'Price Range',
-                  resetMechanism: _resetDate,
+                  resetMechanism: ref.watch(resetDateRangeFilterState),
                   child: Row(
                     children: [
                       Expanded(
@@ -336,16 +283,18 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                 // sorting aspect
                 FilterBox(
                   title: 'Sorting Aspect',
-                  resetMechanism: _resetSortingAspect,
+                  resetMechanism: ref.watch(resetSortingAspectFilterState),
                   child: Center(
                     child: SizedBox(
                       width: 320,
                       child: RadioButtons(
-                        callbackFunction: _setSortingAspect,
+                        callbackFunction:
+                            ref.watch(setSortingAspectFilterState),
                         labels: SortingAspect.values
                             .map((type) => type.string)
                             .toList(),
                         direction: Axis.horizontal,
+                        groupValue: ref.watch(sortingAspectFilterState),
                       ),
                     ),
                   ),
@@ -365,13 +314,13 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                 ColoredButton(
                   width: 160,
                   verticalPadding: 16,
-                  callbackFunction: _resetDate,
+                  callbackFunction: ref.watch(resetDateRangeFilterState),
                   text: 'Reset All',
                 ),
                 ColoredButton(
                   width: 160,
                   verticalPadding: 16,
-                  callbackFunction: _resetDate,
+                  callbackFunction: ref.watch(resetDateRangeFilterState),
                   text: 'Apply',
                   textColor: Colors.white,
                   buttonColor: Colors.black,

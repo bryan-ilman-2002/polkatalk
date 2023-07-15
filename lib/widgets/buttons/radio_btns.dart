@@ -40,9 +40,7 @@ class _RadioButtonsState extends ConsumerState<RadioButtons> {
       children.add(
         GestureDetector(
           onTap: () {
-            setState(() {
-              widget.callbackFunction(index);
-            });
+            widget.callbackFunction(index);
           },
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -53,9 +51,7 @@ class _RadioButtonsState extends ConsumerState<RadioButtons> {
                 activeColor: widget.activeColor,
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 onChanged: (int? value) {
-                  setState(() {
-                    widget.callbackFunction(value!);
-                  });
+                  widget.callbackFunction(value!);
                 },
               ),
               widget.labels[index] is String
