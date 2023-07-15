@@ -6,7 +6,7 @@ import 'package:polkatalk/widgets/tag_board.dart';
 class TagAdder extends StatelessWidget {
   final Function callbackFunction;
   final TextEditingController? clerk;
-  final List<Map<String, dynamic>> entries;
+  final Map<String, dynamic> entries;
   final List<String>? prints;
   final String hint;
   final IconData? trailingIcon;
@@ -25,32 +25,37 @@ class TagAdder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TagAdderDropdown(
-              clerk: clerk,
-              entries: entries,
-              hint: hint,
-              trailingIcon: trailingIcon,
-            ),
-            ColoredButton(
-              width: 55,
-              height: 55,
-              callbackFunction: callbackFunction,
-              text: '+',
-              textSize: 24,
-              textWeight: FontWeight.bold,
-              textColor: Colors.white,
-              buttonColor: Colors.black,
-              splashColor: const Color.fromARGB(255, 112, 112, 112),
-              customBorderRadius: const BorderRadius.only(
-                topRight: Radius.circular(8),
-                bottomRight: Radius.circular(8),
+        SizedBox(
+          width: 320,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: TagAdderDropdown(
+                  clerk: clerk,
+                  entries: entries,
+                  hint: hint,
+                  trailingIcon: trailingIcon,
+                ),
               ),
-              borderColor: Colors.black,
-            ),
-          ],
+              ColoredButton(
+                width: 55,
+                height: 55,
+                callbackFunction: callbackFunction,
+                text: '+',
+                textSize: 24,
+                textWeight: FontWeight.bold,
+                textColor: Colors.white,
+                buttonColor: Colors.black,
+                splashColor: const Color.fromARGB(255, 112, 112, 112),
+                customBorderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(8),
+                  bottomRight: Radius.circular(8),
+                ),
+                borderColor: Colors.black,
+              ),
+            ],
+          ),
         ),
         const SizedBox(
           height: 32,

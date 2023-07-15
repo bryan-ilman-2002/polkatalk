@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ColoredButton extends StatefulWidget {
+class ColoredButton extends StatelessWidget {
   final double? width;
   final double? height;
   final double? horizontalPadding;
@@ -35,55 +35,50 @@ class ColoredButton extends StatefulWidget {
   });
 
   @override
-  State<ColoredButton> createState() => _ColoredButtonState();
-}
-
-class _ColoredButtonState extends State<ColoredButton> {
-  @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width,
-      height: widget.height,
+      width: width,
+      height: height,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.transparent),
-        borderRadius: widget.customBorderRadius ??
+        borderRadius: customBorderRadius ??
             BorderRadius.all(
-              Radius.circular(widget.basicBorderRadius),
+              Radius.circular(basicBorderRadius),
             ),
       ),
       child: Material(
-        color: widget.buttonColor,
+        color: buttonColor,
         shape: RoundedRectangleBorder(
           side: BorderSide(
-            color: widget.borderColor,
+            color: borderColor,
           ),
-          borderRadius: widget.customBorderRadius ??
+          borderRadius: customBorderRadius ??
               BorderRadius.all(
-                Radius.circular(widget.basicBorderRadius),
+                Radius.circular(basicBorderRadius),
               ),
         ),
         child: InkWell(
           onTap: () {
-            if (widget.callbackFunction != null) {
-              widget.callbackFunction!();
+            if (callbackFunction != null) {
+              callbackFunction!();
             }
           },
-          splashColor: widget.splashColor,
-          borderRadius: widget.customBorderRadius ??
+          splashColor: splashColor,
+          borderRadius: customBorderRadius ??
               BorderRadius.all(
-                Radius.circular(widget.basicBorderRadius),
+                Radius.circular(basicBorderRadius),
               ),
           child: Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: widget.horizontalPadding ?? 0,
-                vertical: widget.verticalPadding ?? 0),
+                horizontal: horizontalPadding ?? 0,
+                vertical: verticalPadding ?? 0),
             child: Center(
               child: Text(
-                widget.text,
+                text,
                 style: TextStyle(
-                  fontSize: widget.textSize,
-                  fontWeight: widget.textWeight,
-                  color: widget.textColor,
+                  fontSize: textSize,
+                  fontWeight: textWeight,
+                  color: textColor,
                 ),
               ),
             ),

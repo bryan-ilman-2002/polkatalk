@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class PriceInput extends StatefulWidget {
+class PriceInput extends StatelessWidget {
   final TextEditingController clerk;
   final String currency;
   final String label;
@@ -12,11 +12,6 @@ class PriceInput extends StatefulWidget {
     required this.label,
   });
 
-  @override
-  State<PriceInput> createState() => _PriceInputState();
-}
-
-class _PriceInputState extends State<PriceInput> {
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -41,14 +36,14 @@ class _PriceInputState extends State<PriceInput> {
         ),
       ),
       child: TextField(
-        controller: widget.clerk,
+        controller: clerk,
         style: const TextStyle(
           fontSize: 16,
         ),
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
           label: Text(
-            widget.label,
+            label,
             style: const TextStyle(
               fontSize: 16,
               color: Colors.black,
@@ -59,7 +54,7 @@ class _PriceInputState extends State<PriceInput> {
               right: 4,
             ),
             child: Text(
-              widget.currency,
+              currency,
               style: const TextStyle(
                 fontSize: 16,
                 color: Colors.black,

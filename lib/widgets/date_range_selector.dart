@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:polkatalk/enums/date_range.dart';
 import 'package:polkatalk/functions/providers/date_range_filter_state.dart';
 import 'package:polkatalk/widgets/buttons/colored_btn.dart';
-import 'package:polkatalk/widgets/lines/horizontal_thin_line.dart';
 
 class DateRangeSelector extends ConsumerStatefulWidget {
   const DateRangeSelector({super.key});
@@ -54,7 +53,7 @@ class _DateRangeSelectorState extends ConsumerState<DateRangeSelector> {
           DateRange.startDate,
         ),
         const SizedBox(
-          width: 12,
+          height: 12,
         ),
         buildDateTimeSelector(
           ref.watch(setEndDateFilterState),

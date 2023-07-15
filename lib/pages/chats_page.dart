@@ -27,7 +27,7 @@ class _ChatsPageState extends State<ChatsPage> {
               child: ChatCard(
                 sessionType: SessionType.acquaintanceship,
                 name: 'Larry Page',
-                professions: [
+                professions: const [
                   'Economist',
                   'Lawyer',
                   'Doctor',

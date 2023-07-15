@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:polkatalk/widgets/tag.dart';
 
-class TagBoard extends StatefulWidget {
+class TagBoard extends ConsumerStatefulWidget {
   final List<String>? prints;
   final WrapAlignment horizontalAlignment;
   final WrapAlignment verticalAlignment;
@@ -18,10 +19,10 @@ class TagBoard extends StatefulWidget {
   });
 
   @override
-  State<TagBoard> createState() => _TagBoardState();
+  ConsumerState<TagBoard> createState() => _TagBoardState();
 }
 
-class _TagBoardState extends State<TagBoard> {
+class _TagBoardState extends ConsumerState<TagBoard> {
   @override
   Widget build(BuildContext context) {
     List<Tag> children = [];

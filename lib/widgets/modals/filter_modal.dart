@@ -5,10 +5,13 @@ import 'package:polkatalk/enums/rating.dart';
 import 'package:polkatalk/enums/session_type.dart';
 import 'package:polkatalk/enums/sorting_aspect.dart';
 import 'package:polkatalk/functions/getters/lang_names_in_native_format.dart';
+import 'package:polkatalk/functions/getters/professions.dart';
 import 'package:polkatalk/functions/getters/rating_color.dart';
 import 'package:polkatalk/functions/providers/communication_method_filter_state.dart';
 import 'package:polkatalk/functions/providers/date_range_filter_state.dart';
+import 'package:polkatalk/functions/providers/languages_filter_state.dart';
 import 'package:polkatalk/functions/providers/price_range_filter_state.dart';
+import 'package:polkatalk/functions/providers/professions_filter_state.dart';
 import 'package:polkatalk/functions/providers/rating_filter_state.dart';
 import 'package:polkatalk/functions/providers/session_type_filter_state.dart';
 import 'package:polkatalk/functions/providers/sorting_aspect_filter_state.dart';
@@ -21,16 +24,11 @@ import 'package:polkatalk/widgets/price_range_input.dart';
 import 'package:polkatalk/widgets/tag_adder.dart';
 import 'package:polkatalk/widgets/text/txt_with_bg.dart';
 
-class FilterModal extends ConsumerStatefulWidget {
+class FilterModal extends ConsumerWidget {
   const FilterModal({super.key});
 
   @override
-  ConsumerState<FilterModal> createState() => _FilterModalState();
-}
-
-class _FilterModalState extends ConsumerState<FilterModal> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -87,17 +85,25 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                 const HorizontalThinLine(
                   horizontalMargin: 20,
                 ),
-                // professions or skills, interests
+                // professions, interests
                 FilterBox(
                   title: ref.watch(resetSessionTypeFilterState) == 2
                       ? 'Interests'
-                      : 'Professions or Skills',
-                  resetMechanism: ref.watch(resetDateRangeFilterState),
+                      : 'Professions',
+                  resetMechanism: () {
+                    ref.watch(resetControllerForFilteringProfessions)();
+                    ref.watch(resetListOfSelectedProfessions)();
+                  },
                   child: TagAdder(
-                    callbackFunction: ref.watch(resetDateRangeFilterState),
-                    clerk: null,
-                    entries: languageNamesInNativeFormat,
-                    prints: const ['Doctor'],
+                    callbackFunction: () {
+                      String matchingKey =
+                          ref.watch(validateProfessionSelection)();
+                      ref.watch(createProfessionTag)(matchingKey);
+                    },
+                    clerk: ref.watch(controllerForFilteringProfessions),
+                    entries: professions,
+                    prints: ref.watch(listOfSelectedProfessions),
+                    hint: 'Preferred Professions',
                     trailingIcon: Icons.search_rounded,
                   ),
                 ),
@@ -116,12 +122,21 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                 // language
                 FilterBox(
                   title: 'Languages',
-                  resetMechanism: ref.watch(resetDateRangeFilterState),
+                  resetMechanism: () {
+                    ref.watch(resetControllerForFilteringLanguages)();
+                    ref.watch(resetListOfSelectedLanguages)();
+                  },
                   child: TagAdder(
-                    callbackFunction: ref.watch(resetDateRangeFilterState),
-                    clerk: null,
+                    callbackFunction: () {
+                      String matchingKey =
+                          ref.watch(validateLanguageSelection)();
+                      ref.watch(createLanguageTag)(matchingKey);
+                    },
+                    clerk: ref.watch(controllerForFilteringLanguages),
                     entries: languageNamesInNativeFormat,
-                    hint: 'add a language',
+                    prints: ref.watch(listOfSelectedLanguages),
+                    hint: 'Preferred Languages',
+                    trailingIcon: Icons.keyboard_arrow_down_rounded,
                   ),
                 ),
                 const HorizontalThinLine(

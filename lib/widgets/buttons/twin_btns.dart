@@ -105,7 +105,6 @@ class _TwinButtonsState extends State<TwinButtons> {
           shape: getBorderRadius(),
           child: InkWell(
             onTap: () {
-              setState(() {});
               eitherLeftOrRight()
                   ? widget.leftButtonCallbackFunction()
                   : widget.rightButtonCallbackFunction();
