@@ -53,9 +53,8 @@ class _DateRangeSelectorState extends ConsumerState<DateRangeSelector> {
           ref.watch(setStartDateFilterState),
           DateRange.startDate,
         ),
-        const HorizontalThinLine(
-          verticalMargin: 6,
-          lineColor: Colors.white,
+        const SizedBox(
+          width: 12,
         ),
         buildDateTimeSelector(
           ref.watch(setEndDateFilterState),

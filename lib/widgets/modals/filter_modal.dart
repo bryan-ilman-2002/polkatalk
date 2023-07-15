@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:polkatalk/enums/communication_method.dart';
 import 'package:polkatalk/enums/rating.dart';
 import 'package:polkatalk/enums/session_type.dart';
@@ -9,6 +8,7 @@ import 'package:polkatalk/functions/getters/lang_names_in_native_format.dart';
 import 'package:polkatalk/functions/getters/rating_color.dart';
 import 'package:polkatalk/functions/providers/communication_method_filter_state.dart';
 import 'package:polkatalk/functions/providers/date_range_filter_state.dart';
+import 'package:polkatalk/functions/providers/price_range_filter_state.dart';
 import 'package:polkatalk/functions/providers/rating_filter_state.dart';
 import 'package:polkatalk/functions/providers/session_type_filter_state.dart';
 import 'package:polkatalk/functions/providers/sorting_aspect_filter_state.dart';
@@ -16,8 +16,8 @@ import 'package:polkatalk/widgets/buttons/colored_btn.dart';
 import 'package:polkatalk/widgets/buttons/radio_btns.dart';
 import 'package:polkatalk/widgets/filter_box.dart';
 import 'package:polkatalk/widgets/lines/horizontal_thin_line.dart';
-import 'package:polkatalk/widgets/price_input.dart';
 import 'package:polkatalk/widgets/date_range_selector.dart';
+import 'package:polkatalk/widgets/price_range_input.dart';
 import 'package:polkatalk/widgets/tag_adder.dart';
 import 'package:polkatalk/widgets/text/txt_with_bg.dart';
 
@@ -29,71 +29,6 @@ class FilterModal extends ConsumerStatefulWidget {
 }
 
 class _FilterModalState extends ConsumerState<FilterModal> {
-  final TextEditingController _minController = TextEditingController();
-  final TextEditingController _maxController = TextEditingController();
-  double? minPrice;
-  double? maxPrice;
-
-  @override
-  void initState() {
-    super.initState();
-    _minController.addListener(_updateMinPrice);
-    _maxController.addListener(_updateMaxPrice);
-  }
-
-  @override
-  void dispose() {
-    _minController.dispose();
-    _maxController.dispose();
-    super.dispose();
-  }
-
-  void _updateMinPrice() {
-    final text = _minController.text.replaceAll(RegExp(r'[^0-9.]'), '');
-    final double parsedValue = double.tryParse(text) ?? 0;
-
-    final formattedValue = parsedValue == 0
-        ? ''
-        : NumberFormat.decimalPattern().format(parsedValue);
-
-    _minController.value = _minController.value.copyWith(
-      text: formattedValue,
-      selection: TextSelection.collapsed(offset: formattedValue.length),
-    );
-
-    setState(() {
-      minPrice = parsedValue;
-    });
-  }
-
-  void _updateMaxPrice() {
-    final text = _maxController.text.replaceAll(RegExp(r'[^0-9.]'), '');
-    final double parsedValue = double.tryParse(text) ?? 0;
-
-    final formattedValue = parsedValue == 0
-        ? ''
-        : NumberFormat.decimalPattern().format(parsedValue);
-
-    _maxController.value = _maxController.value.copyWith(
-      text: formattedValue,
-      selection: TextSelection.collapsed(offset: formattedValue.length),
-    );
-
-    setState(() {
-      maxPrice = parsedValue;
-    });
-  }
-
-  void _resetPriceRange() {
-    _minController.clear();
-    _maxController.clear();
-
-    setState(() {
-      maxPrice = null;
-      maxPrice = null;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -160,7 +95,7 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                   resetMechanism: ref.watch(resetDateRangeFilterState),
                   child: TagAdder(
                     callbackFunction: ref.watch(resetDateRangeFilterState),
-                    clerk: _minController,
+                    clerk: null,
                     entries: languageNamesInNativeFormat,
                     prints: const ['Doctor'],
                     trailingIcon: Icons.search_rounded,
@@ -184,7 +119,7 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                   resetMechanism: ref.watch(resetDateRangeFilterState),
                   child: TagAdder(
                     callbackFunction: ref.watch(resetDateRangeFilterState),
-                    clerk: _minController,
+                    clerk: null,
                     entries: languageNamesInNativeFormat,
                     hint: 'add a language',
                   ),
@@ -254,28 +189,8 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                 // price range
                 FilterBox(
                   title: 'Price Range',
-                  resetMechanism: ref.watch(resetDateRangeFilterState),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: PriceInput(
-                          clerk: _minController,
-                          currency: 'USD',
-                          label: 'minimum',
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 12,
-                      ),
-                      Expanded(
-                        child: PriceInput(
-                          clerk: _maxController,
-                          currency: 'USD',
-                          label: 'maximum',
-                        ),
-                      ),
-                    ],
-                  ),
+                  resetMechanism: ref.watch(resetPriceRangeFilterState),
+                  child: const PriceRangeInput(currency: 'USD'),
                 ),
                 const HorizontalThinLine(
                   horizontalMargin: 20,

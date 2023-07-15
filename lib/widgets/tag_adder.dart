@@ -5,7 +5,7 @@ import 'package:polkatalk/widgets/tag_board.dart';
 
 class TagAdder extends StatelessWidget {
   final Function callbackFunction;
-  final TextEditingController clerk;
+  final TextEditingController? clerk;
   final List<Map<String, dynamic>> entries;
   final List<String>? prints;
   final String hint;

@@ -11,7 +11,7 @@ extension DateRangeExtension on DateRange {
       case DateRange.endDate:
         return 'End Date';
       default:
-        return '0.0';
+        return '';
     }
   }
 }

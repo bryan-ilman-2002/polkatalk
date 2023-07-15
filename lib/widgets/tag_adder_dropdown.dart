@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TagAdderDropdown extends StatefulWidget {
-  final TextEditingController clerk;
+  final TextEditingController? clerk;
   final List<Map<String, dynamic>> entries;
   final String hint;
   final IconData? trailingIcon;
