@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:polkatalk/widgets/filter_heading.dart';
+import 'package:polkatalk/functions/getters/app_colors.dart';
 
 class FilterBox extends StatelessWidget {
   final String title;
-  final Function? resetMechanism;
   final Widget child;
 
   const FilterBox({
     super.key,
     required this.title,
-    this.resetMechanism,
     required this.child,
   });
 
@@ -22,12 +20,20 @@ class FilterBox extends StatelessWidget {
       ),
       child: Column(
         children: [
-          FilterHeading(
-            title: title,
-            resetMechanism: resetMechanism,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 18,
+                  color: secondaryTextColor,
+                ),
+              ),
+            ],
           ),
           const SizedBox(
-            height: 32,
+            height: 24,
           ),
           child,
         ],

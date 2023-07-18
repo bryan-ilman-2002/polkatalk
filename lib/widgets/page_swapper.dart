@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polkatalk/functions/getters/app_colors.dart';
 import 'package:polkatalk/functions/init_pages.dart';
 import 'package:polkatalk/widgets/navbars/bottom_navbar.dart';
 
@@ -69,9 +70,9 @@ class _PageSwapper extends State<PageSwapper> {
               elevation: 1.6,
               backgroundColor: Colors.grey[50],
               mini: true,
-              child: const Icon(
+              child: Icon(
                 Icons.arrow_upward_rounded,
-                color: Colors.grey,
+                color: iconColor,
                 size: 24,
               ),
             )

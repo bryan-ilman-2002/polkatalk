@@ -21,6 +21,13 @@ class TagAdderDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<DropdownMenuEntry> dropdownEntries = <DropdownMenuEntry>[];
 
+    const TextStyle dropdownTextStyle = TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.normal,
+      color: Color.fromRGBO(
+          120, 120, 120, 4), // this is primaryTextColor from app_colors.dart
+    );
+
     const UnderlineInputBorder transparentButton = UnderlineInputBorder(
       borderSide: BorderSide(
         color: Colors.transparent,
@@ -34,11 +41,6 @@ class TagAdderDropdown extends StatelessWidget {
             fixedSize: MaterialStatePropertyAll(
               Size(320, 48),
             ),
-            textStyle: MaterialStatePropertyAll(
-              TextStyle(
-                fontWeight: FontWeight.normal,
-              ),
-            ),
           ),
           value: value,
           label: key,
@@ -49,7 +51,6 @@ class TagAdderDropdown extends StatelessWidget {
     return DropdownMenu(
       controller: clerk,
       hintText: hint ?? 'type here',
-      textStyle: const TextStyle(),
       enableFilter: enableInput,
       requestFocusOnTap: enableInput,
       inputDecorationTheme: const InputDecorationTheme(
@@ -57,6 +58,8 @@ class TagAdderDropdown extends StatelessWidget {
           minWidth: 320,
           maxWidth: 320,
         ),
+        hintStyle: dropdownTextStyle,
+        labelStyle: dropdownTextStyle,
         enabledBorder: transparentButton,
         focusedBorder: transparentButton,
       ),

@@ -73,7 +73,6 @@ class FilterModal extends ConsumerWidget {
                 // session type
                 FilterBox(
                   title: 'Session Type',
-                  resetMechanism: ref.watch(resetSessionTypeFilterState),
                   child: RadioButtons(
                     callbackFunction: ref.watch(setSessionTypeFilterState),
                     labels:
@@ -89,10 +88,10 @@ class FilterModal extends ConsumerWidget {
                   title: ref.watch(resetSessionTypeFilterState) == 2
                       ? 'Interests'
                       : 'Professions',
-                  resetMechanism: () {
-                    ref.watch(resetControllerForFilteringProfessions)();
-                    ref.watch(resetListOfSelectedProfessions)();
-                  },
+                  // resetMechanism: () {
+                  //   ref.watch(resetControllerForFilteringProfessions)();
+                  //   ref.watch(resetListOfSelectedProfessions)();
+                  // },
                   child: TagAdder(
                     callbackFunction: () {
                       String matchingKey =
@@ -112,7 +111,6 @@ class FilterModal extends ConsumerWidget {
                 // date range
                 FilterBox(
                   title: 'Date Range',
-                  resetMechanism: ref.watch(resetDateRangeFilterState),
                   child: const DateRangeSelector(),
                 ),
                 const HorizontalThinLine(
@@ -121,10 +119,10 @@ class FilterModal extends ConsumerWidget {
                 // language
                 FilterBox(
                   title: 'Languages',
-                  resetMechanism: () {
-                    ref.watch(resetControllerForFilteringLanguages)();
-                    ref.watch(resetListOfSelectedLanguages)();
-                  },
+                  // resetMechanism: () {
+                  //   ref.watch(resetControllerForFilteringLanguages)();
+                  //   ref.watch(resetListOfSelectedLanguages)();
+                  // },
                   child: TagAdder(
                     callbackFunction: () {
                       String matchingKey =
@@ -144,8 +142,6 @@ class FilterModal extends ConsumerWidget {
                 // communication method
                 FilterBox(
                   title: 'Communication Method',
-                  resetMechanism:
-                      ref.watch(resetCommunicationMethodFilterState),
                   child: RadioButtons(
                     callbackFunction:
                         ref.watch(setCommunicationMethodFilterState),
@@ -172,7 +168,6 @@ class FilterModal extends ConsumerWidget {
                 // rating
                 FilterBox(
                   title: 'Rating',
-                  resetMechanism: ref.watch(resetRatingFilterState),
                   child: RadioButtons(
                     callbackFunction: ref.watch(setRatingFilterState),
                     labels: Rating.values
@@ -203,7 +198,6 @@ class FilterModal extends ConsumerWidget {
                 // sorting aspect
                 FilterBox(
                   title: 'Sorting Aspect',
-                  resetMechanism: ref.watch(resetSortingAspectFilterState),
                   child: Center(
                     child: SizedBox(
                       width: 320,

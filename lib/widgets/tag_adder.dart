@@ -59,7 +59,7 @@ class TagAdder extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 32,
+          height: 24,
         ),
         TagBoard(
           prints: prints,

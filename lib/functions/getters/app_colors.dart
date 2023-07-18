@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-Color get textColor => const Color.fromRGBO(117, 117, 117, 1);
-Color get iconColor => const Color.fromRGBO(189, 189, 189, 1);
+Color get primaryTextColor => const Color.fromRGBO(120, 120, 120, 4);
+Color get secondaryTextColor => const Color.fromRGBO(64, 64, 64, 4);
 
-Color get primaryAppColor => const Color.fromRGBO(102, 187, 106, 1);
-Color get secondaryAppColor => const Color.fromRGBO(67, 160, 71, 1);
+Color get iconColor => const Color.fromRGBO(180, 180, 180, 4);
+
+Color get primaryAppColor => const Color.fromRGBO(100, 180, 100, 4);
+Color get secondaryAppColor => const Color.fromRGBO(64, 160, 72, 4);
