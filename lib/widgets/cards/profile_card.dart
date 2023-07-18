@@ -58,9 +58,9 @@ class _ProfileCardState extends State<ProfileCard> {
                   Text(
                     widget.sessionType.string,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.grey,
+                      color: Colors.grey[400],
                     ),
                   ),
                   const SizedBox(height: 8),

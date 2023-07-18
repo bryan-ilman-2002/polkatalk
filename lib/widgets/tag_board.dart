@@ -14,8 +14,8 @@ class TagBoard extends ConsumerStatefulWidget {
     this.prints,
     this.horizontalAlignment = WrapAlignment.center,
     this.verticalAlignment = WrapAlignment.center,
-    this.horizontalSpacing = 8,
-    this.verticalSpacing = 8,
+    this.horizontalSpacing = 16,
+    this.verticalSpacing = 16,
   });
 
   @override

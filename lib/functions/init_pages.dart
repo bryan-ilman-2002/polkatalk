@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:polkatalk/pages/favorites_page.dart';
 import 'package:polkatalk/pages/chats_page.dart';
-import 'package:polkatalk/pages/profile_page.dart';
-import 'package:polkatalk/pages/search_page.dart';
+import 'package:polkatalk/pages/settings_page.dart';
+import 'package:polkatalk/pages/explore_page.dart';
 import 'package:polkatalk/pages/sessions_page.dart';
 
 List<Widget> initPages(Function(bool, ScrollController) scrollListener) {
   return <Widget>[
-    SearchPage(
+    ExplorePage(
       scrollController: _createScrollController(scrollListener),
     ),
     FavoritesPage(
@@ -19,7 +19,7 @@ List<Widget> initPages(Function(bool, ScrollController) scrollListener) {
     ChatsPage(
       scrollController: _createScrollController(scrollListener),
     ),
-    ProfilePage(
+    SettingsPage(
       scrollController: _createScrollController(scrollListener),
     ),
   ];

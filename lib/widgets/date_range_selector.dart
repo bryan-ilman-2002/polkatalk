@@ -31,17 +31,21 @@ class _DateRangeSelectorState extends ConsumerState<DateRangeSelector> {
           await callbackFunction(context);
           setState(() {});
         },
-        text: label == DateRange.startDate
-            ? selectedDateRange[DateRange.startDate] == null
-                ? label.string
-                : '${label.string} ~ ${dateFormat.format(selectedDateRange[DateRange.startDate]!)}'
-            : selectedDateRange[DateRange.endDate] == null
-                ? label.string
-                : '${label.string} ~ ${dateFormat.format(selectedDateRange[DateRange.endDate]!)}',
-        textColor: Colors.white,
         buttonColor: Colors.black,
         splashColor: const Color.fromARGB(255, 112, 112, 112),
         borderColor: Colors.black,
+        child: Text(
+          label == DateRange.startDate
+              ? selectedDateRange[DateRange.startDate] == null
+                  ? label.string
+                  : '${label.string} ~ ${dateFormat.format(selectedDateRange[DateRange.startDate]!)}'
+              : selectedDateRange[DateRange.endDate] == null
+                  ? label.string
+                  : '${label.string} ~ ${dateFormat.format(selectedDateRange[DateRange.endDate]!)}',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
       );
     }
 

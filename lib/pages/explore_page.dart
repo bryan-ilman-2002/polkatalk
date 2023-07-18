@@ -5,16 +5,16 @@ import 'package:polkatalk/widgets/buttons/twin_btns.dart';
 import 'package:polkatalk/widgets/cards/profile_card.dart';
 import 'package:polkatalk/widgets/modals/filter_modal.dart';
 
-class SearchPage extends StatefulWidget {
+class ExplorePage extends StatefulWidget {
   final ScrollController scrollController;
 
-  const SearchPage({super.key, required this.scrollController});
+  const ExplorePage({super.key, required this.scrollController});
 
   @override
-  State<SearchPage> createState() => _SearchPageState();
+  State<ExplorePage> createState() => _ExplorePageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _ExplorePageState extends State<ExplorePage> {
   bool _backgroundIsShown = false;
 
   void toggleBackgroundVisibility() {
@@ -24,6 +24,7 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   void openFilterModal() => showModalBottomSheet(
+        enableDrag: true,
         context: context,
         useSafeArea: true,
         isScrollControlled: true,
@@ -64,8 +65,8 @@ class _SearchPageState extends State<SearchPage> {
                                 leftButtonCallbackFunction: openFilterModal,
                                 rightButtonCallbackFunction:
                                     openNotificationsModal,
-                                leftIcon: Icons.filter_alt_outlined,
-                                rightIcon: Icons.notifications_none_rounded,
+                                leftIcon: Icons.filter_alt_rounded,
+                                rightIcon: Icons.notifications_rounded,
                                 leftText: 'Fiters',
                                 rightText: 'Notifications',
                               ),

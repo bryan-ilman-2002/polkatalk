@@ -20,7 +20,6 @@ import 'package:polkatalk/widgets/buttons/radio_btns.dart';
 import 'package:polkatalk/widgets/filter_box.dart';
 import 'package:polkatalk/widgets/lines/horizontal_thin_line.dart';
 import 'package:polkatalk/widgets/date_range_selector.dart';
-import 'package:polkatalk/widgets/price_range_input.dart';
 import 'package:polkatalk/widgets/tag_adder.dart';
 import 'package:polkatalk/widgets/text/txt_with_bg.dart';
 
@@ -104,7 +103,7 @@ class FilterModal extends ConsumerWidget {
                     entries: professions,
                     prints: ref.watch(listOfSelectedProfessions),
                     hint: 'Preferred Professions',
-                    trailingIcon: Icons.search_rounded,
+                    leadingIcon: Icons.search_rounded,
                   ),
                 ),
                 const HorizontalThinLine(
@@ -136,7 +135,7 @@ class FilterModal extends ConsumerWidget {
                     entries: languageNamesInNativeFormat,
                     prints: ref.watch(listOfSelectedLanguages),
                     hint: 'Preferred Languages',
-                    trailingIcon: Icons.keyboard_arrow_down_rounded,
+                    leadingIcon: Icons.keyboard_arrow_down_rounded,
                   ),
                 ),
                 const HorizontalThinLine(
@@ -201,15 +200,6 @@ class FilterModal extends ConsumerWidget {
                 const HorizontalThinLine(
                   horizontalMargin: 20,
                 ),
-                // price range
-                FilterBox(
-                  title: 'Price Range',
-                  resetMechanism: ref.watch(resetPriceRangeFilterState),
-                  child: const PriceRangeInput(currency: 'USD'),
-                ),
-                const HorizontalThinLine(
-                  horizontalMargin: 20,
-                ),
                 // sorting aspect
                 FilterBox(
                   title: 'Sorting Aspect',
@@ -245,14 +235,20 @@ class FilterModal extends ConsumerWidget {
                   width: 160,
                   verticalPadding: 16,
                   callbackFunction: ref.watch(resetDateRangeFilterState),
-                  text: 'Reset All',
+                  child: Text(
+                    'Reset All',
+                  ),
                 ),
                 ColoredButton(
                   width: 160,
                   verticalPadding: 16,
                   callbackFunction: ref.watch(resetDateRangeFilterState),
-                  text: 'Apply',
-                  textColor: Colors.white,
+                  child: Text(
+                    'Apply',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
                   buttonColor: Colors.black,
                   splashColor: const Color.fromARGB(255, 112, 112, 112),
                   basicBorderRadius: 8,

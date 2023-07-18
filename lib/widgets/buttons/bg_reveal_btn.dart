@@ -34,10 +34,10 @@ class _BackgroundRevealButtonState extends State<BackgroundRevealButton> {
             widget.callbackFunction();
           },
           borderRadius: BorderRadius.circular(128),
-          child: const Icon(
-            Icons.photo_outlined,
+          child: Icon(
+            Icons.photo_rounded,
             size: 30,
-            color: Colors.grey,
+            color: Colors.grey[400],
           ),
         ),
       ),

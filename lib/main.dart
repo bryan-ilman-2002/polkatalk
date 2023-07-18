@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:polkatalk/functions/getters/app_colors.dart';
 import 'package:polkatalk/widgets/page_swapper.dart';
 
 void main() {
   runApp(
-    const ProviderScope(
+    ProviderScope(
       child: PolkaTalk(),
     ),
   );
 }
 
 class PolkaTalk extends StatelessWidget {
-  const PolkaTalk({super.key});
+  PolkaTalk({super.key});
 
-  final TextTheme mukta = const TextTheme(
+  final TextTheme mukta = TextTheme(
     bodyMedium: TextStyle(
+      overflow: TextOverflow.ellipsis,
       fontFamily: 'Mukta',
       fontSize: 14,
       fontWeight: FontWeight.normal,
+      color: textColor,
     ),
   );
 
@@ -34,11 +37,13 @@ class PolkaTalk extends StatelessWidget {
     return MaterialApp(
       title: 'PolkaTalk',
       theme: ThemeData(
-        textSelectionTheme: const TextSelectionThemeData(
-          cursorColor: Colors.black,
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: primaryAppColor,
         ),
         textTheme: mukta,
-        primarySwatch: Colors.grey,
+        iconTheme: IconThemeData(
+          color: iconColor,
+        ),
         splashFactory: InkRipple.splashFactory,
       ),
       home: const PageSwapper(),

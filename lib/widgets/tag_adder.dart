@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:polkatalk/functions/getters/app_colors.dart';
+import 'package:polkatalk/functions/getters/green_shadow.dart';
 import 'package:polkatalk/widgets/buttons/colored_btn.dart';
 import 'package:polkatalk/widgets/tag_adder_dropdown.dart';
 import 'package:polkatalk/widgets/tag_board.dart';
 
 class TagAdder extends StatelessWidget {
   final Function callbackFunction;
-  final TextEditingController? clerk;
+  final TextEditingController clerk;
   final Map<String, dynamic> entries;
   final List<String>? prints;
-  final String hint;
-  final IconData? trailingIcon;
+  final String? hint;
+  final IconData? leadingIcon;
 
   const TagAdder({
     super.key,
@@ -17,8 +19,8 @@ class TagAdder extends StatelessWidget {
     required this.clerk,
     required this.entries,
     this.prints,
-    this.hint = '',
-    this.trailingIcon,
+    this.hint,
+    this.leadingIcon,
   });
 
   @override
@@ -28,31 +30,30 @@ class TagAdder extends StatelessWidget {
         SizedBox(
           width: 320,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
                 child: TagAdderDropdown(
                   clerk: clerk,
                   entries: entries,
                   hint: hint,
-                  trailingIcon: trailingIcon,
+                  leadingIcon: leadingIcon,
                 ),
               ),
               ColoredButton(
-                width: 55,
-                height: 55,
+                width: 48,
+                height: 48,
                 callbackFunction: callbackFunction,
-                text: '+',
-                textSize: 24,
-                textWeight: FontWeight.bold,
-                textColor: Colors.white,
-                buttonColor: Colors.black,
-                splashColor: const Color.fromARGB(255, 112, 112, 112),
-                customBorderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(8),
-                  bottomRight: Radius.circular(8),
+                buttonColor: primaryAppColor,
+                splashColor: secondaryAppColor,
+                customBorderRadius:
+                    const BorderRadius.all(Radius.circular(128)),
+                borderColor: Colors.white,
+                buttonShadow: greenShadow,
+                child: const Icon(
+                  Icons.add,
+                  size: 24,
+                  color: Colors.white,
                 ),
-                borderColor: Colors.black,
               ),
             ],
           ),

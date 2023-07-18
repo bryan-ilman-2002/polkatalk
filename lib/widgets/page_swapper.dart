@@ -50,11 +50,11 @@ class _PageSwapper extends State<PageSwapper> {
     return Scaffold(
       bottomNavigationBar: CustomBottomAppBar(
         navItems: const [
-          [Icons.search_rounded, 'Search'],
-          [Icons.favorite_outline, 'Favorites'],
-          [Icons.calendar_today_outlined, 'Sessions'],
-          [Icons.chat_outlined, 'Chats'],
-          [Icons.person_outline, 'Profile'],
+          [Icons.explore_rounded, 'Explore'],
+          [Icons.favorite_rounded, 'Favorites'],
+          [Icons.calendar_today_rounded, 'Sessions'],
+          [Icons.chat_rounded, 'Chats'],
+          [Icons.settings_rounded, 'Settings'],
         ],
         selectedIndex: _selectedIndex,
         onTap: _onTab,

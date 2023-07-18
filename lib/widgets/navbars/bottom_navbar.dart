@@ -39,10 +39,6 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 320),
           height: 60,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            border: _getNavBarItemBorder(index),
-          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -76,11 +72,5 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
 
   Color _getNavBarItemColor(int index) {
     return widget.selectedIndex == index ? Colors.black : Colors.grey;
-  }
-
-  Border _getNavBarItemBorder(int index) {
-    return widget.selectedIndex == index
-        ? Border.all(color: Colors.black, width: 2.0)
-        : Border.all(color: Colors.transparent, width: 0.0);
   }
 }

@@ -6,15 +6,13 @@ class ColoredButton extends StatelessWidget {
   final double? horizontalPadding;
   final double? verticalPadding;
   final Function? callbackFunction;
-  final String text;
-  final double textSize;
-  final FontWeight? textWeight;
-  final Color? textColor;
   final Color buttonColor;
+  final Widget? child;
   final Color? splashColor;
   final double basicBorderRadius;
   final BorderRadius? customBorderRadius;
   final Color borderColor;
+  final BoxShadow? buttonShadow;
 
   const ColoredButton({
     super.key,
@@ -23,15 +21,13 @@ class ColoredButton extends StatelessWidget {
     this.horizontalPadding,
     this.verticalPadding,
     this.callbackFunction,
-    required this.text,
-    this.textSize = 16,
-    this.textWeight,
-    this.textColor,
     this.buttonColor = Colors.white,
     this.splashColor,
+    this.child,
     this.basicBorderRadius = 8,
     this.customBorderRadius,
     this.borderColor = Colors.black,
+    this.buttonShadow,
   });
 
   @override
@@ -45,6 +41,7 @@ class ColoredButton extends StatelessWidget {
             BorderRadius.all(
               Radius.circular(basicBorderRadius),
             ),
+        boxShadow: buttonShadow != null ? [buttonShadow!] : [],
       ),
       child: Material(
         color: buttonColor,
@@ -73,14 +70,7 @@ class ColoredButton extends StatelessWidget {
                 horizontal: horizontalPadding ?? 0,
                 vertical: verticalPadding ?? 0),
             child: Center(
-              child: Text(
-                text,
-                style: TextStyle(
-                  fontSize: textSize,
-                  fontWeight: textWeight,
-                  color: textColor,
-                ),
-              ),
+              child: child,
             ),
           ),
         ),
