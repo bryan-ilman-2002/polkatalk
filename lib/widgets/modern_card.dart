@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:polkatalk/functions/getters/light_shadow.dart';
+import 'package:polkatalk/widgets/modals/profile_modal.dart';
 
 class ModernCard extends StatefulWidget {
   final Widget child;
@@ -33,7 +34,17 @@ class _ModernCardState extends State<ModernCard> {
             ),
           ),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              showModalBottomSheet(
+                context: context,
+                useSafeArea: true,
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                builder: (BuildContext context) {
+                  return const ProfileModal();
+                },
+              );
+            },
             borderRadius: const BorderRadius.all(
               Radius.circular(16),
             ),

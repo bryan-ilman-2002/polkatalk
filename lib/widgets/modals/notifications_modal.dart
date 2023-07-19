@@ -15,7 +15,7 @@ class NotificationsModal extends ConsumerWidget {
     for (int index = 0; index < 15; index++) {
       children.add(Column(
         children: [
-          Container(
+          Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 12,
               vertical: 24,
@@ -24,20 +24,29 @@ class NotificationsModal extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.waving_hand_rounded,
                       size: 40,
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    Icon(
+                      Icons.circle,
+                      size: 12,
+                      color: tenseColor,
                     ),
                   ],
                 ),
                 const SizedBox(
-                  width: 12,
+                  width: 16,
                 ),
                 Expanded(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,7 +54,7 @@ class NotificationsModal extends ConsumerWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              'Someone wants to talk to you! Someone wants to talk to you!',
+                              'Someone is you!',
                               maxLines: 2,
                               textHeightBehavior: const TextHeightBehavior(
                                 applyHeightToFirstAscent: false,
@@ -70,7 +79,7 @@ class NotificationsModal extends ConsumerWidget {
                         height: 4,
                       ),
                       const Text(
-                        'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit... Translations: Can you help translate this site into a foreign language ? Please email us with details if you can help.',
+                        'Please email us.',
                         maxLines: 2,
                         style: TextStyle(
                           height: 1.6,
@@ -84,6 +93,7 @@ class NotificationsModal extends ConsumerWidget {
           ),
           const HorizontalThinLine(
             horizontalMargin: 12,
+            height: 0.4,
           ),
         ],
       ));
