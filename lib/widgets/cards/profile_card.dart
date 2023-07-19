@@ -82,9 +82,6 @@ class _ProfileCardState extends State<ProfileCard> {
                     Expanded(
                       child: Text(
                         widget.location,
-                        style: TextStyle(
-                          color: moderateGray,
-                        ),
                       ),
                     ),
                   ],

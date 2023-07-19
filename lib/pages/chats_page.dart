@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:polkatalk/enums/session_type.dart';
 import 'package:polkatalk/functions/getters/current_date.dart';
 import 'package:polkatalk/widgets/cards/chat_card.dart';
 
@@ -15,32 +14,36 @@ class ChatsPage extends StatefulWidget {
 class _ChatsPageState extends State<ChatsPage> {
   @override
   Widget build(BuildContext context) {
+    List<Widget> children = [];
+
+    for (int index = 0; index < 15; index++) {
+      children.add(
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: ChatCard(
+            name: 'Larry Page',
+            interests: const [
+              'Gaming',
+              'Reading',
+            ],
+            lastMessage: 'hello there',
+            lastMessageDate: currentDateShrunk,
+            lastMessageIsYours: true,
+            failedToSendLastMessage: false,
+            theySawLastMessage: true,
+            receivedUnreadMessagesCount: 8,
+          ),
+        ),
+      );
+    }
+
     return SafeArea(
       child: Container(
         color: Colors.white,
         child: ListView.builder(
           controller: widget.scrollController,
-          itemCount: 15,
-          itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: const EdgeInsets.all(8),
-              child: ChatCard(
-                sessionType: SessionType.acquaintanceship,
-                name: 'Larry Page',
-                professions: const [
-                  'Economist',
-                  'Lawyer',
-                  'Doctor',
-                ],
-                lastMessage: 'hellohellohellohellohellohellohellohello',
-                lastMessageDate: currentDateShrunk,
-                lastMessageIsYours: false,
-                failedToSendLastMessage: false,
-                theySawLastMessage: false,
-                receivedUnreadMessagesCount: 0,
-              ),
-            );
-          },
+          itemCount: children.length,
+          itemBuilder: (BuildContext context, int index) => children[index],
         ),
       ),
     );
