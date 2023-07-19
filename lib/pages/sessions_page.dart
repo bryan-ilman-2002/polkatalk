@@ -23,13 +23,13 @@ class _SessionsPage extends State<SessionsPage> {
         child: SessionCard(
           name: 'Larry Page',
           interests: const [
-            'Reading',
             'Gaming',
+            'Reading',
           ],
           currentSessionStatus: SessionStatus.completed,
           startDate: currentDateExtended,
           currency: 'USD',
-          totalCost: 6400000,
+          totalCost: 6400,
         ),
       ));
     }

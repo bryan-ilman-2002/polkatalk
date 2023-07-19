@@ -42,6 +42,7 @@ class PolkaTalk extends StatelessWidget {
         ),
         textTheme: mukta,
         iconTheme: IconThemeData(
+          size: 30,
           color: lightGray,
         ),
         splashFactory: InkRipple.splashFactory,

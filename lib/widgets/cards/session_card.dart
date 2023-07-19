@@ -36,33 +36,30 @@ class _SessionCardState extends State<SessionCard> {
     return ModernCard(
       child: Row(
         children: [
-          Expanded(
-            flex: 4,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: moderateGray,
-                      )),
-                  // Replace with your photo widget
-                  child: Center(
-                    child: Icon(
-                      Icons.no_photography_rounded,
-                      size: 24,
-                      color: lightGray,
-                    ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: moderateGray,
+                    )),
+                // Replace with your photo widget
+                child: Center(
+                  child: Icon(
+                    Icons.no_photography_rounded,
+                    size: 24,
+                    color: lightGray,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
+          const SizedBox(width: 12),
           Expanded(
-            flex: 5,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -94,7 +91,6 @@ class _SessionCardState extends State<SessionCard> {
             ),
           ),
           Expanded(
-            flex: 5,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

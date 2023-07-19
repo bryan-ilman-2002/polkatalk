@@ -6,37 +6,41 @@ import 'package:polkatalk/widgets/lines/vertical_thin_line.dart';
 class TwinButtons extends StatefulWidget {
   final double height;
   final Color buttonColor;
-  final Color? splashColor;
   final double borderRadius;
-  final double? dividerHeight;
+  final double dividerHeight;
+  final Color? dividerColor;
+  final Color? splashColor;
   final Function leftButtonCallbackFunction;
   final Function rightButtonCallbackFunction;
   final IconData leftIcon;
   final IconData rightIcon;
-  final double iconSize;
-  final Color iconColor;
-  final String leftText;
-  final String rightText;
+  final String? leftText;
+  final String? rightText;
+  final double? iconSize;
+  final Color? iconColor;
   final double? textSize;
-  final Color textColor;
+  final FontWeight? textWeight;
+  final Color? textColor;
 
   const TwinButtons({
     super.key,
     this.height = 60,
     this.buttonColor = Colors.white,
-    this.splashColor,
     this.borderRadius = 128,
-    this.dividerHeight,
+    this.dividerHeight = 40,
+    this.dividerColor,
+    this.splashColor,
     required this.leftButtonCallbackFunction,
     required this.rightButtonCallbackFunction,
     required this.leftIcon,
     required this.rightIcon,
-    this.iconSize = 30,
-    this.iconColor = Colors.grey,
-    required this.leftText,
-    required this.rightText,
+    this.iconSize,
+    this.iconColor,
+    this.leftText,
+    this.rightText,
     this.textSize,
-    this.textColor = Colors.grey,
+    this.textWeight,
+    this.textColor,
   });
 
   @override
@@ -67,8 +71,10 @@ class _TwinButtonsState extends State<TwinButtons> {
                 height: widget.height,
               ),
               VerticalThinLine(
-                lineColor: widget.textColor,
-                height: widget.dividerHeight ?? widget.height,
+                lineColor: widget.dividerColor ??
+                    const Color.fromRGBO(180, 180, 180,
+                        4), // this is lightGray from app_colors.dart,
+                height: widget.dividerHeight,
               ),
             ],
           ),
@@ -119,11 +125,14 @@ class _TwinButtonsState extends State<TwinButtons> {
                   size: widget.iconSize,
                   color: widget.iconColor,
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 4),
                 Text(
-                  eitherLeftOrRight() ? widget.leftText : widget.rightText,
+                  eitherLeftOrRight()
+                      ? widget.leftText ?? ''
+                      : widget.rightText ?? '',
                   style: TextStyle(
                     fontSize: widget.textSize,
+                    fontWeight: widget.textWeight,
                     color: widget.textColor,
                   ),
                 ),

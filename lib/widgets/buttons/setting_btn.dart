@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
 
-class SettingButton extends StatefulWidget {
+class SettingButton extends StatelessWidget {
   final IconData icon;
   final String label;
-  final Color buttonColor;
-  final Color contentColor;
   final Color? splashColor;
+  final Color? buttonColor;
+  final Color? iconColor;
+  final Color? textColor;
   final double borderRadius;
 
   const SettingButton({
     super.key,
     required this.icon,
     required this.label,
-    this.buttonColor = Colors.white,
-    this.contentColor = Colors.grey,
     this.splashColor,
+    this.buttonColor,
+    this.iconColor,
+    this.textColor,
     this.borderRadius = 8,
   });
 
-  @override
-  State<SettingButton> createState() => _SettingButtonState();
-}
-
-class _SettingButtonState extends State<SettingButton> {
   @override
   Widget build(BuildContext context) {
     Widget content = Padding(
@@ -30,24 +27,23 @@ class _SettingButtonState extends State<SettingButton> {
       child: Row(
         children: [
           Icon(
-            widget.icon,
-            color: widget.contentColor,
+            icon,
+            color: iconColor,
             size: 30,
           ),
-          const SizedBox(
-            width: 14,
-          ),
+          const SizedBox(width: 12),
           Expanded(
             child: Text(
-              widget.label,
+              label,
               style: TextStyle(
-                color: widget.contentColor,
+                fontSize: 16,
+                color: textColor,
               ),
             ),
           ),
           Icon(
             Icons.keyboard_arrow_right_rounded,
-            color: widget.contentColor,
+            color: iconColor,
             size: 30,
           ),
         ],
@@ -55,18 +51,17 @@ class _SettingButtonState extends State<SettingButton> {
     );
 
     return Material(
-      color: widget.buttonColor,
+      color: buttonColor ?? Colors.transparent,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
-          Radius.circular(widget.borderRadius),
+          Radius.circular(borderRadius),
         ),
       ),
       child: InkWell(
-        onTap: () {
-          setState(() {});
-        },
+        onTap: () {},
+        splashColor: splashColor,
         borderRadius: BorderRadius.all(
-          Radius.circular(widget.borderRadius),
+          Radius.circular(borderRadius),
         ),
         child: content,
       ),

@@ -7,12 +7,12 @@ class ColoredButton extends StatelessWidget {
   final double? verticalPadding;
   final Function? callbackFunction;
   final Color buttonColor;
-  final Widget? child;
   final Color? splashColor;
+  final Color borderColor;
   final double basicBorderRadius;
   final BorderRadius? customBorderRadius;
-  final Color borderColor;
   final BoxShadow? buttonShadow;
+  final Widget? child;
 
   const ColoredButton({
     super.key,
@@ -23,11 +23,11 @@ class ColoredButton extends StatelessWidget {
     this.callbackFunction,
     this.buttonColor = Colors.white,
     this.splashColor,
-    this.child,
+    this.borderColor = Colors.black,
     this.basicBorderRadius = 8,
     this.customBorderRadius,
-    this.borderColor = Colors.black,
     this.buttonShadow,
+    this.child,
   });
 
   @override

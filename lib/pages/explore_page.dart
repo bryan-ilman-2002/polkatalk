@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:polkatalk/widgets/buttons/bg_reveal_btn.dart';
+import 'package:polkatalk/functions/getters/app_colors.dart';
+import 'package:polkatalk/functions/getters/light_shadow.dart';
+import 'package:polkatalk/widgets/buttons/colored_btn.dart';
 import 'package:polkatalk/widgets/buttons/twin_btns.dart';
 import 'package:polkatalk/widgets/cards/profile_card.dart';
 import 'package:polkatalk/widgets/modals/filter_modal.dart';
@@ -44,17 +46,26 @@ class _ExplorePageState extends State<ExplorePage> {
         children: [
           Expanded(
             child: TwinButtons(
-              dividerHeight: 40,
               leftButtonCallbackFunction: openFilterModal,
               rightButtonCallbackFunction: openNotificationsModal,
               leftIcon: Icons.filter_alt_rounded,
               rightIcon: Icons.notifications_rounded,
-              leftText: 'Fiters',
-              rightText: 'Notifications',
             ),
           ),
           const SizedBox(width: 8),
-          const BackgroundRevealButton(),
+          ColoredButton(
+            width: 60,
+            height: 60,
+            basicBorderRadius: 128,
+            buttonColor: Colors.white,
+            borderColor: Colors.transparent,
+            buttonShadow: lightShadow,
+            child: Icon(
+              Icons.list_rounded,
+              size: 30,
+              color: lightGray,
+            ),
+          ),
         ],
       ),
     );

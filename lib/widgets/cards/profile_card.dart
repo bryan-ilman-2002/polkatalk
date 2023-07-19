@@ -5,7 +5,7 @@ import 'package:polkatalk/functions/extract_texts_from_strings.dart';
 import 'package:polkatalk/widgets/modern_card.dart';
 import 'package:polkatalk/widgets/text/txt_with_bg.dart';
 
-class ProfileCard extends StatefulWidget {
+class ProfileCard extends StatelessWidget {
   final String name;
   final List<String> interests;
   final double rating;
@@ -19,11 +19,6 @@ class ProfileCard extends StatefulWidget {
     required this.location,
   });
 
-  @override
-  State<ProfileCard> createState() => _ProfileCardState();
-}
-
-class _ProfileCardState extends State<ProfileCard> {
   @override
   Widget build(BuildContext context) {
     return ModernCard(
@@ -52,7 +47,7 @@ class _ProfileCardState extends State<ProfileCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.name,
+                  name,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -61,7 +56,7 @@ class _ProfileCardState extends State<ProfileCard> {
                 ),
                 const SizedBox(height: 4),
                 extractTextsFromStrings(
-                  strings: widget.interests,
+                  strings: interests,
                   maxStringsToExtract: 4,
                 )[0],
                 const SizedBox(height: 16),
@@ -69,8 +64,8 @@ class _ProfileCardState extends State<ProfileCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextWithBackground(
-                      backgroundColor: getRatingColor(widget.rating),
-                      text: widget.rating.toString(),
+                      backgroundColor: getRatingColor(rating),
+                      text: rating.toString(),
                     ),
                     const SizedBox(width: 12),
                     Icon(
@@ -81,7 +76,7 @@ class _ProfileCardState extends State<ProfileCard> {
                     const SizedBox(width: 2),
                     Expanded(
                       child: Text(
-                        widget.location,
+                        location,
                       ),
                     ),
                   ],

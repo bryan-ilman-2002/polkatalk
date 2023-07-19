@@ -18,13 +18,14 @@ class RadioButtons extends ConsumerStatefulWidget {
     required this.groupValue,
     required this.callbackFunction,
     required this.labels,
-    this.textSize = 16,
+    this.textSize = 14,
     this.direction = Axis.vertical,
     this.mainAlignment = WrapAlignment.center,
     this.crossAlignment = WrapAlignment.center,
-    this.mainSpacing = 8,
-    this.crossSpacing = 8,
-    this.activeColor = Colors.black,
+    this.mainSpacing = 4,
+    this.crossSpacing = 4,
+    this.activeColor = const Color.fromRGBO(
+        64, 64, 64, 4), // this is heavyGray from app_colors.dart
   });
 
   @override

@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:polkatalk/functions/getters/app_colors.dart';
 import 'package:polkatalk/widgets/buttons/colored_btn.dart';
 import 'package:polkatalk/widgets/buttons/setting_btn.dart';
 import 'package:polkatalk/widgets/buttons/twin_btns.dart';
 import 'package:polkatalk/widgets/lines/horizontal_thin_line.dart';
 
-class SettingsPage extends StatefulWidget {
+class SettingsPage extends StatelessWidget {
   final ScrollController scrollController;
 
   const SettingsPage({super.key, required this.scrollController});
 
-  @override
-  State<SettingsPage> createState() => _SettingsPageState();
-}
-
-class _SettingsPageState extends State<SettingsPage> {
   void logOut() => print(const Text('clicked'));
 
   @override
@@ -22,33 +18,40 @@ class _SettingsPageState extends State<SettingsPage> {
       child: Container(
         color: Colors.white,
         child: SingleChildScrollView(
-          controller: widget.scrollController,
+          controller: scrollController,
           padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                margin: const EdgeInsets.only(top: 24),
+                margin: const EdgeInsets.only(top: 32),
                 width: 80,
                 height: 80,
                 decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.grey[200],
-                ),
-                child: const Center(
-                  child: Icon(Icons.photo, color: Colors.white),
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: moderateGray,
+                    )),
+                // Replace with your photo widget
+                child: Center(
+                  child: Icon(
+                    Icons.no_photography_rounded,
+                    size: 24,
+                    color: lightGray,
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Mark Zuckerberg',
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: heavyGray,
                     ),
                   ),
                 ],
@@ -64,14 +67,14 @@ class _SettingsPageState extends State<SettingsPage> {
                 leftText: 'PolkaPay',
                 rightText: 'Bank Card',
                 iconColor: Colors.white,
+                textSize: 16,
                 textColor: Colors.white,
-                buttonColor: Colors.black,
-                splashColor: const Color.fromARGB(255, 112, 112, 112),
-                borderRadius: 8,
+                buttonColor: heavyGray,
+                borderRadius: 12,
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 16),
               const SettingButton(
-                icon: Icons.person_outline_rounded,
+                icon: Icons.person_rounded,
                 label: 'Personal Information',
               ),
               const HorizontalThinLine(),
@@ -81,25 +84,26 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               const HorizontalThinLine(),
               const SettingButton(
-                icon: Icons.notifications_none_rounded,
+                icon: Icons.notifications_rounded,
                 label: 'Notifications',
               ),
               const HorizontalThinLine(),
               const SettingButton(
-                icon: Icons.cloud_download_outlined,
+                icon: Icons.cloud_download_rounded,
                 label: 'Request Personal Data',
               ),
               const HorizontalThinLine(),
               const SettingButton(
-                icon: Icons.delete_outline_rounded,
+                icon: Icons.delete_rounded,
                 label: 'Delete Account',
-                contentColor: Colors.red,
+                iconColor: Color.fromARGB(255, 180, 4, 4),
+                textColor: Color.fromARGB(255, 180, 4, 4),
                 splashColor: Color.fromARGB(255, 255, 226, 224),
               ),
               const HorizontalThinLine(),
               const SizedBox(height: 64),
               const SettingButton(
-                icon: Icons.help_outline,
+                icon: Icons.help_rounded,
                 label: 'Help Center',
               ),
               const HorizontalThinLine(),
@@ -115,18 +119,19 @@ class _SettingsPageState extends State<SettingsPage> {
               const HorizontalThinLine(),
               const SizedBox(height: 16),
               ColoredButton(
-                width: 180,
+                width: 240,
                 verticalPadding: 16,
                 callbackFunction: logOut,
-                child: Text(
-                  'Logout',
+                buttonColor: Colors.transparent,
+                splashColor: const Color.fromARGB(255, 255, 226, 224),
+                borderColor: Colors.transparent,
+                child: const Text(
+                  'Log Out',
                   style: TextStyle(
-                    color: Colors.red,
+                    fontSize: 16,
+                    color: Color.fromARGB(255, 180, 4, 4),
                   ),
                 ),
-                buttonColor: Colors.white,
-                splashColor: const Color.fromARGB(255, 255, 226, 224),
-                borderColor: Colors.white,
               ),
             ],
           ),
