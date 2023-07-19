@@ -4,7 +4,8 @@ import 'package:polkatalk/functions/getters/light_shadow.dart';
 import 'package:polkatalk/widgets/buttons/colored_btn.dart';
 import 'package:polkatalk/widgets/buttons/twin_btns.dart';
 import 'package:polkatalk/widgets/cards/profile_card.dart';
-import 'package:polkatalk/widgets/modals/filter_modal.dart';
+import 'package:polkatalk/widgets/modals/filters_modal.dart';
+import 'package:polkatalk/widgets/modals/notifications_modal.dart';
 
 class ExplorePage extends StatefulWidget {
   final ScrollController scrollController;
@@ -22,7 +23,7 @@ class _ExplorePageState extends State<ExplorePage> {
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
         builder: (BuildContext context) {
-          return const FilterModal();
+          return const FiltersModal();
         },
       );
 
@@ -32,7 +33,7 @@ class _ExplorePageState extends State<ExplorePage> {
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
         builder: (BuildContext context) {
-          return const SizedBox();
+          return const NotificationsModal();
         },
       );
 
@@ -48,8 +49,10 @@ class _ExplorePageState extends State<ExplorePage> {
             child: TwinButtons(
               leftButtonCallbackFunction: openFilterModal,
               rightButtonCallbackFunction: openNotificationsModal,
-              leftIcon: Icons.filter_alt_rounded,
+              leftIcon: Icons.filter_alt_off_rounded,
               rightIcon: Icons.notifications_rounded,
+              leftText: 'Filters',
+              rightText: 'Notifications',
             ),
           ),
           const SizedBox(width: 8),

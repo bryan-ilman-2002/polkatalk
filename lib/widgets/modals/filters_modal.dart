@@ -21,10 +21,10 @@ import 'package:polkatalk/widgets/date_range_selector.dart';
 import 'package:polkatalk/widgets/tag_adder.dart';
 import 'package:polkatalk/widgets/text/txt_with_bg.dart';
 
-class FilterModal extends ConsumerWidget {
+class FiltersModal extends ConsumerWidget {
   final bool trustEarned;
 
-  const FilterModal({
+  const FiltersModal({
     super.key,
     this.trustEarned = false,
   });

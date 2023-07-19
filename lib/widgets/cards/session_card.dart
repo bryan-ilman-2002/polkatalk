@@ -112,8 +112,9 @@ class _SessionCardState extends State<SessionCard> {
                 const SizedBox(height: 8),
                 Text(
                   '${widget.currency} ${formatNumberWithLocalizedSeparators(widget.totalCost)}',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
+                    color: heavyGray,
                   ),
                 ),
               ],

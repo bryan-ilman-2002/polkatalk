@@ -93,12 +93,12 @@ class SettingsPage extends StatelessWidget {
                 label: 'Request Personal Data',
               ),
               const HorizontalThinLine(),
-              const SettingButton(
+              SettingButton(
                 icon: Icons.delete_rounded,
                 label: 'Delete Account',
-                iconColor: Color.fromARGB(255, 180, 4, 4),
-                textColor: Color.fromARGB(255, 180, 4, 4),
-                splashColor: Color.fromARGB(255, 255, 226, 224),
+                iconColor: intenseColor,
+                textColor: intenseColor,
+                splashColor: const Color.fromARGB(255, 255, 226, 224),
               ),
               const HorizontalThinLine(),
               const SizedBox(height: 64),
@@ -125,11 +125,11 @@ class SettingsPage extends StatelessWidget {
                 buttonColor: Colors.transparent,
                 splashColor: const Color.fromARGB(255, 255, 226, 224),
                 borderColor: Colors.transparent,
-                child: const Text(
+                child: Text(
                   'Log Out',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color.fromARGB(255, 180, 4, 4),
+                    color: intenseColor,
                   ),
                 ),
               ),
