@@ -2,19 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:polkatalk/enums/communication_method.dart';
 import 'package:polkatalk/enums/rating.dart';
-import 'package:polkatalk/enums/session_type.dart';
-import 'package:polkatalk/enums/sorting_aspect.dart';
 import 'package:polkatalk/functions/getters/lang_names_in_native_format.dart';
 import 'package:polkatalk/functions/getters/professions.dart';
 import 'package:polkatalk/functions/getters/rating_color.dart';
 import 'package:polkatalk/functions/providers/communication_method_filter_state.dart';
 import 'package:polkatalk/functions/providers/date_range_filter_state.dart';
 import 'package:polkatalk/functions/providers/languages_filter_state.dart';
-import 'package:polkatalk/functions/providers/price_range_filter_state.dart';
 import 'package:polkatalk/functions/providers/professions_filter_state.dart';
 import 'package:polkatalk/functions/providers/rating_filter_state.dart';
 import 'package:polkatalk/functions/providers/session_type_filter_state.dart';
-import 'package:polkatalk/functions/providers/sorting_aspect_filter_state.dart';
 import 'package:polkatalk/widgets/buttons/colored_btn.dart';
 import 'package:polkatalk/widgets/buttons/radio_btns.dart';
 import 'package:polkatalk/widgets/filter_box.dart';
@@ -70,19 +66,6 @@ class FilterModal extends ConsumerWidget {
           Expanded(
             child: ListView(
               children: [
-                // session type
-                FilterBox(
-                  title: 'Session Type',
-                  child: RadioButtons(
-                    callbackFunction: ref.watch(setSessionTypeFilterState),
-                    labels:
-                        SessionType.values.map((type) => type.string).toList(),
-                    groupValue: ref.watch(sessionTypeFilterState),
-                  ),
-                ),
-                const HorizontalThinLine(
-                  horizontalMargin: 20,
-                ),
                 // professions, interests
                 FilterBox(
                   title: ref.watch(resetSessionTypeFilterState) == 2
@@ -194,24 +177,6 @@ class FilterModal extends ConsumerWidget {
                 ),
                 const HorizontalThinLine(
                   horizontalMargin: 20,
-                ),
-                // sorting aspect
-                FilterBox(
-                  title: 'Sorting Aspect',
-                  child: Center(
-                    child: SizedBox(
-                      width: 320,
-                      child: RadioButtons(
-                        callbackFunction:
-                            ref.watch(setSortingAspectFilterState),
-                        labels: SortingAspect.values
-                            .map((type) => type.string)
-                            .toList(),
-                        direction: Axis.horizontal,
-                        groupValue: ref.watch(sortingAspectFilterState),
-                      ),
-                    ),
-                  ),
                 ),
               ],
             ),

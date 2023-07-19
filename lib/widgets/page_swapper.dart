@@ -15,15 +15,10 @@ class _PageSwapper extends State<PageSwapper> {
   late ScrollController _scrollController;
 
   void _scrollListener(bool condition, ScrollController varScrollController) {
-    condition
-        ? setState(() {
-            _showScrollButton = true;
-            _scrollController = varScrollController;
-          })
-        : setState(() {
-            _showScrollButton = false;
-            _scrollController = varScrollController;
-          });
+    setState(() {
+      _showScrollButton = condition;
+      _scrollController = varScrollController;
+    });
   }
 
   void _scrollToTop() {
@@ -72,7 +67,7 @@ class _PageSwapper extends State<PageSwapper> {
               mini: true,
               child: Icon(
                 Icons.arrow_upward_rounded,
-                color: iconColor,
+                color: lightGray,
                 size: 24,
               ),
             )

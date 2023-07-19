@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polkatalk/functions/getters/app_colors.dart';
 
 class CustomBottomAppBar extends StatefulWidget {
   final List<List<dynamic>> navItems;
@@ -71,6 +72,6 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
   }
 
   Color _getNavBarItemColor(int index) {
-    return widget.selectedIndex == index ? Colors.black : Colors.grey;
+    return widget.selectedIndex == index ? heavyGray : lightGray;
   }
 }

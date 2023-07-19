@@ -78,8 +78,8 @@ class _ProfileCardState extends State<ProfileCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TextWithBackground(
-                        text: widget.rating.toString(),
                         backgroundColor: getRatingColor(widget.rating),
+                        text: widget.rating.toString(),
                       ),
                       Text(
                         '${widget.currency} ${formatNumberWithLocalizedSeparators(widget.price)}',

@@ -27,7 +27,7 @@ class FilterBox extends StatelessWidget {
                 title,
                 style: TextStyle(
                   fontSize: 18,
-                  color: secondaryTextColor,
+                  color: heavyGray,
                 ),
               ),
             ],

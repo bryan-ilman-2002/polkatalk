@@ -1,39 +1,39 @@
 import 'package:flutter/material.dart';
 
 class TextWithBackground extends StatelessWidget {
+  final Color backgroundColor;
   final String text;
   final double? textSize;
-  final FontWeight textWeight;
-  final Color textColor;
-  final Color backgroundColor;
-  final EdgeInsetsGeometry padding;
-  final double borderRadius;
+  final FontWeight? textWeight;
+  final Color? textColor;
+  final EdgeInsetsGeometry? padding;
+  final BorderRadiusGeometry? borderRadius;
 
   const TextWithBackground({
     super.key,
+    required this.backgroundColor,
     required this.text,
     this.textSize,
-    this.textWeight = FontWeight.bold,
-    this.textColor = Colors.white,
-    this.backgroundColor = Colors.green,
-    this.padding = const EdgeInsets.all(6),
-    this.borderRadius = 8,
+    this.textWeight,
+    this.textColor,
+    this.padding,
+    this.borderRadius,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: padding,
+      padding: padding ?? const EdgeInsets.all(6),
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.circular(borderRadius),
+        borderRadius: borderRadius ?? BorderRadius.circular(8),
       ),
       child: Text(
         text,
         style: TextStyle(
           fontSize: textSize,
-          fontWeight: textWeight,
-          color: textColor,
+          fontWeight: textWeight ?? FontWeight.bold,
+          color: textColor ?? Colors.white,
         ),
       ),
     );

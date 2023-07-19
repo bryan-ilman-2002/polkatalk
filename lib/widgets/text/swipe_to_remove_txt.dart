@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polkatalk/functions/getters/app_colors.dart';
 
 class SwipeToRemoveText extends StatelessWidget {
   const SwipeToRemoveText({super.key});
@@ -8,21 +9,21 @@ class SwipeToRemoveText extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
       height: 60,
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Icon(
-            Icons.swipe_outlined,
-            color: Colors.grey,
+            Icons.swipe_rounded,
+            color: lightGray,
             size: 30,
           ),
-          SizedBox(width: 8),
+          const SizedBox(width: 8),
           Text(
             'swipe to remove',
             style: TextStyle(
               fontSize: 18,
-              color: Colors.grey,
+              color: moderateGray,
             ),
           )
         ],

@@ -21,7 +21,7 @@ class PolkaTalk extends StatelessWidget {
       fontFamily: 'Mukta',
       fontSize: 14,
       fontWeight: FontWeight.normal,
-      color: primaryTextColor,
+      color: moderateGray,
     ),
   );
 
@@ -42,7 +42,7 @@ class PolkaTalk extends StatelessWidget {
         ),
         textTheme: mukta,
         iconTheme: IconThemeData(
-          color: iconColor,
+          color: lightGray,
         ),
         splashFactory: InkRipple.splashFactory,
       ),

@@ -22,10 +22,10 @@ class TagAdderDropdown extends StatelessWidget {
     final List<DropdownMenuEntry> dropdownEntries = <DropdownMenuEntry>[];
 
     const TextStyle dropdownTextStyle = TextStyle(
-      fontSize: 14,
+      fontSize: 18,
       fontWeight: FontWeight.normal,
       color: Color.fromRGBO(
-          120, 120, 120, 4), // this is primaryTextColor from app_colors.dart
+          120, 120, 120, 4), // this is moderateGray from app_colors.dart
     );
 
     const UnderlineInputBorder transparentButton = UnderlineInputBorder(
@@ -67,7 +67,7 @@ class TagAdderDropdown extends StatelessWidget {
       menuHeight: 240,
       leadingIcon: Icon(
         leadingIcon,
-        color: iconColor,
+        color: moderateGray,
       ),
       trailingIcon: const SizedBox(), // this removes default trailing icon
     );

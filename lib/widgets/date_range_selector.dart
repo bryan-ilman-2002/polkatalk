@@ -34,7 +34,6 @@ class _DateRangeSelectorState extends ConsumerState<DateRangeSelector> {
           setState(() {});
         },
         buttonColor: Colors.white,
-        splashColor: secondaryAppColor,
         basicBorderRadius: 12,
         borderColor: Colors.transparent,
         buttonShadow: heavyShadow,
@@ -47,7 +46,7 @@ class _DateRangeSelectorState extends ConsumerState<DateRangeSelector> {
                   ? label.string
                   : '${label.string} ~ ${dateFormat.format(selectedDateRange[DateRange.endDate]!)}',
           style: TextStyle(
-            color: primaryTextColor,
+            color: moderateGray,
           ),
         ),
       );
