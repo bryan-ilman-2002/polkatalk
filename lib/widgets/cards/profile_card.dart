@@ -1,27 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:polkatalk/enums/session_type.dart';
-import 'package:polkatalk/functions/format_number.dart';
+import 'package:polkatalk/functions/getters/app_colors.dart';
 import 'package:polkatalk/functions/getters/rating_color.dart';
 import 'package:polkatalk/functions/extract_texts_from_strings.dart';
 import 'package:polkatalk/widgets/modern_card.dart';
 import 'package:polkatalk/widgets/text/txt_with_bg.dart';
 
 class ProfileCard extends StatefulWidget {
-  final SessionType sessionType;
   final String name;
-  final List<String> professions;
+  final List<String> interests;
   final double rating;
-  final String currency;
-  final double price;
+  final String location;
 
   const ProfileCard({
     super.key,
-    required this.sessionType,
     required this.name,
-    required this.professions,
+    required this.interests,
     required this.rating,
-    required this.currency,
-    required this.price,
+    required this.location,
   });
 
   @override
@@ -38,60 +33,63 @@ class _ProfileCardState extends State<ProfileCard> {
             width: 80,
             height: 80,
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.grey[200],
-            ),
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: moderateGray,
+                )),
             // Replace with your photo widget
-            child: const Center(
-              child: Icon(Icons.photo, color: Colors.white),
+            child: Center(
+              child: Icon(
+                Icons.no_photography_rounded,
+                size: 24,
+                color: lightGray,
+              ),
             ),
           ),
-          const SizedBox(width: 14),
+          const SizedBox(width: 12),
           Expanded(
-            child: Container(
-              padding: const EdgeInsets.only(
-                right: 8,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.sessionType.string,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey[400],
-                    ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.name,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: heavyGray,
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    widget.name,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                ),
+                const SizedBox(height: 4),
+                extractTextsFromStrings(
+                  strings: widget.interests,
+                  maxStringsToExtract: 4,
+                )[0],
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextWithBackground(
+                      backgroundColor: getRatingColor(widget.rating),
+                      text: widget.rating.toString(),
                     ),
-                  ),
-                  const SizedBox(height: 4),
-                  extractTextsFromStrings(widget.professions, true, 2)[0],
-                  const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      TextWithBackground(
-                        backgroundColor: getRatingColor(widget.rating),
-                        text: widget.rating.toString(),
-                      ),
-                      Text(
-                        '${widget.currency} ${formatNumberWithLocalizedSeparators(widget.price)}',
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                    const SizedBox(width: 12),
+                    Icon(
+                      Icons.location_pin,
+                      size: 20,
+                      color: moderateGray,
+                    ),
+                    const SizedBox(width: 2),
+                    Expanded(
+                      child: Text(
+                        widget.location,
+                        style: TextStyle(
+                          color: moderateGray,
                         ),
                       ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ],

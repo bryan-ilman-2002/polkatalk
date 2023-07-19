@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:polkatalk/functions/getters/light_shadow.dart';
 
 class BackgroundRevealButton extends StatefulWidget {
-  final Function() callbackFunction;
+  final Function()? callbackFunction;
 
   const BackgroundRevealButton({
     super.key,
-    required this.callbackFunction,
+    this.callbackFunction,
   });
 
   @override
@@ -31,7 +31,6 @@ class _BackgroundRevealButtonState extends State<BackgroundRevealButton> {
         child: InkWell(
           onTap: () {
             setState(() {});
-            widget.callbackFunction();
           },
           borderRadius: BorderRadius.circular(128),
           child: Icon(

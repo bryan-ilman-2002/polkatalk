@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:polkatalk/functions/getters/app_colors.dart';
 
-class CustomBottomAppBar extends StatefulWidget {
+class CustomBottomAppBar extends StatelessWidget {
   final List<List<dynamic>> navItems;
   final int selectedIndex;
   final Function(int) onTap;
@@ -14,15 +14,10 @@ class CustomBottomAppBar extends StatefulWidget {
   });
 
   @override
-  State<CustomBottomAppBar> createState() => _CustomBottomAppBarState();
-}
-
-class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
-  @override
   Widget build(BuildContext context) {
     return BottomAppBar(
       child: Row(
-        children: widget.navItems.asMap().entries.map((entry) {
+        children: navItems.asMap().entries.map((entry) {
           final icon = entry.value[0] as IconData;
           final label = entry.value[1] as String;
           return _navItemBuilder(icon, label, entry.key);
@@ -34,8 +29,9 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
   Widget _navItemBuilder(IconData icon, String label, int index) {
     return Expanded(
       child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
         onTap: () {
-          widget.onTap(index);
+          onTap(index);
         },
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 320),
@@ -68,10 +64,10 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
   }
 
   FontWeight _getNavBarTextWeight(int index) {
-    return widget.selectedIndex == index ? FontWeight.bold : FontWeight.normal;
+    return selectedIndex == index ? FontWeight.bold : FontWeight.normal;
   }
 
   Color _getNavBarItemColor(int index) {
-    return widget.selectedIndex == index ? heavyGray : lightGray;
+    return selectedIndex == index ? heavyGray : lightGray;
   }
 }

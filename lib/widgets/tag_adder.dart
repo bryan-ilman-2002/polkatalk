@@ -9,6 +9,7 @@ class TagAdder extends StatelessWidget {
   final Function callbackFunction;
   final TextEditingController clerk;
   final Map<String, dynamic> entries;
+  final bool? enableInput;
   final List<String>? prints;
   final String? hint;
   final IconData? leadingIcon;
@@ -18,6 +19,7 @@ class TagAdder extends StatelessWidget {
     required this.callbackFunction,
     required this.clerk,
     required this.entries,
+    this.enableInput,
     this.prints,
     this.hint,
     this.leadingIcon,
@@ -35,6 +37,7 @@ class TagAdder extends StatelessWidget {
                 child: TagAdderDropdown(
                   clerk: clerk,
                   entries: entries,
+                  enableInput: enableInput,
                   hint: hint,
                   leadingIcon: leadingIcon,
                 ),

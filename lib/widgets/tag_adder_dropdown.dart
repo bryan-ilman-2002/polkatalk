@@ -4,7 +4,7 @@ import 'package:polkatalk/functions/getters/app_colors.dart';
 class TagAdderDropdown extends StatelessWidget {
   final TextEditingController clerk;
   final Map<String, dynamic> entries;
-  final bool enableInput;
+  final bool? enableInput;
   final String? hint;
   final IconData? leadingIcon;
 
@@ -12,7 +12,7 @@ class TagAdderDropdown extends StatelessWidget {
     super.key,
     required this.clerk,
     required this.entries,
-    this.enableInput = false,
+    this.enableInput,
     this.hint,
     this.leadingIcon,
   });
@@ -51,7 +51,7 @@ class TagAdderDropdown extends StatelessWidget {
     return DropdownMenu(
       controller: clerk,
       hintText: hint ?? 'type here',
-      enableFilter: enableInput,
+      enableFilter: enableInput ?? false,
       requestFocusOnTap: enableInput,
       inputDecorationTheme: const InputDecorationTheme(
         constraints: BoxConstraints(

@@ -15,8 +15,8 @@ class SwipeToRemoveText extends StatelessWidget {
         children: [
           Icon(
             Icons.swipe_rounded,
-            color: lightGray,
-            size: 30,
+            color: moderateGray,
+            size: 24,
           ),
           const SizedBox(width: 8),
           Text(

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
-List<Text> extractTextsFromStrings(
-    List<String> strings, bool enableRow, maxStringsToExtract) {
+List<Text> extractTextsFromStrings({
+  required List<String> strings,
+  required int maxStringsToExtract,
+  bool enableRow = true,
+}) {
   if (enableRow) {
     String children = '';
 
@@ -14,10 +17,6 @@ List<Text> extractTextsFromStrings(
     return [
       Text(
         children,
-        style: const TextStyle(
-          overflow: TextOverflow.ellipsis,
-          color: Colors.grey,
-        ),
       ),
     ];
   } else {
@@ -28,10 +27,6 @@ List<Text> extractTextsFromStrings(
       children.add(
         Text(
           '${strings[index]}${++index < strings.length ? index == maxStringsToExtract ? ', ...' : ', ' : ''}',
-          style: const TextStyle(
-            overflow: TextOverflow.ellipsis,
-            color: Colors.grey,
-          ),
         ),
       );
     }

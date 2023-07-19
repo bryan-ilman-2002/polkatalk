@@ -29,12 +29,14 @@ class _FavoritesPage extends State<FavoritesPage> {
                     child: const Padding(
                       padding: EdgeInsets.all(8),
                       child: ProfileCard(
-                        sessionType: SessionType.acquaintanceship,
                         name: 'Larry Page',
-                        professions: ['Economist', 'Doctors', 'Lawyers'],
+                        interests: [
+                          'Economist',
+                          'Lawyer',
+                          'Doctor',
+                        ],
                         rating: 4.8,
-                        currency: 'USD',
-                        price: 4200,
+                        location: 'USD',
                       ),
                     ),
                   );

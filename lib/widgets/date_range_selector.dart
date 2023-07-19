@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:polkatalk/enums/date_range.dart';
-import 'package:polkatalk/functions/getters/app_colors.dart';
 import 'package:polkatalk/functions/getters/heavy_shadow.dart';
 import 'package:polkatalk/functions/providers/date_range_filter_state.dart';
 import 'package:polkatalk/widgets/buttons/colored_btn.dart';
@@ -45,9 +44,6 @@ class _DateRangeSelectorState extends ConsumerState<DateRangeSelector> {
               : selectedDateRange[DateRange.endDate] == null
                   ? label.string
                   : '${label.string} ~ ${dateFormat.format(selectedDateRange[DateRange.endDate]!)}',
-          style: TextStyle(
-            color: moderateGray,
-          ),
         ),
       );
     }

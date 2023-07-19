@@ -100,7 +100,10 @@ class _ChatCardState extends State<ChatCard> {
                     ],
                   ),
                   const SizedBox(height: 4),
-                  extractTextsFromStrings(widget.professions, true, 2)[0],
+                  extractTextsFromStrings(
+                    strings: widget.professions,
+                    maxStringsToExtract: 4,
+                  )[0],
                   const SizedBox(height: 8),
                   Row(
                     children: [

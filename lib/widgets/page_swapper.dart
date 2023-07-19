@@ -63,7 +63,7 @@ class _PageSwapper extends State<PageSwapper> {
           ? FloatingActionButton(
               onPressed: _scrollToTop,
               elevation: 1.6,
-              backgroundColor: Colors.grey[50],
+              backgroundColor: Colors.white,
               mini: true,
               child: Icon(
                 Icons.arrow_upward_rounded,

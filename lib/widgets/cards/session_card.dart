@@ -75,8 +75,11 @@ class _SessionCardState extends State<SessionCard> {
                 const SizedBox(height: 4),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children:
-                      extractTextsFromStrings(widget.professions, false, 2),
+                  children: extractTextsFromStrings(
+                    strings: widget.professions,
+                    maxStringsToExtract: 2,
+                    enableRow: false,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Row(

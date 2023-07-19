@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:polkatalk/functions/getters/light_shadow.dart';
-import 'package:polkatalk/pages/profile_page.dart';
 
 class ModernCard extends StatefulWidget {
   final Widget child;
@@ -34,20 +33,14 @@ class _ModernCardState extends State<ModernCard> {
             ),
           ),
           child: InkWell(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const ProfilePage(),
-                ),
-              );
-            },
+            onTap: () {},
             borderRadius: const BorderRadius.all(
               Radius.circular(16),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 8,
-                vertical: 18,
+                horizontal: 12,
+                vertical: 20,
               ),
               child: widget.child,
             ),
