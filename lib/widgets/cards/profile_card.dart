@@ -71,7 +71,7 @@ class ProfileCard extends StatelessWidget {
                     Icon(
                       Icons.location_pin,
                       size: 20,
-                      color: intenseColor,
+                      color: tenseColor,
                     ),
                     const SizedBox(width: 2),
                     Expanded(

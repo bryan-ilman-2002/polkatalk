@@ -7,4 +7,4 @@ Color get lightGray => const Color.fromRGBO(180, 180, 180, 4);
 Color get primaryAppColor => const Color.fromRGBO(100, 180, 100, 4);
 Color get secondaryAppColor => const Color.fromRGBO(64, 160, 72, 4);
 
-Color get intenseColor => const Color.fromARGB(255, 180, 4, 4);
+Color get tenseColor => const Color.fromARGB(255, 180, 4, 4);

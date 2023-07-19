@@ -96,8 +96,8 @@ class SettingsPage extends StatelessWidget {
               SettingButton(
                 icon: Icons.delete_rounded,
                 label: 'Delete Account',
-                iconColor: intenseColor,
-                textColor: intenseColor,
+                iconColor: tenseColor,
+                textColor: tenseColor,
                 splashColor: const Color.fromARGB(255, 255, 226, 224),
               ),
               const HorizontalThinLine(),
@@ -129,7 +129,7 @@ class SettingsPage extends StatelessWidget {
                   'Log Out',
                   style: TextStyle(
                     fontSize: 16,
-                    color: intenseColor,
+                    color: tenseColor,
                   ),
                 ),
               ),
