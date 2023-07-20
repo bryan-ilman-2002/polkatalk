@@ -140,16 +140,21 @@ class ProfileModal extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(
-                          height: 16,
+                          height: 20,
                         ),
-                        const TagBoard(
-                          horizontalAlignment: WrapAlignment.start,
-                          horizontalSpacing: 12,
-                          prints: [
-                            'English',
-                            'French',
-                            'Japanese',
-                            'German',
+                        const Row(
+                          children: [
+                            Expanded(
+                              child: TagBoard(
+                                horizontalAlignment: WrapAlignment.center,
+                                prints: [
+                                  'English',
+                                  'French',
+                                  'Japanese',
+                                  'German',
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                         const SizedBox(
@@ -163,16 +168,30 @@ class ProfileModal extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(
-                          height: 16,
+                          height: 20,
                         ),
-                        const TagBoard(
-                          horizontalAlignment: WrapAlignment.start,
-                          horizontalSpacing: 12,
-                          prints: [
-                            'Gaming',
-                            'Reading',
-                            'Travelling',
-                            'Cooking',
+                        const Row(
+                          children: [
+                            Expanded(
+                              child: TagBoard(
+                                horizontalAlignment: WrapAlignment.center,
+                                horizontalSpacing: 12,
+                                prints: [
+                                  'Cakap',
+                                  'Sopan',
+                                  'horny',
+                                  'Banyak Ngomong',
+                                  'Cooking',
+                                  'Cakap',
+                                  'Sopan',
+                                  'horny',
+                                  'Banyak Ngomong',
+                                  'Cooking',
+                                  'Hello',
+                                  'Java',
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                         const SizedBox(

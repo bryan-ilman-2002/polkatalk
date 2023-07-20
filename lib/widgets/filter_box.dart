@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:polkatalk/functions/getters/app_colors.dart';
-import 'package:polkatalk/functions/getters/blue_shadow.dart';
 import 'package:polkatalk/widgets/lines/horizontal_thin_line.dart';
 
 class FilterBox extends StatelessWidget {
