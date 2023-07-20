@@ -3,36 +3,71 @@ import 'package:polkatalk/enums/direction.dart';
 import 'package:polkatalk/functions/getters/app_colors.dart';
 import 'package:polkatalk/functions/getters/heavy_shadow.dart';
 import 'package:polkatalk/functions/getters/light_shadow.dart';
+import 'package:polkatalk/functions/getters/opinion_design.dart';
 
 class Tag extends StatelessWidget {
-  final String print;
+  final print;
+  final bool containsOpinion;
 
   const Tag({
     super.key,
     required this.print,
+    this.containsOpinion = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          heavyShadow,
-        ],
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _buttonBuilder(Direction.left),
-          _buttonBuilder(Direction.right),
-        ],
-      ),
-    );
+    return containsOpinion
+        ? Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                heavyShadow,
+              ],
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _buttonBuilder(Direction.left),
+                _buttonBuilder(Direction.right),
+              ],
+            ),
+          )
+        : Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                heavyShadow,
+              ],
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: Icon(
+                    Icons.circle,
+                    size: 8,
+                    color: moderateGray,
+                  ),
+                ),
+                const SizedBox(
+                  width: 4,
+                ),
+                Text(
+                  print,
+                ),
+                const SizedBox(
+                  width: 4,
+                ),
+              ],
+            ),
+          );
   }
 
   Widget _buttonBuilder(Direction value) {
     bool eitherLeftOrRight() => value == Direction.left;
-    // color:  const Color.fromARGB(255, 214, 244, 215),
 
     return eitherLeftOrRight()
         ? Container(
@@ -50,23 +85,23 @@ class Tag extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const SizedBox(
-                  width: 4,
+                  width: 8,
                 ),
                 Text(
-                  String.fromCharCode(Icons.check_rounded.codePoint),
+                  String.fromCharCode(getOpinionIcon(print[0]).codePoint),
                   style: TextStyle(
                     inherit: false,
-                    color: primaryAppColor,
+                    color: getOpinionColor(print[0]),
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
-                    fontFamily: Icons.check_rounded.fontFamily,
+                    fontFamily: getOpinionIcon(print[0]).fontFamily,
                   ),
                 ),
                 const SizedBox(
                   width: 4,
                 ),
                 Text(
-                  print,
+                  print[1].toString(),
                 ),
                 const SizedBox(
                   width: 2,
@@ -78,16 +113,16 @@ class Tag extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
               vertical: 8,
             ),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
                 colors: [
                   Colors.white,
-                  Color.fromARGB(251, 190, 248, 190),
+                  getOpinionShadow(print[0]),
                 ],
               ),
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(12),
                 bottomRight: Radius.circular(12),
               ),
@@ -98,17 +133,22 @@ class Tag extends StatelessWidget {
                 const SizedBox(
                   width: 2,
                 ),
-                Icon(
-                  Icons.close_rounded,
-                  size: 12,
-                  color: heavyGray,
-                  shadows: [lightShadow],
+                Text(
+                  String.fromCharCode(Icons.close_rounded.codePoint),
+                  style: TextStyle(
+                    inherit: false,
+                    color: heavyGray,
+                    shadows: [lightShadow],
+                    fontSize: 12,
+                    fontWeight: FontWeight.w800,
+                    fontFamily: Icons.close_rounded.fontFamily,
+                  ),
                 ),
                 const SizedBox(
                   width: 2,
                 ),
                 Text(
-                  '12',
+                  print[2].toString(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     shadows: [
@@ -117,71 +157,10 @@ class Tag extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  width: 4,
+                  width: 8,
                 ),
               ],
             ),
           );
   }
-
-  // return Row(
-  //   mainAxisSize: MainAxisSize.min,
-  //   children: [
-  //     Container(
-  //       padding: const EdgeInsets.all(8),
-  //       decoration: BoxDecoration(
-  //         color: Colors.white,
-  //         borderRadius: BorderRadius.circular(12),
-  //         boxShadow: [
-  //           heavyShadow,
-  //         ],
-  //       ),
-  //       child: Row(
-  //         mainAxisSize: MainAxisSize.min,
-  //         children: [
-  //           Padding(
-  //             padding: const EdgeInsets.symmetric(horizontal: 4),
-  //             child: Text(
-  //               String.fromCharCode(Icons.check_rounded.codePoint),
-  //               style: TextStyle(
-  //                 inherit: false,
-  //                 color: primaryAppColor,
-  //                 fontSize: 12,
-  //                 fontWeight: FontWeight.w800,
-  //                 fontFamily: Icons.check_rounded.fontFamily,
-  //               ),
-  //             ),
-  //           ),
-  //           // const SizedBox(
-  //           //   width: 4,
-  //           // ),
-  //           Text(
-  //             print,
-  //           ),
-  //           const SizedBox(
-  //             width: 4,
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //     Icon(
-  //       Icons.close_rounded,
-  //       size: 12,
-  //       color: moderateGray,
-  //       shadows: [lightShadow],
-  //     ),
-  //     const SizedBox(
-  //       width: 2,
-  //     ),
-  //     Text(
-  //       '12',
-  //       style: TextStyle(
-  //         fontWeight: FontWeight.bold,
-  //         shadows: [
-  //           lightShadow,
-  //         ],
-  //       ),
-  //     ),
-  //   ],
-  // );
 }

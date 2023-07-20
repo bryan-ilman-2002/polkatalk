@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polkatalk/enums/opinion.dart';
 import 'package:polkatalk/functions/getters/app_colors.dart';
 import 'package:polkatalk/functions/getters/green_shadow.dart';
 import 'package:polkatalk/functions/getters/heavy_shadow.dart';
@@ -140,13 +141,14 @@ class ProfileModal extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 24,
                         ),
                         const Row(
                           children: [
                             Expanded(
                               child: TagBoard(
                                 horizontalAlignment: WrapAlignment.center,
+                                horizontalSpacing: 12,
                                 prints: [
                                   'English',
                                   'French',
@@ -158,7 +160,7 @@ class ProfileModal extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(
-                          height: 32,
+                          height: 64,
                         ),
                         Text(
                           'Interest(s)',
@@ -168,7 +170,7 @@ class ProfileModal extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 24,
                         ),
                         const Row(
                           children: [
@@ -177,36 +179,25 @@ class ProfileModal extends StatelessWidget {
                                 horizontalAlignment: WrapAlignment.center,
                                 horizontalSpacing: 12,
                                 prints: [
-                                  'Cakap',
-                                  'Sopan',
-                                  'horny',
-                                  'Banyak Ngomong',
                                   'Cooking',
-                                  'Cakap',
-                                  'Sopan',
-                                  'horny',
-                                  'Banyak Ngomong',
                                   'Cooking',
-                                  'Hello',
-                                  'Java',
                                 ],
                               ),
                             ),
                           ],
                         ),
                         const SizedBox(
-                          height: 32,
+                          height: 64,
                         ),
                         Text(
                           'Rating',
-                          maxLines: 2,
                           style: TextStyle(
                             fontSize: 18,
                             color: heavyGray,
                           ),
                         ),
                         const SizedBox(
-                          height: 16,
+                          height: 24,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -237,7 +228,7 @@ class ProfileModal extends StatelessWidget {
                               ],
                             ),
                             const SizedBox(
-                              width: 16,
+                              width: 20,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -409,24 +400,46 @@ class ProfileModal extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(
-                          height: 32,
+                          height: 64,
                         ),
                         Text(
-                          'What Other People Think of This Person',
-                          maxLines: 2,
-                          textHeightBehavior: const TextHeightBehavior(
-                            applyHeightToFirstAscent: false,
-                          ),
+                          'What others think of Larry Page',
                           style: TextStyle(
-                            height: 1.2,
                             fontSize: 18,
                             color: heavyGray,
                           ),
                         ),
                         const SizedBox(
-                          height: 16,
+                          height: 24,
                         ),
-                        const TagBoard(),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: TagBoard(
+                                containsOpinion: true,
+                                horizontalSpacing: 12,
+                                prints: [
+                                  [Opinion.good.string, 'cute', 24],
+                                  [Opinion.neutral.string, 'talkative', 102],
+                                  [Opinion.bad.string, 'horny', 102],
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 64,
+                        ),
+                        Text(
+                          'Social Media Links',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: heavyGray,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 24,
+                        ),
                       ],
                     ),
                   ),

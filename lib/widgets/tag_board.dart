@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:polkatalk/widgets/tag.dart';
 
 class TagBoard extends ConsumerStatefulWidget {
-  final List<String>? prints;
+  final List? prints;
+  final bool containsOpinion;
   final WrapAlignment horizontalAlignment;
   final WrapAlignment verticalAlignment;
   final double horizontalSpacing;
@@ -12,6 +13,7 @@ class TagBoard extends ConsumerStatefulWidget {
   const TagBoard({
     super.key,
     this.prints,
+    this.containsOpinion = false,
     this.horizontalAlignment = WrapAlignment.center,
     this.verticalAlignment = WrapAlignment.center,
     this.horizontalSpacing = 16,
@@ -32,6 +34,7 @@ class _TagBoardState extends ConsumerState<TagBoard> {
         children.add(
           Tag(
             print: widget.prints![index],
+            containsOpinion: widget.containsOpinion,
           ),
         );
       }
