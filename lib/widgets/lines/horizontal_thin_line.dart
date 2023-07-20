@@ -11,7 +11,8 @@ class HorizontalThinLine extends StatelessWidget {
     this.horizontalMargin = 8,
     this.verticalMargin = 0,
     this.height = 0.2,
-    this.lineColor = Colors.black,
+    this.lineColor = const Color.fromRGBO(
+        64, 64, 64, 4), // this is heavyGray from app_colors.dart
   });
 
   @override

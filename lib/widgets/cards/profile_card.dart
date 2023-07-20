@@ -28,10 +28,11 @@ class ProfileCard extends StatelessWidget {
             width: 80,
             height: 80,
             decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: moderateGray,
-                )),
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: moderateGray,
+              ),
+            ),
             // Replace with your photo widget
             child: Center(
               child: Icon(

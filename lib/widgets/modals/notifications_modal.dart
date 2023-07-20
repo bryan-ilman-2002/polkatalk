@@ -13,90 +13,91 @@ class NotificationsModal extends ConsumerWidget {
     List<Widget> children = [];
 
     for (int index = 0; index < 15; index++) {
-      children.add(Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 24,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.waving_hand_rounded,
-                      size: 40,
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    Icon(
-                      Icons.circle,
-                      size: 12,
-                      color: tenseColor,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  width: 16,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+      children.add(
+        Stack(
+          alignment: AlignmentDirectional.bottomCenter,
+          children: [
+            Container(
+              // color: Colors.transparent,
+              color: const Color.fromARGB(
+                  255, 255, 255, 225), // for unread notifications
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 24,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'Someone is you!',
-                              maxLines: 2,
-                              textHeightBehavior: const TextHeightBehavior(
-                                applyHeightToFirstAscent: false,
-                              ),
-                              style: TextStyle(
-                                height: 1.6,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: heavyGray,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 12,
-                          ),
-                          Text(
-                            currentDateShrunk,
-                          ),
-                        ],
+                      Icon(
+                        Icons.waving_hand_rounded,
+                        size: 40,
                       ),
-                      const SizedBox(
-                        height: 4,
+                      SizedBox(
+                        height: 32,
                       ),
-                      const Text(
-                        'Please email us.',
-                        maxLines: 2,
-                        style: TextStyle(
-                          height: 1.6,
-                        ),
-                      )
                     ],
                   ),
-                )
-              ],
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'Someone is you!',
+                                maxLines: 2,
+                                textHeightBehavior: const TextHeightBehavior(
+                                  applyHeightToFirstAscent: false,
+                                ),
+                                style: TextStyle(
+                                  height: 1.6,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: heavyGray,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 12,
+                            ),
+                            Text(
+                              currentDateShrunk,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        const Text(
+                          'Please email us.',
+                          maxLines: 2,
+                          style: TextStyle(
+                            height: 1.6,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          const HorizontalThinLine(
-            horizontalMargin: 12,
-            height: 0.4,
-          ),
-        ],
-      ));
+            const HorizontalThinLine(
+              horizontalMargin: 12,
+              height: 0.4,
+            ),
+          ],
+        ),
+      );
     }
 
     return Container(

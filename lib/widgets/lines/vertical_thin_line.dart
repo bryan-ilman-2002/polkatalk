@@ -7,7 +7,7 @@ class VerticalThinLine extends StatelessWidget {
   const VerticalThinLine({
     super.key,
     this.height = 40,
-    this.lineColor = Colors.grey,
+    required this.lineColor,
   });
 
   @override

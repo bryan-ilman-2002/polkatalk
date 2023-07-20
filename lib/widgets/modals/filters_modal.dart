@@ -78,7 +78,7 @@ class FiltersModal extends ConsumerWidget {
                 children: [
                   // interests
                   FilterBox(
-                    title: 'Interests',
+                    title: 'Interest(s)',
                     child: TagAdder(
                       callbackFunction: () {
                         String matchingKey =
@@ -100,7 +100,7 @@ class FiltersModal extends ConsumerWidget {
                   ),
                   // languages
                   FilterBox(
-                    title: 'Languages',
+                    title: 'Language(s)',
                     child: TagAdder(
                       callbackFunction: () {
                         String matchingKey =

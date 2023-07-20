@@ -8,6 +8,7 @@ class TextWithBackground extends StatelessWidget {
   final Color? textColor;
   final EdgeInsetsGeometry? padding;
   final BorderRadiusGeometry? borderRadius;
+  final BoxShadow? boxShadow;
 
   const TextWithBackground({
     super.key,
@@ -18,6 +19,7 @@ class TextWithBackground extends StatelessWidget {
     this.textColor,
     this.padding,
     this.borderRadius,
+    this.boxShadow,
   });
 
   @override
@@ -27,6 +29,7 @@ class TextWithBackground extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: borderRadius ?? BorderRadius.circular(8),
+        boxShadow: boxShadow != null ? [boxShadow!] : [],
       ),
       child: Text(
         text,
