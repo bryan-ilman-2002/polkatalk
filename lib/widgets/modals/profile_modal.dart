@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:polkatalk/enums/opinion.dart';
 import 'package:polkatalk/functions/getters/app_colors.dart';
-import 'package:polkatalk/functions/getters/green_shadow.dart';
-import 'package:polkatalk/functions/getters/heavy_shadow.dart';
 import 'package:polkatalk/functions/getters/light_shadow.dart';
 import 'package:polkatalk/functions/getters/rating_color.dart';
 import 'package:polkatalk/widgets/custom_scroll_behavior.dart';
+import 'package:polkatalk/widgets/date_picker.dart';
 import 'package:polkatalk/widgets/lines/horizontal_thin_line.dart';
 import 'package:polkatalk/widgets/tag_board.dart';
 import 'package:polkatalk/widgets/text/txt_with_bg.dart';
@@ -440,6 +439,95 @@ class ProfileModal extends StatelessWidget {
                         const SizedBox(
                           height: 24,
                         ),
+                        const SizedBox(
+                          height: 64,
+                        ),
+                        Text(
+                          'Available Slot(s)',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: heavyGray,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.all(4),
+                              child: Text('00:00'),
+                            ),
+                            Expanded(
+                              child: Container(
+                                height: 32,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                height: 32,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                height: 32,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                height: 32,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                height: 32,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                height: 32,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const CalendarContainer(),
                       ],
                     ),
                   ),

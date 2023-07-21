@@ -11,6 +11,7 @@ Future<DateTime?> selectDateTime(BuildContext context) async {
         days: 90,
       ),
     ),
+    minutesInterval: 10,
     is24HourMode: true,
     isShowSeconds: false,
     isForce2Digits: true,
