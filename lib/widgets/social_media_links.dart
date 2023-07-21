@@ -44,13 +44,13 @@ class SocialMediaLinks extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: tinyGray,
-                  border: Border.all(
-                    color: moderateGray,
-                  ),
+                  // border: Border.all(
+                  //   color: moderateGray,
+                  // ),
                   borderRadius: BorderRadius.circular(12),
-                  // boxShadow: [
-                  //   lightShadow,
-                  // ],
+                  boxShadow: [
+                    heavyShadow,
+                  ],
                 ),
                 child: Row(
                   children: [

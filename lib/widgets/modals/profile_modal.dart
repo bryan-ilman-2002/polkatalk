@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:polkatalk/enums/opinion.dart';
 import 'package:polkatalk/functions/getters/app_colors.dart';
+import 'package:polkatalk/functions/getters/heavy_shadow.dart';
 import 'package:polkatalk/functions/getters/light_shadow.dart';
 import 'package:polkatalk/functions/getters/rating_color.dart';
 import 'package:polkatalk/widgets/custom_scroll_behavior.dart';
@@ -191,219 +192,6 @@ class ProfileModal extends StatelessWidget {
                           height: 64,
                         ),
                         Text(
-                          'Rating',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: heavyGray,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 24,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  '4.2',
-                                  style: TextStyle(
-                                    fontSize: 64,
-                                    fontWeight: FontWeight.bold,
-                                    color: getRatingColor(4.2),
-                                    shadows: [
-                                      lightShadow,
-                                    ],
-                                  ),
-                                ),
-                                Text(
-                                  '1486',
-                                  style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                    shadows: [
-                                      lightShadow,
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    TextWithBackground(
-                                      backgroundColor: getRatingColor(5.0),
-                                      boxShadow: lightShadow,
-                                      text: '5.0',
-                                    ),
-                                    const SizedBox(
-                                      width: 2,
-                                    ),
-                                    Icon(
-                                      Icons.close_rounded,
-                                      size: 12,
-                                      color: moderateGray,
-                                      shadows: [lightShadow],
-                                    ),
-                                    const SizedBox(
-                                      width: 2,
-                                    ),
-                                    Text(
-                                      '1208',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        shadows: [
-                                          lightShadow,
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
-                                Row(
-                                  children: [
-                                    TextWithBackground(
-                                      backgroundColor: getRatingColor(4.0),
-                                      boxShadow: lightShadow,
-                                      text: '4.0',
-                                    ),
-                                    const SizedBox(
-                                      width: 2,
-                                    ),
-                                    Icon(
-                                      Icons.close_rounded,
-                                      size: 12,
-                                      color: moderateGray,
-                                      shadows: [lightShadow],
-                                    ),
-                                    const SizedBox(
-                                      width: 2,
-                                    ),
-                                    Text(
-                                      '24',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        shadows: [
-                                          lightShadow,
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
-                                Row(
-                                  children: [
-                                    TextWithBackground(
-                                      backgroundColor: getRatingColor(3.0),
-                                      boxShadow: lightShadow,
-                                      text: '3.0',
-                                    ),
-                                    const SizedBox(
-                                      width: 2,
-                                    ),
-                                    Icon(
-                                      Icons.close_rounded,
-                                      size: 12,
-                                      color: moderateGray,
-                                      shadows: [lightShadow],
-                                    ),
-                                    const SizedBox(
-                                      width: 2,
-                                    ),
-                                    Text(
-                                      '122',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        shadows: [
-                                          lightShadow,
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
-                                Row(
-                                  children: [
-                                    TextWithBackground(
-                                      backgroundColor: getRatingColor(2.0),
-                                      boxShadow: lightShadow,
-                                      text: '2.0',
-                                    ),
-                                    const SizedBox(
-                                      width: 2,
-                                    ),
-                                    Icon(
-                                      Icons.close_rounded,
-                                      size: 12,
-                                      color: moderateGray,
-                                      shadows: [lightShadow],
-                                    ),
-                                    const SizedBox(
-                                      width: 2,
-                                    ),
-                                    Text(
-                                      '8',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        shadows: [
-                                          lightShadow,
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
-                                Row(
-                                  children: [
-                                    TextWithBackground(
-                                      backgroundColor: getRatingColor(1.0),
-                                      boxShadow: lightShadow,
-                                      text: '1.0',
-                                    ),
-                                    const SizedBox(
-                                      width: 2,
-                                    ),
-                                    Icon(
-                                      Icons.close_rounded,
-                                      size: 12,
-                                      color: moderateGray,
-                                      shadows: [lightShadow],
-                                    ),
-                                    const SizedBox(
-                                      width: 2,
-                                    ),
-                                    Text(
-                                      '12',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        shadows: [
-                                          lightShadow,
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 64,
-                        ),
-                        Text(
                           'What others think of Larry Page',
                           style: TextStyle(
                             fontSize: 18,
@@ -427,6 +215,190 @@ class ProfileModal extends StatelessWidget {
                               ),
                             ),
                           ],
+                        ),
+                        const SizedBox(
+                          height: 32,
+                        ),
+                        Center(
+                          child: Container(
+                            padding: const EdgeInsets.all(32),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                lightShadow,
+                              ],
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Column(
+                                  children: [
+                                    Text(
+                                      '4.2',
+                                      style: TextStyle(
+                                        fontSize: 64,
+                                        fontWeight: FontWeight.bold,
+                                        color: getRatingColor(4.2),
+                                      ),
+                                    ),
+                                    const Text(
+                                      '1486',
+                                      style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        TextWithBackground(
+                                          backgroundColor: getRatingColor(5.0),
+                                          text: '5.0',
+                                        ),
+                                        const SizedBox(
+                                          width: 2,
+                                        ),
+                                        Icon(
+                                          Icons.close_rounded,
+                                          size: 12,
+                                          color: moderateGray,
+                                        ),
+                                        const SizedBox(
+                                          width: 2,
+                                        ),
+                                        const Text(
+                                          '1208',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        TextWithBackground(
+                                          backgroundColor: getRatingColor(4.0),
+                                          text: '4.0',
+                                        ),
+                                        const SizedBox(
+                                          width: 2,
+                                        ),
+                                        Icon(
+                                          Icons.close_rounded,
+                                          size: 12,
+                                          color: moderateGray,
+                                        ),
+                                        const SizedBox(
+                                          width: 2,
+                                        ),
+                                        const Text(
+                                          '24',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        TextWithBackground(
+                                          backgroundColor: getRatingColor(3.0),
+                                          text: '3.0',
+                                        ),
+                                        const SizedBox(
+                                          width: 2,
+                                        ),
+                                        Icon(
+                                          Icons.close_rounded,
+                                          size: 12,
+                                          color: moderateGray,
+                                        ),
+                                        const SizedBox(
+                                          width: 2,
+                                        ),
+                                        const Text(
+                                          '122',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        TextWithBackground(
+                                          backgroundColor: getRatingColor(2.0),
+                                          text: '2.0',
+                                        ),
+                                        const SizedBox(
+                                          width: 2,
+                                        ),
+                                        Icon(
+                                          Icons.close_rounded,
+                                          size: 12,
+                                          color: moderateGray,
+                                        ),
+                                        const SizedBox(
+                                          width: 2,
+                                        ),
+                                        const Text(
+                                          '8',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        TextWithBackground(
+                                          backgroundColor: getRatingColor(1.0),
+                                          text: '1.0',
+                                        ),
+                                        const SizedBox(
+                                          width: 2,
+                                        ),
+                                        Icon(
+                                          Icons.close_rounded,
+                                          size: 12,
+                                          color: moderateGray,
+                                        ),
+                                        const SizedBox(
+                                          width: 2,
+                                        ),
+                                        const Text(
+                                          '12',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                         const SizedBox(
                           height: 64,

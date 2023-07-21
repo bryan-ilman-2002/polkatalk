@@ -21,7 +21,7 @@ class Tag extends StatelessWidget {
         ? Container(
             decoration: BoxDecoration(
               boxShadow: [
-                heavyShadow,
+                lightShadow,
               ],
             ),
             child: Row(
@@ -38,7 +38,7 @@ class Tag extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
               boxShadow: [
-                heavyShadow,
+                lightShadow,
               ],
             ),
             child: Row(
