@@ -4,11 +4,11 @@ import 'package:polkatalk/functions/getters/app_colors.dart';
 IconData getOpinionIcon(String opinion) {
   switch (opinion.toString().toLowerCase().trim()) {
     case 'good':
-      return Icons.thumb_up_rounded;
+      return Icons.thumb_up_outlined;
     case 'neutral':
       return Icons.horizontal_rule_rounded;
     case 'bad':
-      return Icons.thumb_down_rounded;
+      return Icons.thumb_down_outlined;
     default:
       return Icons.circle;
   }

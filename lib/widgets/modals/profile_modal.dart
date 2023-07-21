@@ -9,6 +9,7 @@ import 'package:polkatalk/widgets/lines/horizontal_thin_line.dart';
 import 'package:polkatalk/widgets/lines/vertical_thin_line.dart';
 import 'package:polkatalk/widgets/tag_board.dart';
 import 'package:polkatalk/widgets/text/txt_with_bg.dart';
+import 'package:polkatalk/widgets/social_media_links.dart';
 
 class ProfileModal extends StatelessWidget {
   const ProfileModal({super.key});
@@ -440,6 +441,7 @@ class ProfileModal extends StatelessWidget {
                         const SizedBox(
                           height: 24,
                         ),
+                        const SocialMediaLinks(),
                         const SizedBox(
                           height: 64,
                         ),
