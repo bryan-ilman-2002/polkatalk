@@ -6,6 +6,7 @@ import 'package:polkatalk/functions/getters/rating_color.dart';
 import 'package:polkatalk/widgets/custom_scroll_behavior.dart';
 import 'package:polkatalk/widgets/date_picker.dart';
 import 'package:polkatalk/widgets/lines/horizontal_thin_line.dart';
+import 'package:polkatalk/widgets/lines/vertical_thin_line.dart';
 import 'package:polkatalk/widgets/tag_board.dart';
 import 'package:polkatalk/widgets/text/txt_with_bg.dart';
 
@@ -453,77 +454,351 @@ class ProfileModal extends StatelessWidget {
                           height: 24,
                         ),
                         Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             const Padding(
-                              padding: EdgeInsets.all(4),
-                              child: Text('00:00'),
-                            ),
-                            Expanded(
-                              child: Container(
-                                height: 32,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                    color: Colors.black,
-                                  ),
-                                ),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 8,
+                              ),
+                              child: Text(
+                                '00:00',
                               ),
                             ),
-                            Expanded(
-                              child: Container(
-                                height: 32,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
+                            VerticalThinLine(
+                              height: 20,
+                              lineColor: moderateGray,
                             ),
                             Expanded(
-                              child: Container(
-                                height: 32,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                    color: Colors.black,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(
+                                      top: 2,
+                                    ),
+                                    child: Text(
+                                      '10',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  Container(
+                                    height: 20,
+                                    color: Colors.white,
+                                  ),
+                                ],
                               ),
                             ),
-                            Expanded(
-                              child: Container(
-                                height: 32,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
+                            VerticalThinLine(
+                              height: 20,
+                              lineColor: moderateGray,
                             ),
                             Expanded(
-                              child: Container(
-                                height: 32,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                    color: Colors.black,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(
+                                      top: 2,
+                                    ),
+                                    child: Text(
+                                      '20',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  Container(
+                                    height: 20,
+                                    color: lightBlue,
+                                  ),
+                                ],
                               ),
                             ),
+                            VerticalThinLine(
+                              height: 20,
+                              lineColor: moderateGray,
+                            ),
                             Expanded(
-                              child: Container(
-                                height: 32,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                    color: Colors.black,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(
+                                      top: 2,
+                                    ),
+                                    child: Text(
+                                      '30',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  Container(
+                                    height: 20,
+                                    color: lightBlue,
+                                  ),
+                                ],
                               ),
+                            ),
+                            VerticalThinLine(
+                              height: 20,
+                              lineColor: moderateGray,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(
+                                      top: 2,
+                                    ),
+                                    child: Text(
+                                      '40',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 20,
+                                    color: lightBlue,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            VerticalThinLine(
+                              height: 20,
+                              lineColor: moderateGray,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(
+                                      top: 2,
+                                    ),
+                                    child: Text(
+                                      '50',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 20,
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            VerticalThinLine(
+                              height: 20,
+                              lineColor: moderateGray,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(
+                                      top: 2,
+                                    ),
+                                    child: Text(
+                                      '60',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 20,
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            VerticalThinLine(
+                              height: 20,
+                              lineColor: moderateGray,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 8,
+                              ),
+                              child: Text(
+                                '01:00',
+                              ),
+                            ),
+                            VerticalThinLine(
+                              height: 20,
+                              lineColor: moderateGray,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(
+                                      top: 2,
+                                    ),
+                                    child: Text(
+                                      '10',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 20,
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            VerticalThinLine(
+                              height: 20,
+                              lineColor: moderateGray,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(
+                                      top: 2,
+                                    ),
+                                    child: Text(
+                                      '20',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 20,
+                                    color: lightBlue,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            VerticalThinLine(
+                              height: 20,
+                              lineColor: moderateGray,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(
+                                      top: 2,
+                                    ),
+                                    child: Text(
+                                      '30',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 20,
+                                    color: lightBlue,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            VerticalThinLine(
+                              height: 20,
+                              lineColor: moderateGray,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(
+                                      top: 2,
+                                    ),
+                                    child: Text(
+                                      '40',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 20,
+                                    color: lightBlue,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            VerticalThinLine(
+                              height: 20,
+                              lineColor: moderateGray,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(
+                                      top: 2,
+                                    ),
+                                    child: Text(
+                                      '50',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 20,
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            VerticalThinLine(
+                              height: 20,
+                              lineColor: moderateGray,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(
+                                      top: 2,
+                                    ),
+                                    child: Text(
+                                      '60',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 20,
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            VerticalThinLine(
+                              height: 20,
+                              lineColor: moderateGray,
                             ),
                           ],
                         ),

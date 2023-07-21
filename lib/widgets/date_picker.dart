@@ -20,6 +20,12 @@ class _CalendarContainerState extends ConsumerState<CalendarContainer> {
     return TableCalendar(
       calendarFormat: _calendarFormat,
       headerStyle: const HeaderStyle(
+        leftChevronIcon: Icon(
+          Icons.chevron_left,
+        ),
+        rightChevronIcon: Icon(
+          Icons.chevron_right,
+        ),
         titleTextStyle: TextStyle(
           fontSize: 16,
         ),
@@ -27,8 +33,16 @@ class _CalendarContainerState extends ConsumerState<CalendarContainer> {
       ),
       focusedDay: DateTime.now(),
       daysOfWeekStyle: const DaysOfWeekStyle(
+        weekdayStyle: TextStyle(),
         weekendStyle: TextStyle(
           color: Colors.red,
+        ),
+      ),
+      calendarStyle: CalendarStyle(
+        defaultTextStyle: const TextStyle(),
+        weekendTextStyle: const TextStyle(),
+        disabledTextStyle: TextStyle(
+          color: lightGray,
         ),
       ),
       firstDay: DateTime.now(),
@@ -40,7 +54,6 @@ class _CalendarContainerState extends ConsumerState<CalendarContainer> {
       selectedDayPredicate: (day) =>
           day == _selectedStartDate || day == _selectedEndDate,
       calendarBuilders: CalendarBuilders(
-        dowBuilder: (context, day) {},
         todayBuilder: (context, day, focusedDay) {
           return Container(
             alignment: Alignment.center,
