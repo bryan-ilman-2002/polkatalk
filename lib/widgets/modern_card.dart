@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:polkatalk/functions/getters/light_shadow.dart';
+import 'package:polkatalk/pages/chat_page.dart';
 import 'package:polkatalk/widgets/modals/profile_modal.dart';
 
 class ModernCard extends StatefulWidget {
@@ -35,15 +36,28 @@ class _ModernCardState extends State<ModernCard> {
           ),
           child: InkWell(
             onTap: () {
-              showModalBottomSheet(
-                context: context,
-                useSafeArea: true,
-                isScrollControlled: true,
-                backgroundColor: Colors.transparent,
-                builder: (BuildContext context) {
-                  return const ProfileModal();
-                },
+              Navigator.of(context).push(
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) =>
+                      const ChatPage(),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: child,
+                    );
+                  },
+                ),
               );
+              // showModalBottomSheet(
+              //   context: context,
+              //   useSafeArea: true,
+              //   isScrollControlled: true,
+              //   backgroundColor: Colors.transparent,
+              //   builder: (BuildContext context) {
+              //     return const ProfileModal();
+              //   },
+              // );
             },
             borderRadius: const BorderRadius.all(
               Radius.circular(16),

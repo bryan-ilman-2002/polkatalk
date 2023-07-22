@@ -5,6 +5,7 @@ import 'package:polkatalk/enums/rating.dart';
 import 'package:polkatalk/functions/getters/app_colors.dart';
 import 'package:polkatalk/functions/getters/heavy_shadow.dart';
 import 'package:polkatalk/functions/getters/lang_names_in_native_format.dart';
+import 'package:polkatalk/functions/getters/light_shadow.dart';
 import 'package:polkatalk/functions/getters/professions.dart';
 import 'package:polkatalk/functions/getters/rating_color.dart';
 import 'package:polkatalk/functions/providers/communication_method_filter_state.dart';
@@ -41,35 +42,40 @@ class FiltersModal extends ConsumerWidget {
       ),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(20),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Icon(
-                    Icons.close_rounded,
-                    size: 24,
-                    color: moderateGray,
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                lightShadow,
+              ],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.close_rounded,
+                      size: 24,
+                      color: moderateGray,
+                    ),
                   ),
                 ),
-              ),
-              Text(
-                'Filters',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: heavyGray,
+                Text(
+                  'Filters',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: heavyGray,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          const HorizontalThinLine(
-            horizontalMargin: 0,
+              ],
+            ),
           ),
           Expanded(
             child: ScrollConfiguration(
