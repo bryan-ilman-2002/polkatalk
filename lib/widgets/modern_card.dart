@@ -39,7 +39,7 @@ class _ModernCardState extends State<ModernCard> {
               Navigator.of(context).push(
                 PageRouteBuilder(
                   pageBuilder: (context, animation, secondaryAnimation) =>
-                      const ChatPage(),
+                      ChatPage(),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
                     return FadeTransition(
