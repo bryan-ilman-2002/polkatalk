@@ -3,6 +3,7 @@ import 'package:polkatalk/functions/getters/app_colors.dart';
 import 'package:polkatalk/functions/getters/light_shadow.dart';
 import 'package:polkatalk/widgets/buttons/colored_btn.dart';
 import 'package:polkatalk/widgets/custom_scroll_behavior.dart';
+import 'package:polkatalk/widgets/text/txt_with_bg.dart';
 
 class ChatPage extends StatelessWidget {
   const ChatPage({super.key});
@@ -16,7 +17,9 @@ class ChatPage extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: [
@@ -65,7 +68,7 @@ class ChatPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Larry Page',
+                              'Alexander Antonio',
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -83,6 +86,27 @@ class ChatPage extends StatelessWidget {
                             ),
                           ],
                         ),
+                      ),
+                    ),
+                    ColoredButton(
+                      horizontalPadding: 4,
+                      verticalPadding: 4,
+                      basicBorderRadius: 128,
+                      borderColor: moderateGray,
+                      child: Column(
+                        children: [
+                          TextWithBackground(
+                            backgroundColor: Colors.transparent,
+                            padding: const EdgeInsets.all(0),
+                            text: '04:50',
+                            textColor: moderateGray,
+                          ),
+                          Icon(
+                            Icons.keyboard_arrow_down_rounded,
+                            size: 20,
+                            color: heavyGray,
+                          ),
+                        ],
                       ),
                     ),
                     Padding(
@@ -108,7 +132,11 @@ class ChatPage extends StatelessWidget {
                 child: ScrollConfiguration(
                   behavior: CustomScrollBehavior(),
                   child: ListView(
-                    children: const [],
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -156,6 +184,11 @@ class ChatPage extends StatelessWidget {
                                     right: 8,
                                   ),
                                   enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                    ),
+                                  ),
+                                  disabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Colors.transparent,
                                     ),
