@@ -8,3 +8,11 @@ BoxShadow get lightShadow {
     offset: const Offset(0, 4),
   );
 }
+
+BoxShadow get tinyShadow {
+  return BoxShadow(
+    color: Colors.grey.withOpacity(0.24),
+    blurRadius: 4,
+    offset: const Offset(0, 2),
+  );
+}

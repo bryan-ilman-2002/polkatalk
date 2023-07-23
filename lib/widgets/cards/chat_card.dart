@@ -34,7 +34,7 @@ class _ChatCardState extends State<ChatCard> {
     return Icon(
       widget.failedToSendLastMessage
           ? Icons.error_outline
-          : Icons.mark_chat_read_outlined,
+          : Icons.check_box_rounded,
       color: widget.failedToSendLastMessage
           ? Colors.red
           : widget.theySawLastMessage

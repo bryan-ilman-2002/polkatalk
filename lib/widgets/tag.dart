@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:polkatalk/enums/direction.dart';
 import 'package:polkatalk/functions/getters/app_colors.dart';
-import 'package:polkatalk/functions/getters/heavy_shadow.dart';
 import 'package:polkatalk/functions/getters/light_shadow.dart';
 import 'package:polkatalk/functions/getters/opinion_design.dart';
 

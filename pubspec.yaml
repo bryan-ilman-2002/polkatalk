@@ -38,6 +38,7 @@ dependencies:
   url_launcher: ^6.1.12
   table_calendar: ^3.0.9
   flutter_svg: ^2.0.7
+  chat_bubbles: ^1.4.1
 
 dev_dependencies:
   flutter_test:
