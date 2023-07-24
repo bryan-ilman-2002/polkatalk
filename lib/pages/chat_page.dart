@@ -407,6 +407,137 @@ class ChatPage extends StatelessWidget {
                             ),
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 16,
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Daniela Armando chose Truth or Dare.',
+                              style: TextStyle(
+                                color: primaryAppColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Expanded(
+                              child: HorizontalThinLine(
+                                height: 1,
+                                horizontalMargin: 0,
+                                lineColor: lightGray,
+                              ),
+                            ),
+                            ColoredButton(
+                              horizontalPadding: 8,
+                              splashFactory: NoSplash.splashFactory,
+                              basicBorderRadius: 128,
+                              borderColor: Colors.transparent,
+                              child: Row(
+                                children: [
+                                  const Text(
+                                    'quit game',
+                                    style: TextStyle(),
+                                  ),
+                                  const SizedBox(
+                                    width: 4,
+                                  ),
+                                  Icon(
+                                    Icons.power_settings_new_rounded,
+                                    size: 20,
+                                    color: moderateGray,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            HorizontalThinLine(
+                              width: 12,
+                              height: 1,
+                              horizontalMargin: 0,
+                              lineColor: lightGray,
+                            ),
+                            ColoredButton(
+                              horizontalPadding: 8,
+                              splashFactory: NoSplash.splashFactory,
+                              basicBorderRadius: 128,
+                              borderColor: Colors.transparent,
+                              child: Row(
+                                children: [
+                                  const Text(
+                                    'refresh',
+                                    style: TextStyle(),
+                                  ),
+                                  const SizedBox(
+                                    width: 4,
+                                  ),
+                                  Icon(
+                                    Icons.refresh_rounded,
+                                    size: 20,
+                                    color: moderateGray,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        const Center(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 40,
+                            ),
+                            child: Text(
+                              'Both players must participate in each questions and dares.',
+                              maxLines: 2,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 16,
+                          ),
+                          child: Column(
+                            children: [
+                              const Center(
+                                child: Text(
+                                  'Round 1',
+                                ),
+                              ),
+                              Center(
+                                child: Text(
+                                  'How often do you cry?',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: heavyGray,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Column(
+                          children: [
+                            const Center(
+                              child: Text(
+                                'Round 2',
+                              ),
+                            ),
+                            Center(
+                              child: Text(
+                                'Are you happy?',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: heavyGray,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),

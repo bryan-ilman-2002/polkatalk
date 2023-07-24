@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HorizontalThinLine extends StatelessWidget {
+  final double width;
   final double horizontalMargin;
   final double verticalMargin;
   final double height;
@@ -8,6 +9,7 @@ class HorizontalThinLine extends StatelessWidget {
 
   const HorizontalThinLine({
     super.key,
+    this.width = double.infinity,
     this.horizontalMargin = 8,
     this.verticalMargin = 0,
     this.height = 0.2,
@@ -22,7 +24,7 @@ class HorizontalThinLine extends StatelessWidget {
         horizontal: horizontalMargin,
         vertical: verticalMargin,
       ),
-      width: double.infinity,
+      width: width,
       height: height,
       color: lineColor,
     );

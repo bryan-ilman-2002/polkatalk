@@ -8,6 +8,7 @@ class ColoredButton extends StatelessWidget {
   final Function? callbackFunction;
   final Color buttonColor;
   final Color? splashColor;
+  final InteractiveInkFeatureFactory? splashFactory;
   final Color borderColor;
   final double basicBorderRadius;
   final BorderRadius? customBorderRadius;
@@ -23,6 +24,7 @@ class ColoredButton extends StatelessWidget {
     this.callbackFunction,
     this.buttonColor = Colors.white,
     this.splashColor,
+    this.splashFactory,
     this.borderColor = Colors.black,
     this.basicBorderRadius = 8,
     this.customBorderRadius,
@@ -60,6 +62,7 @@ class ColoredButton extends StatelessWidget {
               callbackFunction!();
             }
           },
+          splashFactory: splashFactory,
           splashColor: splashColor,
           borderRadius: customBorderRadius ??
               BorderRadius.all(
