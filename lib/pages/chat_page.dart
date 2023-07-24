@@ -6,6 +6,7 @@ import 'package:polkatalk/functions/getters/heavy_shadow.dart';
 import 'package:polkatalk/functions/getters/light_shadow.dart';
 import 'package:polkatalk/widgets/buttons/colored_btn.dart';
 import 'package:polkatalk/widgets/custom_scroll_behavior.dart';
+import 'package:polkatalk/widgets/lines/horizontal_thin_line.dart';
 import 'package:polkatalk/widgets/tag_board.dart';
 import 'package:polkatalk/widgets/text/txt_with_bg.dart';
 
@@ -136,7 +137,11 @@ class ChatPage extends StatelessWidget {
               ),
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.only(
+                    left: 8,
+                    right: 8,
+                    top: 8,
+                  ),
                   child: ScrollConfiguration(
                     behavior: CustomScrollBehavior(),
                     child: ListView(
@@ -175,61 +180,61 @@ class ChatPage extends StatelessWidget {
                                     const SizedBox(
                                       height: 12,
                                     ),
-                                    Text(
-                                      'Alexander Antonio chose Truth or Dare',
-                                      style: TextStyle(
-                                        color: primaryAppColor,
+                                    // Text(
+                                    //   'Alexander Antonio chose Truth or Dare',
+                                    //   style: TextStyle(
+                                    //     color: primaryAppColor,
+                                    //   ),
+                                    // ),
+                                    ColoredButton(
+                                      horizontalPadding: 8,
+                                      verticalPadding: 8,
+                                      borderColor: Colors.transparent,
+                                      basicBorderRadius: 12,
+                                      buttonShadow: tinyShadow,
+                                      child: const Text(
+                                        'Truth or Dare',
                                       ),
                                     ),
-                                    // ColoredButton(
-                                    //   horizontalPadding: 8,
-                                    //   verticalPadding: 8,
-                                    //   borderColor: Colors.transparent,
-                                    //   basicBorderRadius: 12,
-                                    //   buttonShadow: tinyShadow,
-                                    //   child: const Text(
-                                    //     'Truth or Dare',
-                                    //   ),
-                                    // ),
-                                    // const SizedBox(
-                                    //   height: 8,
-                                    // ),
-                                    // ColoredButton(
-                                    //   horizontalPadding: 8,
-                                    //   verticalPadding: 8,
-                                    //   borderColor: Colors.transparent,
-                                    //   basicBorderRadius: 12,
-                                    //   buttonShadow: tinyShadow,
-                                    //   child: const Text(
-                                    //     'Would You Rather',
-                                    //   ),
-                                    // ),
-                                    // const SizedBox(
-                                    //   height: 8,
-                                    // ),
-                                    // ColoredButton(
-                                    //   horizontalPadding: 8,
-                                    //   verticalPadding: 8,
-                                    //   borderColor: Colors.transparent,
-                                    //   basicBorderRadius: 12,
-                                    //   buttonShadow: tinyShadow,
-                                    //   child: const Text(
-                                    //     'Never Have I Ever',
-                                    //   ),
-                                    // ),
-                                    // const SizedBox(
-                                    //   height: 8,
-                                    // ),
-                                    // ColoredButton(
-                                    //   horizontalPadding: 8,
-                                    //   verticalPadding: 8,
-                                    //   borderColor: Colors.transparent,
-                                    //   basicBorderRadius: 12,
-                                    //   buttonShadow: tinyShadow,
-                                    //   child: const Text(
-                                    //     'Kiss, Marry, Kill',
-                                    //   ),
-                                    // ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    ColoredButton(
+                                      horizontalPadding: 8,
+                                      verticalPadding: 8,
+                                      borderColor: Colors.transparent,
+                                      basicBorderRadius: 12,
+                                      buttonShadow: tinyShadow,
+                                      child: const Text(
+                                        'Would You Rather',
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    ColoredButton(
+                                      horizontalPadding: 8,
+                                      verticalPadding: 8,
+                                      borderColor: Colors.transparent,
+                                      basicBorderRadius: 12,
+                                      buttonShadow: tinyShadow,
+                                      child: const Text(
+                                        'Never Have I Ever',
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    ColoredButton(
+                                      horizontalPadding: 8,
+                                      verticalPadding: 8,
+                                      borderColor: Colors.transparent,
+                                      basicBorderRadius: 12,
+                                      buttonShadow: tinyShadow,
+                                      child: const Text(
+                                        'Kiss, Marry, Kill',
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -281,7 +286,7 @@ class ChatPage extends StatelessWidget {
                                       Icon(
                                         Icons.check_box_rounded,
                                         size: 20,
-                                        color: moderateBlue,
+                                        color: Colors.blue[400],
                                       ),
                                     ],
                                   ),
@@ -338,7 +343,463 @@ class ChatPage extends StatelessWidget {
                                       Icon(
                                         Icons.check_box_rounded,
                                         size: 20,
-                                        color: moderateBlue,
+                                        color: Colors.blue[400],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                          ),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: chatColor,
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: [
+                                  giantShadow,
+                                ],
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    'Hello There',
+                                    style: TextStyle(
+                                      color: heavyGray,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        '14:32',
+                                        style: TextStyle(
+                                          color: moderateGray,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 4,
+                                      ),
+                                      Icon(
+                                        Icons.check_box_rounded,
+                                        size: 20,
+                                        color: Colors.blue[400],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                          ),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: chatColor,
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: [
+                                  giantShadow,
+                                ],
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    'Hello There',
+                                    style: TextStyle(
+                                      color: heavyGray,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        '14:32',
+                                        style: TextStyle(
+                                          color: moderateGray,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 4,
+                                      ),
+                                      Icon(
+                                        Icons.check_box_rounded,
+                                        size: 20,
+                                        color: Colors.blue[400],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                          ),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: chatColor,
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: [
+                                  giantShadow,
+                                ],
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    'Hello There',
+                                    style: TextStyle(
+                                      color: heavyGray,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        '14:32',
+                                        style: TextStyle(
+                                          color: moderateGray,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 4,
+                                      ),
+                                      Icon(
+                                        Icons.check_box_rounded,
+                                        size: 20,
+                                        color: Colors.blue[400],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                          ),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: chatColor,
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: [
+                                  giantShadow,
+                                ],
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    'Hello There',
+                                    style: TextStyle(
+                                      color: heavyGray,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        '14:32',
+                                        style: TextStyle(
+                                          color: moderateGray,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 4,
+                                      ),
+                                      Icon(
+                                        Icons.check_box_rounded,
+                                        size: 20,
+                                        color: Colors.blue[400],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                          ),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: chatColor,
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: [
+                                  giantShadow,
+                                ],
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    'Hello There',
+                                    style: TextStyle(
+                                      color: heavyGray,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        '14:32',
+                                        style: TextStyle(
+                                          color: moderateGray,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 4,
+                                      ),
+                                      Icon(
+                                        Icons.check_box_rounded,
+                                        size: 20,
+                                        color: Colors.blue[400],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                          ),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: chatColor,
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: [
+                                  giantShadow,
+                                ],
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    'Hello There',
+                                    style: TextStyle(
+                                      color: heavyGray,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        '14:32',
+                                        style: TextStyle(
+                                          color: moderateGray,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 4,
+                                      ),
+                                      Icon(
+                                        Icons.check_box_rounded,
+                                        size: 20,
+                                        color: Colors.blue[400],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                          ),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: chatColor,
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: [
+                                  giantShadow,
+                                ],
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    'Hello There',
+                                    style: TextStyle(
+                                      color: heavyGray,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        '14:32',
+                                        style: TextStyle(
+                                          color: moderateGray,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 4,
+                                      ),
+                                      Icon(
+                                        Icons.check_box_rounded,
+                                        size: 20,
+                                        color: Colors.blue[400],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                          ),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: chatColor,
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: [
+                                  giantShadow,
+                                ],
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    'Hello There',
+                                    style: TextStyle(
+                                      color: heavyGray,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        '14:32',
+                                        style: TextStyle(
+                                          color: moderateGray,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 4,
+                                      ),
+                                      Icon(
+                                        Icons.check_box_rounded,
+                                        size: 20,
+                                        color: Colors.blue[400],
                                       ),
                                     ],
                                   ),
@@ -353,87 +814,169 @@ class ChatPage extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.all(8),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                            color: lightGray,
+                padding: const EdgeInsets.only(
+                  left: 8,
+                  right: 8,
+                  top: 4,
+                  bottom: 8,
+                ),
+                child: IntrinsicHeight(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 4,
                           ),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Row(
-                          children: [
-                            const ColoredButton(
-                              horizontalPadding: 8,
-                              verticalPadding: 8,
-                              basicBorderRadius: 128,
-                              borderColor: Colors.transparent,
-                              child: Icon(
-                                Icons.photo_rounded,
-                                size: 24,
-                              ),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: lightGray,
                             ),
-                            Expanded(
-                              child: TextField(
-                                minLines: 1,
-                                maxLines: 6,
-                                style: TextStyle(
-                                  color: heavyGray,
-                                ),
-                                decoration: const InputDecoration(
-                                  hintText: 'Message',
-                                  hintStyle: TextStyle(),
-                                  isCollapsed: true,
-                                  contentPadding: EdgeInsets.only(
-                                    right: 8,
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Column(
+                            children: [
+                              IntrinsicHeight(
+                                child: Row(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    Container(
+                                      width: 24,
+                                      margin: const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: tinyGray,
+                                        border: Border.all(
+                                          color: lightGray,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
                                     ),
-                                  ),
-                                  disabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
+                                    Expanded(
+                                      child: TextField(
+                                        enabled: false,
+                                        minLines: 2,
+                                        maxLines: 2,
+                                        decoration: InputDecoration(
+                                          hintText:
+                                              'Hello There, you you you you you you you you you you you you you you you you you you ',
+                                          hintStyle: TextStyle(
+                                            fontSize: 14,
+                                            color: moderateGray,
+                                          ),
+                                          contentPadding:
+                                              const EdgeInsets.all(0),
+                                          disabledBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Colors.transparent),
+                                          ),
+                                          isCollapsed: true,
+                                          isDense: true,
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
+                                    const SizedBox(
+                                      width: 4,
                                     ),
-                                  ),
+                                  ],
                                 ),
                               ),
-                            ),
-                          ],
+                              HorizontalThinLine(
+                                height: 1,
+                                horizontalMargin: 8,
+                                verticalMargin: 4,
+                                lineColor: lightGray,
+                              ),
+                              Row(
+                                children: [
+                                  const ColoredButton(
+                                    horizontalPadding: 8,
+                                    verticalPadding: 8,
+                                    basicBorderRadius: 128,
+                                    borderColor: Colors.transparent,
+                                    child: Icon(
+                                      Icons.photo_rounded,
+                                      size: 24,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: TextField(
+                                      minLines: 1,
+                                      maxLines: 6,
+                                      style: TextStyle(
+                                        color: heavyGray,
+                                      ),
+                                      decoration: const InputDecoration(
+                                        hintText: 'Message',
+                                        hintStyle: TextStyle(),
+                                        isCollapsed: true,
+                                        contentPadding: EdgeInsets.only(
+                                          right: 8,
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                          ),
+                                        ),
+                                        disabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                          ),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    ColoredButton(
-                      horizontalPadding: 12,
-                      verticalPadding: 12,
-                      buttonColor: primaryAppColor,
-                      splashColor: secondaryAppColor,
-                      borderColor: Colors.transparent,
-                      basicBorderRadius: 128,
-                      child: const Icon(
-                        Icons.send_rounded,
-                        size: 26,
-                        color: Colors.white,
+                      const SizedBox(
+                        width: 4,
                       ),
-                    ),
-                  ],
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ColoredButton(
+                            horizontalPadding: 4,
+                            verticalPadding: 4,
+                            basicBorderRadius: 128,
+                            borderColor: Colors.transparent,
+                            child: Icon(
+                              Icons.close_rounded,
+                              size: 20,
+                              color: moderateGray,
+                            ),
+                          ),
+                          ColoredButton(
+                            horizontalPadding: 12,
+                            verticalPadding: 12,
+                            buttonColor: primaryAppColor,
+                            splashColor: secondaryAppColor,
+                            borderColor: Colors.transparent,
+                            basicBorderRadius: 128,
+                            child: const Icon(
+                              Icons.send_rounded,
+                              size: 26,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
