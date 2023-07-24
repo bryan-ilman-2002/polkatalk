@@ -10,8 +10,8 @@ BoxShadow get heavyShadow {
 
 BoxShadow get giantShadow {
   return BoxShadow(
-    color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.2),
-    blurRadius: 2,
-    offset: const Offset(0, 2),
+    color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.32),
+    blurRadius: 1.2,
+    offset: const Offset(0, 1.6),
   );
 }
